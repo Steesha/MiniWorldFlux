@@ -227,9 +227,6 @@ SDK::ClientPlayer* LocalPlayer::getObject() {
 	return this->obj;
 }
 
-unsigned long g_localPlayer = 0;
-unsigned long g_freeItemsCallAddr = 0;
-
 namespace Game {
 
 	LocalPlayer* thePlayer = LocalPlayer::getInstance();

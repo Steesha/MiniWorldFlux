@@ -8,7 +8,6 @@
 #include "md5.h"
 
 // Modules
-// Modules
 #include "ClickGui.h"
 #include "IDProtection.h"
 #include "HighJump.h"
@@ -44,10 +43,6 @@ namespace Client {
 	extern ImFont* fluxIcon;
 	extern ImFont* chinese;
 	extern Address hWorld;
-
-	namespace Texture {
-		
-	}
 
 	void initClient();
 	void initModules();
