@@ -108,7 +108,9 @@ bool LocalPlayer::setJumpHeight(float height) {
 
 float LocalPlayer::getCurrentHealth() {
 	IngameCheck 0;
-	return this->obj->playerAttribuLua->currentHealth;
+	float health = this->obj->playerAttribuLua->currentHealth;
+	health = (health <= 0) ? 0 : health;
+	return health;
 }
 
 float LocalPlayer::getMaxHealth() {
