@@ -41,31 +41,28 @@ namespace SDK {
 		int mode; //0x00D0
 	}; //Size: 0x00D4
 
-	// Commit 2022/7/4 101
+	// Commit 2022/7/4
 	class ClientPlayer
 	{
 	public:
 		char pad_0000[1168]; //0x0000
 		class ActorBody* actorBody; //0x0490
-		char pad_0494[24]; //0x0494
-		int flyState; //0x04AC
-		char pad_04B0[20]; //0x04B0
-		class PlayerLocoMotion* playerLocoMotion; //0x04C4
-		char pad_04C8[4]; //0x04C8
-		class PlayerAttribuLua* playerAttribuLua; //0x04CC
-		char pad_04D0[192]; //0x04D0
-		class PlayerHpProgressComponent* playerHpProgressComponent; //0x0590
-		class PlayerTeamComponent* playerTeamComponent; //0x0594
-		class PlayerAttackingTargetComponent* playerAttackingTargetComponent; //0x0598
-		char pad_059C[360]; //0x059C
-		char name[8]; //0x0704
-		char pad_070C[132]; //0x070C
-		int uid; //0x0790
-		char pad_0794[584]; //0x0794
-		class GameCamera* gameCamera; //0x09DC
-		char pad_09E0[100]; //0x09E0
-		int crossPointTo; //0x0A44
-	}; //Size: 0x0A48
+		char pad_0494[96]; //0x0494
+		int flyState; //0x04F4
+		char pad_04F8[20]; //0x04F8
+		class PlayerLocoMotion* playerLocoMotion; //0x050C
+		char pad_0510[4]; //0x0510
+		class PlayerAttribuLua* playerAttribuLua; //0x0514
+		char pad_0518[32]; //0x0518
+		int uid; //0x0538
+		char pad_053C[156]; //0x053C
+		class PlayerHpProgressComponent* playerHpProgressComponent; //0x05D8
+		class PlayerTeamComponent* playerTeamComponent; //0x05DC
+		char pad_05E0[1100]; //0x05E0
+		class GameCamera* gameCamera; //0x0A2C
+		char pad_0A30[100]; //0x0A30
+		int crossPointTo; //0x0A94
+	}; //Size: 0x0A98
 
 	class PlayerList_Level1
 	{
@@ -180,12 +177,6 @@ namespace SDK {
 		char pad_0000[8]; //0x0000
 		int team; //0x0008
 	}; //Size: 0x000C
-
-	class PlayerAttackingTargetComponent
-	{
-	public:
-		char pad_0000[4]; //0x0000
-	}; //Size: 0x0004
 
 	class PlayerHpProgressComponent
 	{
