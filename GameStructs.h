@@ -41,7 +41,7 @@ namespace SDK {
 		int mode; //0x00D0
 	}; //Size: 0x00D4
 
-	// Commit 2022/7/4
+	// Commit 2022/7/4 101
 	class ClientPlayer
 	{
 	public:
