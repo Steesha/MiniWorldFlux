@@ -67,6 +67,9 @@
     <Filter Include="Include\MD5">
       <UniqueIdentifier>{2aeb5e6c-c06d-4f2b-8705-401b9e129e4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Renderer\Fonts">
+      <UniqueIdentifier>{131b8b29-e62a-4549-abc3-a32ee5426726}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui.cpp">
@@ -203,9 +206,6 @@
     </ClCompile>
     <ClCompile Include="TargetHUD.cpp">
       <Filter>Client\Module\Modules\Visual</Filter>
-    </ClCompile>
-    <ClCompile Include="FreeItems.cpp">
-      <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,8 +365,11 @@
     <ClInclude Include="TargetHUD.h">
       <Filter>Client\Module\Modules\Visual</Filter>
     </ClInclude>
-    <ClInclude Include="FreeItems.h">
-      <Filter>Client\Module\Modules\Player</Filter>
+    <ClInclude Include="FluxFont.h">
+      <Filter>Client\Renderer\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="FluxIconFont.h">
+      <Filter>Client\Renderer\Fonts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

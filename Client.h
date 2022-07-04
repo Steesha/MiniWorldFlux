@@ -28,7 +28,6 @@
 #include "Radar.h"
 #include "NoFall.h"
 #include "TargetHUD.h"
-#include "FreeItems.h"
 
 #define MakeDisposableThread(_Executor, _Param) CloseHandle(CreateThread(nullptr, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(_Executor), _Param, 0, nullptr))
 
@@ -40,7 +39,6 @@ namespace Client {
 	extern std::string clientMajorVersion;
 	extern std::string clientMinorVersion;
 	extern std::string clientDllPath;
-	extern std::string clientAssetsPath;
 	extern ImGuiIO* rendererIO;
 	extern ImFont* fluxFont;
 	extern ImFont* fluxIcon;
@@ -57,7 +55,6 @@ namespace Client {
 	void startClient(HMODULE thisModule);
 	void handleKeyEvent();
 	void handleModuleKeyEvent(unsigned char keyCode);
-	void loadTextures(IDirect3DDevice9* device);
 	void loadConfig();
 
 }

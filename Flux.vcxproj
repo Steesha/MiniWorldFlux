@@ -26,7 +26,6 @@
     <ClCompile Include="FasterSpeed.cpp" />
     <ClCompile Include="FloatValue.cpp" />
     <ClCompile Include="Fly.cpp" />
-    <ClCompile Include="FreeItems.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStructs.cpp" />
     <ClCompile Include="HighJump.cpp" />
@@ -75,8 +74,9 @@
     <ClInclude Include="FakePosition.h" />
     <ClInclude Include="FasterSpeed.h" />
     <ClInclude Include="FloatValue.h" />
+    <ClInclude Include="FluxFont.h" />
+    <ClInclude Include="FluxIconFont.h" />
     <ClInclude Include="Fly.h" />
-    <ClInclude Include="FreeItems.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStructs.h" />
     <ClInclude Include="HighJump.h" />

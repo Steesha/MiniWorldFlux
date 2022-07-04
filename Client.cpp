@@ -24,17 +24,6 @@ namespace Client {
 
 		// 获取主模块基址
 		Client::hWorld = reinterpret_cast<Address>(GetModuleHandleA("libiworld_micro.dll"));
-	
-		// 获取DLL路径和资源路径
-		char path[1024];
-		RtlZeroMemory(path, 1024);
-		GetModuleFileNameA(Client::clientModule, path, 1024);
-		Client::clientDllPath = std::string(path);
-		(strrchr(path, '\\'))[1] = 0;
-		Client::clientAssetsPath = std::string(strcat(path, "assets\\"));
-
-		g_localPlayer = Client::hWorld + Offsets::LocalPlayer;
-		g_freeItemsCallAddr = hWorld + Offsets::FreeItemsCall;
 
 	}
 
@@ -59,7 +48,6 @@ namespace Client {
 		ModuleManager::getInstance().addModule<Radar>(Radar::getInstance());
 		ModuleManager::getInstance().addModule<NoFall>(NoFall::getInstance());
 		ModuleManager::getInstance().addModule<TargetHUD>(TargetHUD::getInstance());
-		ModuleManager::getInstance().addModule<FreeItems>(FreeItems::getInstance());
 
 	}
 
@@ -129,11 +117,6 @@ namespace Client {
 			if (mod->getKey() == keyCode) mod->toggle();
 
 		}
-	}
-
-	void loadTextures(IDirect3DDevice9* device) {
-
-
 	}
 
 }

@@ -27,21 +27,13 @@ namespace Renderer {
         ImGui::StyleColorsLight();
 
         // ×ÖÌå
-        char buffer[1024];
-        RtlZeroMemory(buffer, 1024);
-        strcpy(buffer, Client::clientAssetsPath.c_str());
-        strcat(buffer, "font\\opensans.ttf");
-        Client::fluxFont = io.Fonts->AddFontFromFileTTF(buffer, 40, nullptr);
-
-        RtlZeroMemory(buffer, 1024);
-        strcpy(buffer, Client::clientAssetsPath.c_str());
-        strcat(buffer, "font\\icon.ttf");
-        Client::fluxIcon = io.Fonts->AddFontFromFileTTF(buffer, 40, nullptr);
-
-        RtlZeroMemory(buffer, 1024);
-        strcpy(buffer, Client::clientAssetsPath.c_str());
-        strcat(buffer, "font\\syblack.ttf");
+        Client::fluxFont = io.Fonts->AddFontFromMemoryTTF((void*)FluxFont_data, FluxFont_size, 40);
+        Client::fluxIcon = io.Fonts->AddFontFromMemoryTTF((void*)FluxIconFont_data, FluxIconFont_size, 40);
+        char* buffer = new char[1024];
+        SHGetSpecialFolderPathA(nullptr, buffer, CSIDL_FONTS, false);
+        strcat(buffer, "\\msyh.ttc");
         Client::chinese = io.Fonts->AddFontFromFileTTF(buffer, 30, nullptr, io.Fonts->GetGlyphRangesChineseFull());
+        delete[] buffer;
 
         ImGui_ImplWin32_Init(hwnd);
         ImGui_ImplDX9_Init(device);

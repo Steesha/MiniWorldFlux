@@ -1,5 +1,8 @@
 #pragma once
 #include <Windows.h>
+#include <Shlobj.h>
+#include "FluxFont.h"
+#include "FluxIconFont.h"
 #include "ImGuiHeader.h"
 #include "InlineHook.h"
 #include "Client.h"
