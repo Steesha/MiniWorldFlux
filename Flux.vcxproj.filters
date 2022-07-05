@@ -70,6 +70,9 @@
     <Filter Include="Client\Renderer\Fonts">
       <UniqueIdentifier>{131b8b29-e62a-4549-abc3-a32ee5426726}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Verification">
+      <UniqueIdentifier>{dbcd7830-666a-4164-a34b-46170dcd76cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui.cpp">

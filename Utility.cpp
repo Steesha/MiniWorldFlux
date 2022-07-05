@@ -9,7 +9,7 @@ namespace Utility {
     void openConsole() {
 
         AllocConsole();
-        SetConsoleTitleW(L"Flux client inject success.(Author: °¢ÒðAyin)");
+        SetConsoleTitleW(L"Flux client is injected.(Author: °¢ÒðAyin)");
         freopen("CONOUT$", "w", stdout);
     }
 
