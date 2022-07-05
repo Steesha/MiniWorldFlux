@@ -207,6 +207,9 @@
     <ClCompile Include="TargetHUD.cpp">
       <Filter>Client\Module\Modules\Visual</Filter>
     </ClCompile>
+    <ClCompile Include="NoRecoil.cpp">
+      <Filter>Client\Module\Modules\Combat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="FluxIconFont.h">
       <Filter>Client\Renderer\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="NoRecoil.h">
+      <Filter>Client\Module\Modules\Combat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

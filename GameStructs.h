@@ -71,7 +71,9 @@ namespace SDK {
 		unsigned long* playerList; //0x000C
 		char pad_0010[12]; //0x0010
 		int length; //0x001C
-	}; //Size: 0x0020
+		char pad_0020[56]; //0x0020
+		int mobListLength; //0x0058
+	}; //Size: 0x005C
 
 	class ActorBody
 	{

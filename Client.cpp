@@ -48,6 +48,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<Radar>(Radar::getInstance());
 		ModuleManager::getInstance().addModule<NoFall>(NoFall::getInstance());
 		ModuleManager::getInstance().addModule<TargetHUD>(TargetHUD::getInstance());
+		ModuleManager::getInstance().addModule<NoRecoil>(NoRecoil::getInstance());
 
 	}
 
@@ -64,12 +65,6 @@ namespace Client {
 		HUD::getInstance()->enable();
 		IDProtection::getInstance()->enable();
 		Team::getInstance()->enable();
-
-		FakePosition::getInstance()->setKey(Simulator::KEY_F);
-		Phase::getInstance()->setKey(Simulator::KEY_F);
-		AirJump::getInstance()->setKey(Simulator::KEY_V);
-		AutoClicker::getInstance()->setKey(Simulator::KEY_E);
-		Reach::getInstance()->setKey(Simulator::KEY_E);
 
 	}
 

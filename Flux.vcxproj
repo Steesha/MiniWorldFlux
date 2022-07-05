@@ -46,6 +46,7 @@
     <ClCompile Include="ModuleManager.cpp" />
     <ClCompile Include="MouseSimulator.cpp" />
     <ClCompile Include="NoFall.cpp" />
+    <ClCompile Include="NoRecoil.cpp" />
     <ClCompile Include="Phase.cpp" />
     <ClCompile Include="ProtectDestroyer.cpp" />
     <ClCompile Include="Radar.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="ModuleManager.h" />
     <ClInclude Include="MouseSimulator.h" />
     <ClInclude Include="NoFall.h" />
+    <ClInclude Include="NoRecoil.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="Phase.h" />
     <ClInclude Include="ProtectDestroyer.h" />

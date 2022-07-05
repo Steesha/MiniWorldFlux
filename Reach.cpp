@@ -43,6 +43,6 @@ bool Reach::startReach() {
 
 void Reach::endReach() {
 
-	this->reachChecker.restore();
 	Memory::write<unsigned char>(Client::hWorld + Offsets::Reach, 0x75);
+	this->reachChecker.restore();
 }

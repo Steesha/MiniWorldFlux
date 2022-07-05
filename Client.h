@@ -27,6 +27,7 @@
 #include "Radar.h"
 #include "NoFall.h"
 #include "TargetHUD.h"
+#include "NoRecoil.h"
 
 #define MakeDisposableThread(_Executor, _Param) CloseHandle(CreateThread(nullptr, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(_Executor), _Param, 0, nullptr))
 
