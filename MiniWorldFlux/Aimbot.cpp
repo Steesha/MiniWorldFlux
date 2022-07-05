@@ -41,6 +41,11 @@ void Aimbot::onRenderOverlay() {
 		if (TeamCheck) {
 			for (SDK::ClientPlayer* p : Game::playerInWorld) {
 				if (!Team::isSameTeam(p)) {
+					//如果不是同一个队伍
+					if (p->playerAttribuLua->currentHealth <= 0)
+					{
+						continue;
+					}
 					this->target = p;
 					break;
 				}
