@@ -269,8 +269,9 @@ void ClickGui::renderMainPanel() {
 			dl = ImGui::GetForegroundDrawList();
 
 			struct Block bindKeyBlock;
-			bindKeyBlock.x = Utility::width() * 0.5f - 100;
-			bindKeyBlock.y = Utility::height() * 0.5f - 35;
+			
+			bindKeyBlock.x = Game::getGameViewSize().x * 0.5f - 100;
+			bindKeyBlock.y = Game::getGameViewSize().y * 0.5f - 35;
 			bindKeyBlock.width = 200;
 			bindKeyBlock.height = 70;
 			dl->AddRectFilled(ImVec2(bindKeyBlock.x, bindKeyBlock.y), ImVec2(bindKeyBlock.x + bindKeyBlock.width, bindKeyBlock.y + bindKeyBlock.height), FluxColor::ValueModeBackground, 5);

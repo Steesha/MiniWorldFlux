@@ -47,20 +47,6 @@ namespace Utility {
         }
     }
 
-    float width() {
-        RECT rect;
-        RtlZeroMemory(&rect, sizeof(RECT));
-        GetClientRect(wndGame, &rect);
-        return static_cast<float>(rect.right - rect.left);
-    }
-
-    float height() {
-        RECT rect;
-        RtlZeroMemory(&rect, sizeof(RECT));
-        GetClientRect(wndGame, &rect);
-        return static_cast<float>(rect.bottom - rect.top);
-    }
-
     bool isReadablePtr(void* pointer) {
         return (IsBadReadPtr(pointer, sizeof(pointer)) == 0);
     }
