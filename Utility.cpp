@@ -32,17 +32,17 @@ namespace Utility {
     void notice(const char* msg, Level lv) {
         
         if (lv == Level::INFO) {
-            MessageBoxA(nullptr, msg, "Infomation from Hanabi:", MB_OK | MB_ICONINFORMATION);
+            MessageBoxA(nullptr, msg, "Infomation from Flux:", MB_OK | MB_ICONINFORMATION);
             return;
         }
 
         if (lv == Level::ERR) {
-            MessageBoxA(nullptr, msg, "Error from Hanabi:", MB_OK | MB_ICONERROR);
+            MessageBoxA(nullptr, msg, "Error from Flux:", MB_OK | MB_ICONERROR);
             return;
         }
 
         if (lv == Level::WARN) {
-            MessageBoxA(nullptr, msg, "Warnning from Hanabi:", MB_OK | MB_ICONWARNING);
+            MessageBoxA(nullptr, msg, "Warnning from Flux:", MB_OK | MB_ICONWARNING);
             return;
         }
     }
