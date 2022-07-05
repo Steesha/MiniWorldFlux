@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiniWorldFlux", "MiniWorldFlux\MiniWorldFlux.vcxproj", "{536E243A-D6CD-4360-8B5A-B6BF85783F3D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FluxInjector", "FluxInjector\FluxInjector.vcxproj", "{F8800473-977A-4DC6-97BE-26C16CE179C5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{536E243A-D6CD-4360-8B5A-B6BF85783F3D} = {536E243A-D6CD-4360-8B5A-B6BF85783F3D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

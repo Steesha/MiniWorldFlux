@@ -26,7 +26,7 @@ int main()
 	dir = sReturn;
 	wcout << L"[Flux] CurrentDirectory:" << dir.c_str() << endl;
 
-	wstring file = dir + L"\\MiniWorldFlux.dll";
+	wstring file = dir + L"MiniWorldFlux.dll";
 
 	//检查DLL是否存在
 	HANDLE fHandle = CreateFileW(file.c_str(), GENERIC_ALL, 0, 0, OPEN_EXISTING, 0, 0);
