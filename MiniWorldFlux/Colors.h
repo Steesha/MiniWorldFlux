@@ -27,5 +27,8 @@ namespace FluxColor {
 	constexpr ImU32 TargetHUDHealth = IM_COL32(14, 252, 254, 255);
 	constexpr ImU32 TargetHUDHunger = IM_COL32(52, 103, 255, 255);
 
+	constexpr ImU32 NotificationBackground = IM_COL32(18, 20, 18, 255);
+	constexpr ImU32 NotificationContent = IM_COL32(250, 250, 250, 230);
+
 };
 

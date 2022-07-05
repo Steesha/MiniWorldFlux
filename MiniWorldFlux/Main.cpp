@@ -4,9 +4,7 @@
 #ifdef _DEBUG
 LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 
-	if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION 
-		&& ExceptionInfo->ExceptionRecord->ExceptionAddress != reinterpret_cast<void*>(0x756B41CA)
-		&& ExceptionInfo->ExceptionRecord->ExceptionAddress != reinterpret_cast<void*>(0x756B4206)) {
+	if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) {
 
 		printf("-----------Start------------\n");
 		printf("Nullptr in: %p\n", ExceptionInfo->ExceptionRecord->ExceptionAddress);
@@ -20,7 +18,7 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 		printf("EBP: %X\n", ExceptionInfo->ContextRecord->Ebp);
 		printf("EIP: %X\n", ExceptionInfo->ContextRecord->Eip);
 		printf("-----------End------------\n");
-		MessageBoxA(nullptr, "Nullptr checked!", "Exception Handler:", MB_OK | MB_ICONERROR);
+		MessageBoxA(nullptr, "Nullptr detected!", "Exception Handler:", MB_OK | MB_ICONERROR);
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
 

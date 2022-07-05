@@ -41,10 +41,19 @@ void AbstractModule::toggle() {
 }
 
 void AbstractModule::onToggled() {
-	if (this->i_toggle)
-		onEnabled();
-	else
-		onDisabled();
+
+	char buffer[512] = { 0 };
+	RtlZeroMemory(buffer, 512);
+	if (this->i_toggle) {
+		this->onEnabled();
+		sprintf(buffer, "%s Enabled.", this->getName().c_str());
+		NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
+	}
+	else {
+		this->onDisabled();
+		sprintf(buffer, "%s Disabled.", this->getName().c_str());
+		NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
+	}
 }
 
 Value* AbstractModule::getValue(std::string name) {

@@ -9,5 +9,8 @@ namespace FluxIcon {
 	constexpr const char* Player = "d";
 	constexpr const char* World = "e";
 	constexpr const char* Yes = "f";
+	constexpr const char* Error = "g";
+	constexpr const char* Warn = "h";
+	constexpr const char* Info = "i";
 
 }

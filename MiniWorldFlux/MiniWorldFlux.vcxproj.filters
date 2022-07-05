@@ -73,6 +73,9 @@
     <Filter Include="Client\Verification">
       <UniqueIdentifier>{dbcd7830-666a-4164-a34b-46170dcd76cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Notification">
+      <UniqueIdentifier>{e16c0088-16ed-4f95-b9fb-2ce9023191e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui.cpp">
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="NoRecoil.cpp">
       <Filter>Client\Module\Modules\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="NotificationManager.cpp">
+      <Filter>Client\Notification</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="NoRecoil.h">
       <Filter>Client\Module\Modules\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="NotificationManager.h">
+      <Filter>Client\Notification</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

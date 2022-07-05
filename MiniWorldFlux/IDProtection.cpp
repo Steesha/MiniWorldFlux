@@ -22,14 +22,15 @@ void IDProtection::onRenderOverlay() {
 	ToggleCheck;
 	IngameCheck;
 	
-	static float maskOffsetX = 330;
-	static float maskOffsetY = 15;
-	static float maskWidth = 150;
+	constexpr float maskOffsetX = 330;
+	constexpr float maskOffsetY = 15;
+	constexpr float maskWidth = 150;
 
 	Block idMaskBlock;
 	
-	idMaskBlock.x = Game::getGameViewSize().x - maskOffsetX;
-	idMaskBlock.y = Game::getGameViewSize().y - maskOffsetY;
+	Vec2 view = Game::getGameViewSize();
+	idMaskBlock.x = view.x - maskOffsetX;
+	idMaskBlock.y = view.y - maskOffsetY;
 	idMaskBlock.width = maskWidth;
 	idMaskBlock.height = maskOffsetY;
 	ImGui::GetForegroundDrawList()->AddRectFilled(ImVec2(idMaskBlock.x, idMaskBlock.y), ImVec2(idMaskBlock.x + idMaskBlock.width, idMaskBlock.y + idMaskBlock.height), FluxColor::Gray);

@@ -3,6 +3,7 @@
 #include <vector>
 #include "Value.h"
 #include "KeyboardSimulator.h"
+#include "NotificationManager.h"
 
 #define ToggleCheck if (!this->getToggle()) return
 #define DefaultConstructor(_Class) _Class() = default
