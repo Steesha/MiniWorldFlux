@@ -115,7 +115,9 @@ float LocalPlayer::getCurrentHealth() {
 
 float LocalPlayer::getMaxHealth() {
 	IngameCheck 0;
-	return this->obj->playerAttribuLua->maxHealth;
+	float health = this->obj->playerAttribuLua->maxHealth;
+	health = (health <= 0) ? 0 : health;
+	return health;
 }
 
 float LocalPlayer::getCurrentOxygen() {

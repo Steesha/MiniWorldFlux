@@ -61,7 +61,13 @@ void Aimbot::onRenderOverlay() {
 		if (TeamCheck) {
 
 			for (SDK::ClientPlayer* p : Game::playerInWorld) {
+				//判断是否为同一个队伍
 				if (!Team::isSameTeam(p)) {
+					//如果不是同一个队伍
+					if (p->playerAttribuLua->currentHealth <= 0)
+					{
+						continue;
+					}
 					tar = p;
 					break;
 				}
