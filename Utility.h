@@ -28,10 +28,6 @@ namespace Utility {
 
 	void notice(const char* msg, Level lv = Level::INFO);
 
-    float width();
-
-	float height();
-
 	bool isReadablePtr(void* pointer);
 
 	bool isWriteablePtr(void* pointer);
