@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Flux", "Flux.vcxproj", "{57D0E04F-5853-48D1-874E-0204A8B5596B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Injector", "Injector\Injector.vcxproj", "{02F6DA29-1521-42D6-AF51-E01D559A93F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{57D0E04F-5853-48D1-874E-0204A8B5596B}.Debug|x86.Build.0 = Debug|Win32
 		{57D0E04F-5853-48D1-874E-0204A8B5596B}.Release|x86.ActiveCfg = Release|Win32
 		{57D0E04F-5853-48D1-874E-0204A8B5596B}.Release|x86.Build.0 = Release|Win32
+		{02F6DA29-1521-42D6-AF51-E01D559A93F8}.Debug|x86.ActiveCfg = Debug|Win32
+		{02F6DA29-1521-42D6-AF51-E01D559A93F8}.Debug|x86.Build.0 = Debug|Win32
+		{02F6DA29-1521-42D6-AF51-E01D559A93F8}.Release|x86.ActiveCfg = Release|Win32
+		{02F6DA29-1521-42D6-AF51-E01D559A93F8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
