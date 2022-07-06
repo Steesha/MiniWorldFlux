@@ -18,6 +18,15 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 		printf("ESP: %X\n", ExceptionInfo->ContextRecord->Esp);
 		printf("EBP: %X\n", ExceptionInfo->ContextRecord->Ebp);
 		printf("EIP: %X\n", ExceptionInfo->ContextRecord->Eip);
+
+		printf("-----------Stack------------\n");
+		DWORD esp = ExceptionInfo->ContextRecord->Esp;
+		while (esp <= ExceptionInfo->ContextRecord->Ebp)
+		{
+			//print ESP
+			printf("%X\n", *(DWORD*)esp);
+			esp += 4;
+		}
 		printf("-----------End------------\n");
 		MessageBoxA(nullptr, "Nullptr detected!", "Exception Handler:", MB_OK | MB_ICONERROR);
 		return EXCEPTION_CONTINUE_EXECUTION;
