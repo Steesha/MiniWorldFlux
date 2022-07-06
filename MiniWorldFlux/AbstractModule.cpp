@@ -44,6 +44,13 @@ void AbstractModule::onToggled() {
 
 	char buffer[512] = { 0 };
 	RtlZeroMemory(buffer, 512);
+
+	if (this->getName().c_str() == "ClickGui")
+	{
+		//对于ClickGui，不进行Notification
+		return;
+	}
+
 	if (this->i_toggle) {
 		this->onEnabled();
 		sprintf(buffer, "%s Enabled.", this->getName().c_str());
