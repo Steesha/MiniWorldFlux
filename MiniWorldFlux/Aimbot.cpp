@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Aimbot.h"
 
 Aimbot::Aimbot() : AbstractModule("Aimbot", Category::Combat) {

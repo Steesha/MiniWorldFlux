@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include "pch.h"
 #include "Offsets.h"
 
 using Address = unsigned long;

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "AirJump.h"
 
 AirJump::AirJump() : AbstractModule("AirJump", Category::Movement) {

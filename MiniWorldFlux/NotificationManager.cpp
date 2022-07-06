@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "NotificationManager.h"
 
 Notification::Notification(std::string text, NotiLevel level, float duration) : text(text), level(level), duration(duration) {

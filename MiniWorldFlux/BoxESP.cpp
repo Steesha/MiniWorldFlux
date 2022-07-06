@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BoxESP.h"
 
 BoxESP::BoxESP() : AbstractModule("BoxESP", Category::Visual) {

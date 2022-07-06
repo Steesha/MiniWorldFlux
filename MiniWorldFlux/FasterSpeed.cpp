@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "FasterSpeed.h"
 
 FasterSpeed::FasterSpeed() : AbstractModule("FasterSpeed", Category::Movement) {

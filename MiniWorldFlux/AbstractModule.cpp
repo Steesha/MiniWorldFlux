@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "AbstractModule.h"
-
 AbstractModule::AbstractModule(std::string modName, Category modCategory) : name(modName), category(modCategory), i_toggle(false), key(Simulator::KEY_NONE) {
 
 }

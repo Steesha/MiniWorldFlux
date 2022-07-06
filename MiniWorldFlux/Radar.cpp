@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Radar.h"
 
 Radar::Radar() : AbstractModule("Radar", Category::Visual) {

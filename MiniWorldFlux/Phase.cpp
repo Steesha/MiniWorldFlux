@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Phase.h"
 
 Phase::Phase() : AbstractModule("Phase", Category::Player) {

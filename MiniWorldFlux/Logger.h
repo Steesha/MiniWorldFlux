@@ -1,8 +1,5 @@
 #pragma once
-#include <Windows.h>
-#include <xstring>
-#include <vector>
-
+#include "pch.h"
 // wingdi.h Line 118定义了这个宏
 #undef ERROR
 enum class LogRank : unsigned char {

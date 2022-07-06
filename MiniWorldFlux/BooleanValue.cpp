@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BooleanValue.h"
 
 BooleanValue::BooleanValue(std::string name) : value(false), Value(name, ValueType::Boolean, &this->value) {

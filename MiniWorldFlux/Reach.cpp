@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Reach.h"
 
 Reach::Reach() : AbstractModule("Reach", Category::Combat) {

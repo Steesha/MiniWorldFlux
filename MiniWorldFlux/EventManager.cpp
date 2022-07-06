@@ -1,7 +1,8 @@
+#include "pch.h"
 #include "EventManager.h"
 
 EventManager& EventManager::getInstance() {
-	static EventManager instance_; 
+	static EventManager instance_;
 	return instance_;
 }
 

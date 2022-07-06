@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "NoRecoil.h"
 
 NoRecoil::NoRecoil() : AbstractModule("NoRecoil", Category::Combat) {

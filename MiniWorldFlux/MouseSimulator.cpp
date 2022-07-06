@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "MouseSimulator.h"
 
 namespace Simulator {

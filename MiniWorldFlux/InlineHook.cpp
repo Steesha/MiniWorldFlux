@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "InlineHook.h"
 
 DWORD InlineHook::ModifyMemoryAttributes(DWORD address, DWORD attributes) {

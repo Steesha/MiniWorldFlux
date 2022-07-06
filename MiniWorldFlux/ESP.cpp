@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ESP.h"
 
 ESP::ESP() : AbstractModule("ESP", Category::Visual) {

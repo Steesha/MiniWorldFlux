@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ModeValue.h"
 
 ModeValue::ModeValue(std::string name, std::string current) : value(current), Value(name, ValueType::Mode, &this->value), unfold(false) {

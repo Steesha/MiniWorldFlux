@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "IDProtection.h"
 
 IDProtection::IDProtection() : AbstractModule("IDProtection", Category::Visual) {

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Disabler.h"
 
 Disabler::Disabler() : AbstractModule("Disabler", Category::World) {

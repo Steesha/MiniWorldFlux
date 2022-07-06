@@ -1,5 +1,7 @@
+#include "pch.h"
 #include "FloatValue.h"
-
+#undef min
+#undef max
 FloatValue::FloatValue(std::string name, float val, float valMin, float valMax) : value(val), Value(name, ValueType::Float, &this->value), min(valMin), max(valMax), integer(false) {
 
 }

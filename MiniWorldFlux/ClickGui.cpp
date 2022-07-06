@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ClickGui.h"
 
 ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {

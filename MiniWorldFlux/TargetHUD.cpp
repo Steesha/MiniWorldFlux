@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TargetHUD.h"
 
 TargetHUD::TargetHUD() : AbstractModule("TargetHUD", Category::Visual) {

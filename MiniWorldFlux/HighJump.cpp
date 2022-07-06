@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "HighJump.h"
 
 HighJump::HighJump() : AbstractModule("HighJump", Category::Movement) {

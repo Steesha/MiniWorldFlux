@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "NoFall.h"
 
 NoFall::NoFall() : AbstractModule("NoFall", Category::Player) {

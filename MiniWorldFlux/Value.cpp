@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Value.h"
 
 Value::Value(std::string valName, ValueType valType, void* val) : name(valName), type(valType), value(val) {

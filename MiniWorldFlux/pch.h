@@ -1,0 +1,11 @@
+#pragma once
+#include <ThemidaSDK\ThemidaSDK.h>
+#include <Windows.h>
+#include <string>
+#include <vector>
+#include <Shlobj.h>
+#include <xstring>
+#include <ctime>
+#include <iostream>
+#include <sys/timeb.h>
+#include "ImGuiHeader.h"

@@ -1,8 +1,5 @@
 #pragma once
-#include <iostream>
-#include <Windows.h>
-#include <ctime>
-#include <sys/timeb.h>
+#include "pch.h"
 #include "Structs.h"
 
 typedef long long time_t;

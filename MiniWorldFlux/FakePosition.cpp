@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "FakePosition.h"
 
 FakePosition::FakePosition() : AbstractModule("FakePosition", Category::Player) {

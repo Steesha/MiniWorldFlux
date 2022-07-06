@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "KeyboardSimulator.h"
 
 unsigned char scan_code(DWORD pKey) {

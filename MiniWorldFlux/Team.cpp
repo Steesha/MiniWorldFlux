@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Team.h"
 
 Team::Team() : AbstractModule("Team", Category::World) {

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Fly.h"
 
 Fly::Fly() : AbstractModule("Fly", Category::Movement) {

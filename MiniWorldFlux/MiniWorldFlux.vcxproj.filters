@@ -81,9 +81,6 @@
     <ClCompile Include="imgui.cpp">
       <Filter>Include\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="imgui_demo.cpp">
-      <Filter>Include\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="imgui_draw.cpp">
       <Filter>Include\ImGui</Filter>
     </ClCompile>
@@ -218,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Client\Utility\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Client</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Client\Utility\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "GameStructs.h"
 
 namespace SDK {

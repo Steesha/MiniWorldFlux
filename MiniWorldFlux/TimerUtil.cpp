@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TimerUtil.h"
 
 TimerUtil::TimerUtil() {

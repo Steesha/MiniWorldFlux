@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "AutoClicker.h"
 
 AutoClicker::AutoClicker() : AbstractModule("AutoClicker", Category::Combat) {
@@ -16,7 +17,7 @@ void AutoClicker::onEnabled() {
 }
 
 void AutoClicker::onDisabled() {
-	
+
 }
 
 void AutoClicker::onRenderOverlay() {
@@ -26,7 +27,7 @@ void AutoClicker::onRenderOverlay() {
 	if (GetForegroundWindow() != Client::wndGame) return;
 
 	if (Client::rendererIO->MouseDownDuration[ImGuiMouseButton_Middle] > 0) {
-	
+
 		if (this->cpsTimer.elapsed(1000 / this->cps->getValueLong())) {
 			Simulator::mlclick(20);
 			this->cpsTimer.reset();
