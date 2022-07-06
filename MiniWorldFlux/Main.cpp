@@ -24,7 +24,7 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 		while (esp <= ExceptionInfo->ContextRecord->Ebp)
 		{
 			//print ESP
-			printf("%X\n", *(DWORD*)esp);
+			printf("%X | %X\n", esp, *(DWORD*)esp);
 			esp += 4;
 		}
 		printf("-----------End------------\n");
