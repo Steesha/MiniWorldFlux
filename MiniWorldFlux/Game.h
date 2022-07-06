@@ -8,7 +8,6 @@
 #include "Client.h"
 #include "Offsets.h"
 #include "AbstractModule.h"
-#include "md5.h"
 
 using Address = unsigned long;
 using Pointer = unsigned long;
@@ -16,9 +15,6 @@ using Byte = unsigned char;
 
 #define IngameCheck if (!Game::isPlaying()) return
 #define SinglePlayerCheck if (Game::singlePlayerChecker()) return
-
-extern unsigned long g_localPlayer;
-extern unsigned long g_freeItemsCallAddr;
 
 class LocalPlayer {
 

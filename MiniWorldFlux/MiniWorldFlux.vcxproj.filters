@@ -64,9 +64,6 @@
     <Filter Include="Client\Module\Values">
       <UniqueIdentifier>{cdc2e15e-6cbb-4e85-8acd-5ee08bebddfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include\MD5">
-      <UniqueIdentifier>{2aeb5e6c-c06d-4f2b-8705-401b9e129e4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Client\Renderer\Fonts">
       <UniqueIdentifier>{131b8b29-e62a-4549-abc3-a32ee5426726}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,9 @@
     </Filter>
     <Filter Include="Client\Notification">
       <UniqueIdentifier>{e16c0088-16ed-4f95-b9fb-2ce9023191e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Utility\Logger">
+      <UniqueIdentifier>{6ea15904-4867-4a81-9ead-ff51b2dce657}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +204,6 @@
     <ClCompile Include="Value.cpp">
       <Filter>Client\Module\Values</Filter>
     </ClCompile>
-    <ClCompile Include="md5.cpp">
-      <Filter>Include\MD5</Filter>
-    </ClCompile>
     <ClCompile Include="NoFall.cpp">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
@@ -218,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="NotificationManager.cpp">
       <Filter>Client\Notification</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Client\Utility\Logger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,9 +368,6 @@
     <ClInclude Include="Value.h">
       <Filter>Client\Module\Values</Filter>
     </ClInclude>
-    <ClInclude Include="md5.h">
-      <Filter>Include\MD5</Filter>
-    </ClInclude>
     <ClInclude Include="NoFall.h">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
@@ -388,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="NotificationManager.h">
       <Filter>Client\Notification</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Client\Utility\Logger</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

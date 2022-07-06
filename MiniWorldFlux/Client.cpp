@@ -14,7 +14,7 @@ namespace Client {
 	ImGuiIO* rendererIO = nullptr;				// ImGuiIO
 	ImFont* fluxFont = nullptr;					// Flux字体
 	ImFont* fluxIcon = nullptr;					// Flux图标
-	ImFont* chinese = nullptr;					// 思源黑体
+	ImFont* chinese = nullptr;					// 微软雅黑
 	Address hWorld = 0;							// libiworld_micro.dll基址
 
 	void initClient() {
@@ -54,8 +54,9 @@ namespace Client {
 
 	void initEvents() {
 		
-		EventManager::getInstance().reg(Events::EventKeyDown, handleKeyEvent);
+		EventManager::getInstance().reg(Events::EventKeyDown, handleGuiEvent);
 		EventManager::getInstance().reg(Events::EventUpdateData, Game::updateData);
+		EventManager::getInstance().reg(Events::EventUpdateData, MakeHandler(&Logger::getInstance(), &Logger::flush));
 
 	}
 
@@ -82,9 +83,11 @@ namespace Client {
 		Renderer::startRenderer(Client::wndGame);
 		Client::loadConfig();
 
+		LOG(L"Client.cpp", L"Client started.", INFO);
+
 	}
 
-	void handleKeyEvent() {
+	void handleGuiEvent() {
 
 		static bool opening = false;
 

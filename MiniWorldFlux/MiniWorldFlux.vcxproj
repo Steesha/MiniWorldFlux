@@ -119,8 +119,8 @@
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="InlineHook.cpp" />
     <ClCompile Include="KeyboardSimulator.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="md5.cpp" />
     <ClCompile Include="ModeValue.cpp" />
     <ClCompile Include="ModuleManager.cpp" />
     <ClCompile Include="MouseSimulator.cpp" />
@@ -175,7 +175,7 @@
     <ClInclude Include="imstb_truetype.h" />
     <ClInclude Include="InlineHook.h" />
     <ClInclude Include="KeyboardSimulator.h" />
-    <ClInclude Include="md5.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Memory.hpp" />
     <ClInclude Include="ModeValue.h" />
     <ClInclude Include="ModuleManager.h" />

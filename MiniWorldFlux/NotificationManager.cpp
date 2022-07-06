@@ -41,8 +41,6 @@ void NotificationManager::onRenderOverlay() {
             return;
         }
 
-        printf("[Notification] Text: %s\tTime: %f\n", noti->text.c_str(), noti->duration);
-
         const char* icon = nullptr;
 
         switch (noti->level) {

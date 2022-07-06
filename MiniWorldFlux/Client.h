@@ -5,7 +5,7 @@
 #include "ImGuiHeader.h"
 #include "EventManager.h"
 #include "ModuleManager.h"
-#include "md5.h"
+#include "Logger.h"
 
 // Modules
 #include "ClickGui.h"
@@ -49,7 +49,7 @@ namespace Client {
 	void initModules();
 	void initEvents();
 	void startClient(HMODULE thisModule);
-	void handleKeyEvent();
+	void handleGuiEvent();
 	void handleModuleKeyEvent(unsigned char keyCode);
 	void loadConfig();
 
