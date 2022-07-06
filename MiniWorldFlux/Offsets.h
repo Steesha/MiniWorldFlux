@@ -20,6 +20,7 @@ namespace Offsets {
 	constexpr unsigned long Ping = 0x237C83C;
 	constexpr unsigned long NoSpread = 0x10B0F04;
 	constexpr unsigned long NoRecoil = 0x10B0F43;
+	constexpr unsigned long IsPlaying = 0x23C6070;
 	constexpr unsigned long FreeItemsCall = 0x10ED1B0;	// Deprecated
 	constexpr unsigned long LocalPlayer = 0x235F5A8;	// Deprecated
 

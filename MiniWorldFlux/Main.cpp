@@ -5,9 +5,14 @@
 #ifdef _DEBUG
 LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 
-	if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) {
+	constexpr unsigned int fn1Length = 0xAF;
+	DWORD pFn1 = reinterpret_cast<DWORD>(IsBadReadPtr);
+	DWORD errAddr = reinterpret_cast<DWORD>(ExceptionInfo->ExceptionRecord->ExceptionAddress);
+	if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION
+		&& errAddr < pFn1
+		&& errAddr > (pFn1 + fn1Length)) {
 
-		printf("-----------Start------------\n");
+		printf("-----------Nullptr------------\n");
 		printf("Nullptr in: %p\n", ExceptionInfo->ExceptionRecord->ExceptionAddress);
 		printf("EAX: %X\n", ExceptionInfo->ContextRecord->Eax);
 		printf("EBX: %X\n", ExceptionInfo->ContextRecord->Ebx);
@@ -28,7 +33,9 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 			esp += 4;
 		}
 		printf("-----------End------------\n");
+
 		MessageBoxA(nullptr, "Nullptr detected!", "Exception Handler:", MB_OK | MB_ICONERROR);
+
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
 

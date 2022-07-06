@@ -313,15 +313,9 @@ namespace Game {
 	}
 
 	bool isPlaying() {
-		
-		if (SDK::getWorld() == nullptr) return false;
-		if (!Utility::isReadablePtr(Game::theWorld)) return false;
-		if (!Utility::isReadablePtr(Game::theWorld->playerList_Level1)) return false;
-		if (!Utility::isReadablePtr(Game::theWorld->playerList_Level1->playerList)) return false;
-		if (!Utility::isReadablePtr(Game::theWorld->worldManager)) return false;
-
-		int mode = Game::theWorld->worldManager->mode;
-		return (mode >= 1 && mode <=5);
+		char* flag = ToPointer(Client::hWorld + Offsets::IsPlaying, char);
+		if (!Utility::isReadablePtr(flag)) return false;
+		return *flag;
 	}
 
 	Vec2 getGameViewSize() {
