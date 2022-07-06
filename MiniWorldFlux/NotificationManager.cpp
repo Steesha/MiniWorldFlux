@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "NotificationManager.h"
+#include "Game.h"
 
 Notification::Notification(std::string text, NotiLevel level, float duration) : text(text), level(level), duration(duration) {
 
@@ -25,6 +26,10 @@ void NotificationManager::notify(std::string text, NotiLevel level, float durati
 
 void NotificationManager::onRenderOverlay() {
     if (this->queue.empty()) return;
+
+    //¸üÐÂX Y×ø±ê
+    startY = Game::getGameViewSize().y * 0.9;
+
 
     ImDrawList* dl = ImGui::GetForegroundDrawList();
     ImGuiIO& io = ImGui::GetIO();
