@@ -30,24 +30,6 @@ namespace Utility {
         return Utility::compareStringIgnoreCase(_String1.c_str(), _String2.c_str());
     }
 
-    void notice(const char* msg, Level lv) {
-        
-        if (lv == Level::INFO) {
-            MessageBoxA(nullptr, msg, "Infomation from Hanabi:", MB_OK | MB_ICONINFORMATION);
-            return;
-        }
-
-        if (lv == Level::ERR) {
-            MessageBoxA(nullptr, msg, "Error from Hanabi:", MB_OK | MB_ICONERROR);
-            return;
-        }
-
-        if (lv == Level::WARN) {
-            MessageBoxA(nullptr, msg, "Warnning from Hanabi:", MB_OK | MB_ICONWARNING);
-            return;
-        }
-    }
-
     bool isReadablePtr(void* pointer) {
         return (IsBadReadPtr(pointer, sizeof(pointer)) == 0);
     }

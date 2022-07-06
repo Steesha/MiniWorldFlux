@@ -13,14 +13,9 @@ Reach* Reach::getInstance() {
 void Reach::onEnabled() {
 	IngameCheck;
 
-	if (Fly::getInstance()->bypassAC()) {
-		this->preGameMode = Game::theWorld->worldManager->mode;
-		Game::theWorld->worldManager->mode = SDK::MODE_EDIT;
-		this->startReach();
-	}
-	else {
-		Utility::notice("绕过飞行反作弊失败，但是可以使用此功能，请不要双击空格进行飞行", Level::ERR);
-	}
+	this->preGameMode = Game::theWorld->worldManager->mode;
+	Game::theWorld->worldManager->mode = SDK::MODE_EDIT;
+	this->startReach();
 
 }
 
@@ -30,20 +25,22 @@ void Reach::onDisabled() {
 	this->endReach();
 	Game::theWorld->worldManager->mode = this->preGameMode;
 	this->preGameMode = -1;
-	Fly::getInstance()->resetAC();
+	
 }
 
 bool Reach::startReach() {
 
-	bool res = this->reachChecker.destroy();
-	if (res)
-		res = Memory::write<unsigned char>(Client::hWorld + Offsets::Reach, 0x74);
+	this->reachChecker.destroy();
+	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::Reach, 0x74);
+	this->reachChecker.restore();
 
 	return res;
 }
 
 void Reach::endReach() {
 
+	this->reachChecker.destroy();
 	Memory::write<unsigned char>(Client::hWorld + Offsets::Reach, 0x75);
 	this->reachChecker.restore();
+
 }

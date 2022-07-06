@@ -5,13 +5,11 @@
 #include "Utility.h"
 #include "ImGuiHeader.h"
 #include "Game.h"
+#include "ProtectDestroyer.h"
 
 class FakePosition : public AbstractModule {
 
 public:
-
-	float aimRange = 190;
-	float headOffset = 130;
 
 	static FakePosition* getInstance();
 
@@ -21,6 +19,7 @@ public:
 private:
 
 	bool faked = false;
+	Memory::ProtectDestroyer addrProtect;
 
 	bool startFakePosition();
 	void endFakePosition();

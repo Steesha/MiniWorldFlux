@@ -2,6 +2,7 @@
 #include "Fly.h"
 
 Fly::Fly() : AbstractModule("Fly", Category::Movement) {
+	this->addrProtect.init(ToPointer(Client::hWorld + Offsets::FlyCheck, void), 2);
 	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &Fly::onRenderOverlay));
 }
 
@@ -13,12 +14,17 @@ Fly* Fly::getInstance() {
 void Fly::onEnabled() {
 
 	if (this->bypassAC()) {
+
 		Game::thePlayer->setFlyState(8);
+
 	}
 	else {
-		Utility::notice("绕过飞行反作弊失败，请勿使用此功能!", Level::ERR);
+
+		NotificationManager::getInstance().notify("Fly bypass failed!", NotiLevel::ERR, 3);
 		this->disable();
+
 	}
+
 }
 
 void Fly::onDisabled() {
@@ -37,19 +43,17 @@ void Fly::onRenderOverlay() {
 
 bool Fly::bypassAC() {
 	
-	DWORD oldProtect = 0;
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FlyCheck, void), 2, PAGE_EXECUTE_READWRITE, &oldProtect);
+	this->addrProtect.destroy();
 	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::FlyCheck, 0x90) && Memory::write<unsigned char>(Client::hWorld + Offsets::FlyCheck + 1, 0x90);
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FlyCheck, void), 2, oldProtect, nullptr);
+	this->addrProtect.restore();
 
 	return res;
 }
 
 void Fly::resetAC() {
 
-	DWORD oldProtect = 0;
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FlyCheck, void), 2, PAGE_EXECUTE_READWRITE, &oldProtect);
+	this->addrProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + Offsets::FlyCheck, 0x75);
 	Memory::write<unsigned char>(Client::hWorld + Offsets::FlyCheck + 1, 0x12);
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FlyCheck, void), 2, oldProtect, nullptr);
+	this->addrProtect.restore();
 }

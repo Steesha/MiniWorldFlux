@@ -57,7 +57,9 @@ namespace Client {
 		
 		EventManager::getInstance().reg(Events::EventKeyDown, handleGuiEvent);
 		EventManager::getInstance().reg(Events::EventUpdateData, Game::updateData);
+#ifdef _DEBUG
 		EventManager::getInstance().reg(Events::EventUpdateData, MakeHandler(&Logger::getInstance(), &Logger::flush));
+#endif
 
 	}
 

@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "KeyboardSimulator.h"
 #include "TimerUtil.h"
-
+#include "ProtectDestroyer.h"
 
 class Fly : public AbstractModule {
 
@@ -23,6 +23,8 @@ public:
 	void resetAC();
 
 private:
+
+	Memory::ProtectDestroyer addrProtect;
 
 	Fly();
 	DefaultDeconstructor(Fly);

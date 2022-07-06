@@ -8,6 +8,7 @@
 #include "Client.h"
 #include "Offsets.h"
 #include "AbstractModule.h"
+#include "NotificationManager.h"
 
 using Address = unsigned long;
 using Pointer = unsigned long;

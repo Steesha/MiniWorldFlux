@@ -4,13 +4,6 @@
 
 typedef long long time_t;
 
-enum class Level : unsigned int {
-
-	INFO = 0,
-	ERR,
-	WARN
-};
-
 namespace Utility {
 
 	void openConsole();
@@ -22,8 +15,6 @@ namespace Utility {
 	bool compareString(std::string _String1, std::string _String2);
 
 	bool compareStringIgnoreCase(std::string _String1, std::string _String2);
-
-	void notice(const char* msg, Level lv = Level::INFO);
 
 	bool isReadablePtr(void* pointer);
 

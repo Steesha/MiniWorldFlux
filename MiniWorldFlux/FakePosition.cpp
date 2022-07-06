@@ -2,7 +2,7 @@
 #include "FakePosition.h"
 
 FakePosition::FakePosition() : AbstractModule("FakePosition", Category::Player) {
-
+	addrProtect.init(ToPointer(Client::hWorld + Offsets::FakePosition, void), 2);
 }
 
 FakePosition* FakePosition::getInstance() {
@@ -17,13 +17,16 @@ void FakePosition::onEnabled() {
 		this->faked = true;
 		if (!Fly::getInstance()->getToggle())
 			Fly::getInstance()->enable();
+
 	}
 	else {
 		
-		Utility::notice("FakePositionÊ§°Ü!", Level::ERR);
+		NotificationManager::getInstance().notify("FakePosition Failed.", NotiLevel::ERR, 3);
 		this->faked = false;
 		this->disable();
+
 	}
+
 }
 
 void FakePosition::onDisabled() {
@@ -33,25 +36,26 @@ void FakePosition::onDisabled() {
 		this->endFakePosition();
 		if (Fly::getInstance()->getToggle())
 			Fly::getInstance()->disable();
+
 	}
+
 }
 
 bool FakePosition::startFakePosition() {
 	IngameCheck false;
 
-	DWORD oldProtect = 0;
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FakePosition, void), 2, PAGE_EXECUTE_READWRITE, &oldProtect);
+	this->addrProtect.destroy();
 	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::FakePosition, 0x90) && Memory::write<unsigned char>(Client::hWorld + Offsets::FakePosition + 1, 0x90);
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FakePosition, void), 2, oldProtect, nullptr);
+	this->addrProtect.restore();
 
 	return res;
 }
 
 void FakePosition::endFakePosition() {
 
-	DWORD oldProtect = 0;
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FakePosition, void), 2, PAGE_EXECUTE_READWRITE, &oldProtect);
+	this->addrProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + Offsets::FakePosition, 0x75);
 	Memory::write<unsigned char>(Client::hWorld + Offsets::FakePosition + 1, 0x0C);
-	VirtualProtect(ToPointer(Client::hWorld + Offsets::FakePosition, void), 2, oldProtect, nullptr);
+	this->addrProtect.restore();
+
 }

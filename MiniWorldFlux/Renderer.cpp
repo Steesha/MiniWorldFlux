@@ -45,7 +45,8 @@ namespace Renderer {
 		// ´´½¨D3D
 		IDirect3D9* direct3D9 = Direct3DCreate9(D3D_SDK_VERSION);
 		if (direct3D9 == nullptr) {
-			Utility::notice("Fatal Error in D3D!(0)", Level::ERR);
+			LOG(L"Renderer.cpp", L"Direct3DCreate9 failed.", ERROR);
+			NotificationManager::getInstance().notify("Fatal Error in D3D!", NotiLevel::ERR, 3);
 			return false;
 		}
 
@@ -58,7 +59,8 @@ namespace Renderer {
 		IDirect3DDevice9* direct3DDevice9 = nullptr;
 		direct3D9->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &info, &direct3DDevice9);
 		if (direct3DDevice9 == nullptr) {
-			Utility::notice("Fatal Error in D3D!(1)", Level::ERR);
+			LOG(L"Renderer.cpp", L"CreateDevice failed.", ERROR);
+			NotificationManager::getInstance().notify("Fatal Error in D3D!", NotiLevel::ERR, 3);
 			return false;
 		}
 

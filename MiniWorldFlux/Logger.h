@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+
 // wingdi.h Line 118定义了这个宏
 #undef ERROR
 enum class LogRank : unsigned char {
@@ -14,11 +15,20 @@ enum class LogRank : unsigned char {
 };
 
 #define LOGGER Logger::getInstance()
-#define LOG(_FileName, _Content, _Rank) Logger::getInstance() << Message((_Content), (_FileName), LogRank::_Rank)
+
+#ifdef _DEBUG
+#define LOG(_FileName, _Content, _Rank) LOGGER << Message((_Content), (_FileName), LogRank::_Rank)
 #define LOG_INFO(_FileName, _Content) LOG(_FileName, _Content, INFO)
 #define LOG_ERROR(_FileName, _Content) LOG(_FileName, _Content, ERROR)
 #define LOG_WARN(_FileName, _Content) LOG(_FileName, _Content, WARN)
 #define LOG_DEBUG(_FileName, _Content) LOG(_FileName, _Content, DEBUG)
+#else
+#define LOG(_FileName, _Content, _Rank)
+#define LOG_INFO(_FileName, _Content)
+#define LOG_ERROR(_FileName, _Content)
+#define LOG_WARN(_FileName, _Content)
+#define LOG_DEBUG(_FileName, _Content)
+#endif
 
 typedef std::wstring WString;
 
