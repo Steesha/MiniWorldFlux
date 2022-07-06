@@ -1,4 +1,5 @@
 #pragma once
+#include <ThemidaSDK\ThemidaSDK.h>
 #include <Windows.h>
 #include "Utility.h"
 #include "Renderer.h"

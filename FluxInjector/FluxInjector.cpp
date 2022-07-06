@@ -2,10 +2,13 @@
 #include <Windows.h>
 
 #include <tlhelp32.h>
+
+#include <ThemidaSDK\ThemidaSDK.h>
 using namespace std;
 int main()
 {
 	cout << "[Flux] for miniwordld" << endl;
+
 	//获取当前目录
 	TCHAR Buffer[MAX_PATH];
 	DWORD dwRet;
