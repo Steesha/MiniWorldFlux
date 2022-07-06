@@ -73,6 +73,8 @@ public:
 	void operator=(Logger&) = delete;
 
 	static Logger& getInstance();
+	static Message format(WString format, WString file, LogRank rank, ...);
+
 	Logger& operator<<(const wchar_t* message);
 	Logger& operator<<(const WString message);
 	Logger& operator<<(const Message message);

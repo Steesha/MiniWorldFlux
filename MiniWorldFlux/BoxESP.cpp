@@ -7,9 +7,9 @@ BoxESP::BoxESP() : AbstractModule("BoxESP", Category::Visual) {
 	this->boxMode->addMode("Star Ring");
 
 	this->addValue(this->sight);
-	this->addValue(this->boxMode);
 	this->addValue(this->radius);
 	this->addValue(this->ringSpeed);
+	this->addValue(this->boxMode);
 
 	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &BoxESP::onRenderOverlay));
 }

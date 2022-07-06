@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Game.h"
 
+#pragma region LocalPlayer
+
 LocalPlayer* LocalPlayer::getInstance() {
 	static LocalPlayer* inst = new LocalPlayer();
 	return inst;
@@ -229,6 +231,8 @@ SDK::ClientPlayer* LocalPlayer::getObject() {
 	IngameCheck nullptr;
 	return this->obj;
 }
+
+#pragma endregion
 
 namespace Game {
 
