@@ -3,8 +3,10 @@
 
 ESP::ESP() : AbstractModule("ESP", Category::Visual) {
 
-	this->addValue(this->health);
+	this->mode->addMode("Aimware");
 
+	this->addValue(this->health);
+	this->addValue(this->mode);
 	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &ESP::onRenderOverlay));
 }
 
@@ -30,6 +32,10 @@ void ESP::onRenderOverlay() {
 	Vec2 view;
 	Vec4 camera;
 
+	constexpr float blackThickness = 2.1f;
+	constexpr float whiteThickness = 1.3f;
+	constexpr float healthBarGapThickness = 2;
+
 	for (SDK::ClientPlayer* p : Game::playerInWorld) {
 		
 		ePos.x = p->actorBody->entity->posX;
@@ -51,60 +57,50 @@ void ESP::onRenderOverlay() {
 		float rectHeight = camera.y - camera.z;
 		float rectWidth = rectHeight * 0.6015625f;
 
-		ImVec2 rectPos1 = { camera.x - rectWidth / 2, camera.z + 6 };
-		ImVec2 rectPos2 = { rectPos1.x + rectWidth, rectPos1.y + rectHeight + 6 };
+		ImVec2 leftTop(camera.x - rectWidth / 2, camera.z + 6);
+		ImVec2 rightBottom(leftTop.x + rectWidth, leftTop.y + rectHeight + 6);
 
-		float lineLength = 8;
+		constexpr float lineLength = 8;
 
-		ImVec2 rightTop(rectPos1.x + rectWidth, rectPos1.y);
-		ImVec2 leftBottom(rectPos2.x - rectWidth, rectPos2.y);
+		ImVec2 rightTop(leftTop.x + rectWidth, leftTop.y);
+		ImVec2 leftBottom(rightBottom.x - rectWidth, rightBottom.y);
 
 		// Health rect
 		float curHealth = p->playerAttribuLua->currentHealth;
 		float maxHealth = p->playerAttribuLua->maxHealth;
-		ImVec2 healthPos1(rectPos1.x - 10, rectPos1.y);
-		ImVec2 healthPos2(rectPos1.x - 5, rectPos1.y + rectHeight);		
+		ImVec2 healthPos1(leftTop.x - 10, leftTop.y);
+		ImVec2 healthPos2(leftTop.x - 5, leftTop.y + rectHeight);		
 		float healthHeight = Utility::map(curHealth, 0, maxHealth, healthPos2.y, healthPos1.y);
 		ImVec2 curHealthPos(healthPos1.x + 1, healthHeight + 1);
 
 		// »æÖÆ
 		ImDrawList* dl = ImGui::GetForegroundDrawList();
-		if (TeamCheck && Team::isSameTeam(p)) {
-			
+		ImU32 color = (TeamCheck && Team::isSameTeam(p) ? FluxColor::TeamSame : FluxColor::TeamDifferent);
+
+		if (this->mode->isCurrentMode("Corners")) {
+		
 			// Left Top
-			dl->AddLine(rectPos1, ImVec2(rectPos1.x + lineLength, rectPos1.y), IM_COL32(18, 255, 18, 245), 1.8f);
-			dl->AddLine(rectPos1, ImVec2(rectPos1.x, rectPos1.y + lineLength), IM_COL32(18, 255, 18, 245), 1.8f);
+			dl->AddLine(leftTop, ImVec2(leftTop.x + lineLength, leftTop.y), color, 1.8f);
+			dl->AddLine(leftTop, ImVec2(leftTop.x, leftTop.y + lineLength), color, 1.8f);
 
 			// Right Top
-			dl->AddLine(rightTop, ImVec2(rightTop.x - lineLength, rightTop.y), IM_COL32(18, 255, 18, 245), 1.8f);
-			dl->AddLine(rightTop, ImVec2(rightTop.x, rightTop.y + lineLength), IM_COL32(18, 255, 18, 245), 1.8f);
+			dl->AddLine(rightTop, ImVec2(rightTop.x - lineLength, rightTop.y), color, 1.8f);
+			dl->AddLine(rightTop, ImVec2(rightTop.x, rightTop.y + lineLength), color, 1.8f);
 
 			// Left Bottom
-			dl->AddLine(leftBottom, ImVec2(leftBottom.x + lineLength, leftBottom.y), IM_COL32(18, 255, 18, 245), 1.8f);
-			dl->AddLine(leftBottom, ImVec2(leftBottom.x, leftBottom.y - lineLength), IM_COL32(18, 255, 18, 245), 1.8f);
+			dl->AddLine(leftBottom, ImVec2(leftBottom.x + lineLength, leftBottom.y), color, 1.8f);
+			dl->AddLine(leftBottom, ImVec2(leftBottom.x, leftBottom.y - lineLength), color, 1.8f);
 
 			// Right Bottom
-			dl->AddLine(rectPos2, ImVec2(rectPos2.x - lineLength, rectPos2.y), IM_COL32(18, 255, 18, 245), 1.8f);
-			dl->AddLine(rectPos2, ImVec2(rectPos2.x, rectPos2.y - lineLength), IM_COL32(18, 255, 18, 245), 1.8f);	
+			dl->AddLine(rightBottom, ImVec2(rightBottom.x - lineLength, rightBottom.y), color, 1.8f);
+			dl->AddLine(rightBottom, ImVec2(rightBottom.x, rightBottom.y - lineLength), color, 1.8f);
 
 		}
-		else {
-
-			// Left Top
-			dl->AddLine(rectPos1, ImVec2(rectPos1.x + lineLength, rectPos1.y), IM_COL32(255, 18, 18, 245), 1.8f);
-			dl->AddLine(rectPos1, ImVec2(rectPos1.x, rectPos1.y + lineLength), IM_COL32(255, 18, 18, 245), 1.8f);
-
-			// Right Top
-			dl->AddLine(rightTop, ImVec2(rightTop.x - lineLength, rightTop.y), IM_COL32(255, 18, 18, 245), 1.8f);
-			dl->AddLine(rightTop, ImVec2(rightTop.x, rightTop.y + lineLength), IM_COL32(255, 18, 18, 245), 1.8f);
-
-			// Left Bottom
-			dl->AddLine(leftBottom, ImVec2(leftBottom.x + lineLength, leftBottom.y), IM_COL32(255, 18, 18, 245), 1.8f);
-			dl->AddLine(leftBottom, ImVec2(leftBottom.x, leftBottom.y - lineLength), IM_COL32(255, 18, 18, 245), 1.8f);
-
-			// Right Bottom
-			dl->AddLine(rectPos2, ImVec2(rectPos2.x - lineLength, rectPos2.y), IM_COL32(255, 18, 18, 245), 1.8f);
-			dl->AddLine(rectPos2, ImVec2(rectPos2.x, rectPos2.y - lineLength), IM_COL32(255, 18, 18, 245), 1.8f);
+		else if (this->mode->isCurrentMode("Aimware")) {
+		
+			constexpr float gap = 1.5f;
+			dl->AddRect(ImVec2(leftTop.x - gap, leftTop.y - gap), ImVec2(rightBottom.x + gap * 2, rightBottom.y + gap * 2), FluxColor::Black, 0, 0, blackThickness);
+			dl->AddRect(leftTop, rightBottom, FluxColor::White, 0, 0, whiteThickness);
 
 		}
 		
@@ -112,16 +108,33 @@ void ESP::onRenderOverlay() {
 		if (this->health->getValue()) {
 		
 			if (curHealth <= (maxHealth / 3)) {
-				dl->AddRectFilled(curHealthPos, healthPos2, IM_COL32(255, 10, 10, 245));
-				dl->AddRect(healthPos1, healthPos2, IM_COL32(10, 10, 10, 255));
+				dl->AddRectFilled(curHealthPos, healthPos2, FluxColor::HealthDanger);
 			}
 			else if (curHealth <= (maxHealth / 2) && curHealth > (maxHealth / 3)) {
-				dl->AddRectFilled(curHealthPos, healthPos2, IM_COL32(255, 255, 10, 245));
-				dl->AddRect(healthPos1, healthPos2, IM_COL32(10, 10, 10, 255));
+				dl->AddRectFilled(curHealthPos, healthPos2, FluxColor::HealthHalf);
 			}
 			else if (curHealth <= maxHealth && curHealth > (maxHealth / 2)) {
-				dl->AddRectFilled(curHealthPos, healthPos2, IM_COL32(10, 255, 10, 245));
-				dl->AddRect(healthPos1, healthPos2, IM_COL32(10, 10, 10, 255));
+				dl->AddRectFilled(curHealthPos, healthPos2, FluxColor::HealthSafe);
+			}
+
+			constexpr float gap = 0.5f;
+			dl->AddRect(ImVec2(healthPos1.x - gap, healthPos1.y - gap), ImVec2(healthPos2.x + gap * 2, healthPos2.y + gap * 2), FluxColor::Black, 0, 0, healthBarGapThickness);
+
+			if (this->mode->isCurrentMode("Aimware")) {
+				
+				constexpr int healthSegments = 10;
+				float healthBarWidth = healthPos2.x - healthPos1.x;
+				float healthBarHeight = healthPos2.y - healthPos1.y;
+				float perSegmentHeight = healthBarHeight / healthSegments;
+
+				// Lines: Segments - 1
+				for (int i = 1; i < healthSegments; i++) {
+					
+					float curY = healthPos1.y + perSegmentHeight * i;
+					dl->AddLine(ImVec2(healthPos1.x, curY), ImVec2(healthPos1.x + healthBarWidth, curY), FluxColor::Black, healthBarGapThickness);
+
+				}
+
 			}
 
 		}

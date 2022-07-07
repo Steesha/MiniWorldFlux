@@ -5,6 +5,7 @@ namespace FluxColor {
 
 	constexpr ImU32 Orange = IM_COL32(255, 153, 0, 255);
 	constexpr ImU32 White = IM_COL32(255, 255, 255, 255);
+	constexpr ImU32 Black = IM_COL32(0, 0, 0, 255);
 	constexpr ImU32 Gray = IM_COL32(53, 53, 59, 255);
 
 	constexpr ImU32 InfoPanelBackground = IM_COL32(35, 34, 41, 255);
@@ -29,6 +30,13 @@ namespace FluxColor {
 
 	constexpr ImU32 NotificationBackground = IM_COL32(18, 20, 18, 255);
 	constexpr ImU32 NotificationContent = IM_COL32(250, 250, 250, 230);
+
+	constexpr ImU32 TeamSame = IM_COL32(18, 255, 18, 245);
+	constexpr ImU32 TeamDifferent = IM_COL32(255, 18, 18, 245);
+
+	constexpr ImU32 HealthSafe = IM_COL32(10, 255, 10, 245);
+	constexpr ImU32 HealthHalf = IM_COL32(255, 255, 10, 245);
+	constexpr ImU32 HealthDanger = IM_COL32(255, 10, 10, 245);
 
 };
 

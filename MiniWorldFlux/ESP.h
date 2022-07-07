@@ -4,6 +4,7 @@
 #include "ImGuiHeader.h"
 #include "Game.h"
 #include "BooleanValue.h"
+#include "ModeValue.h"
 
 class ESP : public AbstractModule {
 
@@ -19,6 +20,7 @@ public:
 private:
 
 	BooleanValue* health = new BooleanValue("Health", true);
+	ModeValue* mode = new ModeValue("Mode", "Corners");
 
 	ESP();
 	DefaultDeconstructor(ESP);
