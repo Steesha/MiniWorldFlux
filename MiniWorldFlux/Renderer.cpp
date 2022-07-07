@@ -279,18 +279,24 @@ namespace Renderer {
 		Shader* shaderMod = Shader::getInstance();
 		if ((stride == 48 || stride == 40) && shaderMod->getToggle()) {
 
-			if (shaderMod->isColor()) {
+			if (shaderMod->colorMode()) {
 				Renderer::recolorTexture(&Renderer::playerOverlayTex, shaderMod->getColor());
 				direct3DDevice9->SetTexture(0, Renderer::playerOverlayTex);
 			}
 
-			if (shaderMod->isDisaledZBuffer())
+			if (shaderMod->wireframeMode())
+				direct3DDevice9->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+			if (shaderMod->disaledZBuffer())
 				direct3DDevice9->SetRenderState(D3DRS_ZENABLE, FALSE);
 
 			res = direct3DDevice9->DrawIndexedPrimitive(type, baseVertexIndex, minVertexIndex, numVertices, startIndex, primCount);
 			
-			if (shaderMod->isDisaledZBuffer())
+			if (shaderMod->disaledZBuffer())
 				direct3DDevice9->SetRenderState(D3DRS_ZENABLE, TRUE);
+
+			if (shaderMod->wireframeMode())
+				direct3DDevice9->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 		}
 		else {

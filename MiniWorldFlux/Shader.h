@@ -13,13 +13,15 @@ public:
 	void onEnabled();
 	void onDisabled();
 
-	bool isDisaledZBuffer();
-	bool isColor();
+	bool disaledZBuffer();
+	bool wireframeMode();
+	bool colorMode();
 	uint32_t getColor();
 
 private:
 
 	BooleanValue* disableZBuffer = new BooleanValue("Disable ZBuffer", false);
+	BooleanValue* wireframe = new BooleanValue("WireFrame", false);
 	BooleanValue* color = new BooleanValue("Pure Color", true);
 	FloatValue* colR = new FloatValue("R", 250, 0, 255);
 	FloatValue* colG = new FloatValue("G", 0, 0, 255);

@@ -3,6 +3,7 @@
 
 Shader::Shader() : AbstractModule("Shader", Category::Visual) {
 	this->addValue(this->disableZBuffer);
+	this->addValue(this->wireframe);
 	this->addValue(this->color);
 	this->addValue(this->colR);
 	this->addValue(this->colG);
@@ -23,11 +24,15 @@ void Shader::onDisabled() {
 
 }
 
-bool Shader::isDisaledZBuffer() {
+bool Shader::disaledZBuffer() {
 	return this->disableZBuffer->getValue();
 }
 
-bool Shader::isColor() {
+bool Shader::wireframeMode() {
+	return this->wireframe->getValue();
+}
+
+bool Shader::colorMode() {
 	return this->color->getValue();
 }
 
