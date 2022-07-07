@@ -219,6 +219,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Client\Module\Modules\Visual</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -391,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Client\Module\Modules\Visual</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

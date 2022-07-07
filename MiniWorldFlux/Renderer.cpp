@@ -12,9 +12,13 @@ namespace Renderer {
 	// Hooks
 	InlineHook* resetHook = nullptr;
 	InlineHook* presentHook = nullptr;
+	InlineHook* dipHook = nullptr;
+
+	// Textures
+	IDirect3DTexture9* playerOverlayTex = nullptr;
 
 	void initImGui(HWND hwnd, IDirect3DDevice9* device) {
-
+		
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
@@ -68,14 +72,50 @@ namespace Renderer {
 		DWORD* direct3DDeviceTable = (DWORD*)*(DWORD*)direct3DDevice9;
 		resetHook = new InlineHook(direct3DDeviceTable[16], reinterpret_cast<DWORD> (Hook_Reset));
 		presentHook = new InlineHook(direct3DDeviceTable[17], reinterpret_cast<DWORD> (Hook_Present));
+		dipHook = new InlineHook(direct3DDeviceTable[82], reinterpret_cast<DWORD> (Hook_DrawIndexedPrimitive));
+		LOGGER << Logger::format(L"IDirect3DDevice9::Reset: %X", L"Renderer.cpp", LogRank::DEBUG, direct3DDeviceTable[16]);
+		LOGGER << Logger::format(L"IDirect3DDevice9::Present: %X", L"Renderer.cpp", LogRank::DEBUG, direct3DDeviceTable[17]);
+		LOGGER << Logger::format(L"IDirect3DDevice9::DrawIndexedPrimited: %X", L"Renderer.cpp", LogRank::DEBUG, direct3DDeviceTable[82]);
 		resetHook->MotifyASM();
 		presentHook->MotifyASM();
+		dipHook->MotifyASM();
 
 		// 销毁设备，因为拿到地址了
 		direct3D9->Release();
 		direct3DDevice9->Release();
 
 		return true;
+
+	}
+
+	HRESULT createTexture(IDirect3DDevice9* pDevice, IDirect3DTexture9** ppD3Dtex, DWORD colour32) {
+		if (FAILED(pDevice->CreateTexture(8, 8, 1, 0, D3DFMT_A4R4G4B4, D3DPOOL_MANAGED, ppD3Dtex, NULL))) return D3D_FAILED;
+
+		WORD  colour16 = ((WORD)((colour32 >> 28) & 0xf) << 12)
+			| (WORD)(((colour32 >> 20) & 0xf) << 8)
+			| (WORD)(((colour32 >> 12) & 0xf) << 4)
+			| (WORD)(((colour32 >> 4) & 0xf) << 0);
+
+		D3DLOCKED_RECT lockData;
+		(*ppD3Dtex)->LockRect(0, &lockData, 0, 0);
+		WORD* pDst16 = (WORD*)lockData.pBits;
+		for (int i = 0; i < 8 * 8; i++) pDst16[i] = colour16;
+		(*ppD3Dtex)->UnlockRect(0);
+		return S_OK;
+	}
+
+	void recolorTexture(IDirect3DTexture9** ppD3Dtex, DWORD colour32) {
+		
+		WORD  colour16 = ((WORD)((colour32 >> 28) & 0xf) << 12)
+			| (WORD)(((colour32 >> 20) & 0xf) << 8)
+			| (WORD)(((colour32 >> 12) & 0xf) << 4)
+			| (WORD)(((colour32 >> 4) & 0xf) << 0);
+
+		D3DLOCKED_RECT lockData;
+		(*ppD3Dtex)->LockRect(0, &lockData, 0, 0);
+		WORD* pDst16 = (WORD*)lockData.pBits;
+		for (int i = 0; i < 8 * 8; i++) pDst16[i] = colour16;
+		(*ppD3Dtex)->UnlockRect(0);
 
 	}
 
@@ -151,14 +191,14 @@ namespace Renderer {
 
 	bool isBlockRightClicked(Block* block) {
 		if (isBlockHovered(block)) {
-			return ImGui::IsMouseClicked(1);
+			return ImGui::IsMouseClicked(ImGuiMouseButton_Right);
 		}
 		return false;
 	}
 
 	bool isBlockMiddleClicked(Block* block) {
 		if (isBlockHovered(block)) {
-			return ImGui::IsMouseClicked(2);
+			return ImGui::IsMouseClicked(ImGuiMouseButton_Middle);
 		}
 		return false;
 	}
@@ -199,6 +239,9 @@ namespace Renderer {
 			// 初始化RendererIO
 			Client::rendererIO = &(ImGui::GetIO());
 
+			// 生成上色纹理
+			Renderer::createTexture(direct3DDevice9, &Renderer::playerOverlayTex, D3DCOLOR_RGBA(250, 0, 0, 230));
+
 		}
 
 		// 绘制
@@ -219,6 +262,44 @@ namespace Renderer {
 		presentHook->MotifyASM();
 
 		// 调用原来的
+		return res;
+	}
+
+	HRESULT WINAPI Hook_DrawIndexedPrimitive(IDirect3DDevice9* direct3DDevice9, D3DPRIMITIVETYPE type, INT baseVertexIndex, UINT minVertexIndex, UINT numVertices, UINT startIndex, UINT primCount) {
+		
+		HRESULT res = D3D_OK;
+		dipHook->ResetASM();
+
+		IDirect3DVertexBuffer9* vertexBuffer = nullptr;
+		uint32_t offset = 0;
+		uint32_t stride = 0;
+		if (SUCCEEDED(direct3DDevice9->GetStreamSource(0U, &vertexBuffer, &offset, &stride)))
+			vertexBuffer->Release();
+		
+		Shader* shaderMod = Shader::getInstance();
+		if ((stride == 48 || stride == 40) && shaderMod->getToggle()) {
+
+			if (shaderMod->isColor()) {
+				Renderer::recolorTexture(&Renderer::playerOverlayTex, shaderMod->getColor());
+				direct3DDevice9->SetTexture(0, Renderer::playerOverlayTex);
+			}
+
+			if (shaderMod->isDisaledZBuffer())
+				direct3DDevice9->SetRenderState(D3DRS_ZENABLE, FALSE);
+
+			res = direct3DDevice9->DrawIndexedPrimitive(type, baseVertexIndex, minVertexIndex, numVertices, startIndex, primCount);
+			
+			if (shaderMod->isDisaledZBuffer())
+				direct3DDevice9->SetRenderState(D3DRS_ZENABLE, TRUE);
+
+		}
+		else {
+
+			res = direct3DDevice9->DrawIndexedPrimitive(type, baseVertexIndex, minVertexIndex, numVertices, startIndex, primCount);
+		
+		}
+		
+		dipHook->MotifyASM();
 		return res;
 	}
 

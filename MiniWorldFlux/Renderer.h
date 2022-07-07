@@ -6,6 +6,8 @@
 #include "Client.h"
 #include "EventManager.h"
 
+#define D3D_FAILED 0x857
+
 struct Picture {
 
 	IDirect3DTexture9*		texture;
@@ -30,12 +32,20 @@ namespace Renderer {
 	// Hooks
 	extern InlineHook* resetHook;
 	extern InlineHook* presentHook;
+	extern InlineHook* dipHook;
+
+	// Textures
+	extern IDirect3DTexture9* playerOverlayTex;
 
 	void initImGui(HWND hwnd, IDirect3DDevice9* device);
 
 	bool hookDx9(HWND hwnd);
 	
 	bool startRenderer(HWND hwnd);
+
+	HRESULT createTexture(IDirect3DDevice9* pDevice, IDirect3DTexture9** ppD3Dtex, DWORD colour32);
+
+	void recolorTexture(IDirect3DTexture9** ppD3Dtex, DWORD colour32);
 
 	bool loadTextureFromFile(IDirect3DDevice9* device, const char* filename, Picture* pic);
 
@@ -59,6 +69,7 @@ namespace Renderer {
 	// Hooked functions
 	HRESULT WINAPI Hook_Reset(IDirect3DDevice9* direct3DDevice9, D3DPRESENT_PARAMETERS* pPresentationParameters);
 	HRESULT WINAPI Hook_Present(IDirect3DDevice9* direct3DDevice9, RECT* pSourceRect, RECT* pDestRect, HWND hDestWindowOverride, RGNDATA* pDirtyRegion);
+	HRESULT WINAPI Hook_DrawIndexedPrimitive(IDirect3DDevice9* direct3DDevice9, D3DPRIMITIVETYPE type, INT baseVertexIndex, UINT minVertexIndex, UINT numVertices, UINT startIndex, UINT primCount);
 
 }
 

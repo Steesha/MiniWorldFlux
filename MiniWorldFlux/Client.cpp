@@ -50,6 +50,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<NoFall>(NoFall::getInstance());
 		ModuleManager::getInstance().addModule<TargetHUD>(TargetHUD::getInstance());
 		ModuleManager::getInstance().addModule<NoRecoil>(NoRecoil::getInstance());
+		ModuleManager::getInstance().addModule<Shader>(Shader::getInstance());
 
 	}
 
