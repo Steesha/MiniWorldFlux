@@ -553,7 +553,7 @@ void ClickGui::renderInfoPanel() {
 
 	float usernameX = clientNameX + 45;
 	float usernameY = clientNameY;
-	dl->AddText(Client::fluxFont, fontSize, ImVec2(usernameX, usernameY), FluxColor::InfoPanelText, "Loyisa");
+	dl->AddText(Client::fluxFont, fontSize, ImVec2(usernameX, usernameY), FluxColor::InfoPanelText, "Dev");
 	dl->AddLine(ImVec2(clientNameX + 102, seperatorY), ImVec2(clientNameX + 102, seperatorY + seperatorLength), FluxColor::InfoPanelSeperator, seperatorThickness);
 
 	float fpsX = usernameX + 63;

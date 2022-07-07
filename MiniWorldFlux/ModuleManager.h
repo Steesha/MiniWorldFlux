@@ -39,7 +39,10 @@ private:
 
 template<class MODCLASS>
 void ModuleManager::addModule(MODCLASS* mod) {
-	this->modules.push_back(reinterpret_cast<HMOD>(mod));
+	AbstractModule* module = ToBaseModule(mod);
+	this->modules.push_back(module);
+	Message msg = Logger::format(L"Module %hs Initialized.", L"Client.cpp", LogRank::DEBUG, module->getName().c_str());
+	LOGGER << msg;
 }
 
 template<class MODCLASS>
@@ -50,7 +53,7 @@ MODCLASS* ModuleManager::getModule(std::string modName) {
 		if (Utility::compareStringIgnoreCase(ToBaseModule(*iter)->getName(), modName))
 			return ToDirectModule(MODCLASS, *iter);
 	}
-
+	
 	return nullptr;
 }
 

@@ -21,11 +21,13 @@ namespace Client {
 	void initClient() {
 
 		// 获取游戏窗口句柄
-		Client::wndGame = FindWindowA("RenderWindow_ClassName", nullptr);
+		Client::wndGame = FindWindow(L"RenderWindow_ClassName", nullptr);
 
 		// 获取主模块基址
-		Client::hWorld = reinterpret_cast<Address>(GetModuleHandleA("libiworld_micro.dll"));
+		Client::hWorld = reinterpret_cast<Address>(GetModuleHandle(L"libiworld_micro.dll"));
 
+		Message msg = Logger::format(L"libiworld_micro BaseAddr: %X", L"Client.cpp", LogRank::DEBUG, hWorld);
+		LOGGER << msg;
 	}
 
 	void initModules() {
