@@ -100,6 +100,7 @@ void ESP::onRenderOverlay() {
 		
 			constexpr float gap = 1.5f;
 			dl->AddRect(ImVec2(leftTop.x - gap, leftTop.y - gap), ImVec2(rightBottom.x + gap * 2, rightBottom.y + gap * 2), FluxColor::Black, 0, 0, blackThickness);
+			dl->AddRect(ImVec2(leftTop.x + gap, leftTop.y + gap), ImVec2(rightBottom.x - gap * 2, rightBottom.y - gap * 2), FluxColor::Black, 0, 0, blackThickness);
 			dl->AddRect(leftTop, rightBottom, FluxColor::White, 0, 0, whiteThickness);
 
 		}
