@@ -19,7 +19,7 @@ namespace Client {
 	Address hWorld = 0;							// libiworld_micro.dll基址
 
 	void initClient() {
-
+		VM_LION_WHITE_START
 		// 获取游戏窗口句柄
 		Client::wndGame = FindWindow(L"RenderWindow_ClassName", nullptr);
 
@@ -28,10 +28,11 @@ namespace Client {
 
 		Message msg = Logger::format(L"libiworld_micro BaseAddr: %X", L"Client.cpp", LogRank::DEBUG, hWorld);
 		LOGGER << msg;
+		VM_LION_WHITE_END
 	}
 
 	void initModules() {
-		
+		VM_LION_WHITE_START
 		ModuleManager::getInstance().addModule<ClickGui>(ClickGui::getInstance());
 		ModuleManager::getInstance().addModule<Disabler>(Disabler::getInstance());
 		ModuleManager::getInstance().addModule<IDProtection>(IDProtection::getInstance());
@@ -53,7 +54,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<TargetHUD>(TargetHUD::getInstance());
 		ModuleManager::getInstance().addModule<NoRecoil>(NoRecoil::getInstance());
 		ModuleManager::getInstance().addModule<Shader>(Shader::getInstance());
-
+		VM_LION_WHITE_END
 	}
 
 	void initEvents() {

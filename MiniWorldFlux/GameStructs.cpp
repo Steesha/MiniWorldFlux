@@ -7,7 +7,7 @@ namespace SDK {
 
 	World* getWorld() {
 
-		Address* ppWorld = reinterpret_cast<Address*>(hWorld + Offsets::World);
+		Address* ppWorld = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_World));
 		if (IsBadReadPtr(ppWorld, sizeof(ppWorld)) == 0) {
 			
 			World* pWorld = reinterpret_cast<World*>(*ppWorld);
@@ -23,7 +23,7 @@ namespace SDK {
 
 	UIRenderer* getUIRenderer() {
 		
-		Address* pUIRenderer = reinterpret_cast<Address*>(hWorld + Offsets::UIRenderer);
+		Address* pUIRenderer = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_UIRenderer));
 		if (IsBadReadPtr(pUIRenderer, sizeof(pUIRenderer)) == 0) {
 			
 			UIRenderer* renderer = reinterpret_cast<UIRenderer*>(*pUIRenderer);
@@ -39,9 +39,9 @@ namespace SDK {
 
 	float getIngameFPS() {
 
-		Address* pBase = reinterpret_cast<Address*>(hWorld + Offsets::FPSBase);
+		Address* pBase = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_FPSBase));
 		if (IsBadReadPtr(pBase, sizeof(pBase)) == 0) {
-			float* pFPS = reinterpret_cast<float*>((*pBase) + Offsets::FPS_1);
+			float* pFPS = reinterpret_cast<float*>((*pBase) + Offsets::getOffset(Of_FPS_1));
 			if (IsBadReadPtr(pFPS, sizeof(pFPS)) == 0) {
 				return *pFPS;
 			}
@@ -51,7 +51,7 @@ namespace SDK {
 
 	int getIngamePing() {
 		
-		Address* pPing = reinterpret_cast<Address*>(hWorld + Offsets::Ping);
+		Address* pPing = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_Ping));
 		if (IsBadReadPtr(pPing, sizeof(pPing)) == 0)
 			return *pPing;
 		return -1;

@@ -44,7 +44,7 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 #endif
 
 BOOL WINAPI DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved) {
-	
+	VM_LION_WHITE_START
 	if (dwReason == DLL_PROCESS_ATTACH) {
 #ifdef _DEBUG
 		AddVectoredExceptionHandler(true, NullptrHandler);
@@ -53,4 +53,5 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved) {
 	}
 
 	return TRUE;
+	VM_LION_WHITE_END
 }

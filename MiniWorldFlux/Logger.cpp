@@ -12,7 +12,7 @@ Logger& Logger::getInstance() {
 
 // 格式化生成Message
 Message Logger::format(WString format, WString file, LogRank rank, ...) {
-
+	VM_LION_WHITE_START
 	wchar_t* buffer = new wchar_t[1024];
 	RtlZeroMemory(buffer, 1024 * 2);
 
@@ -25,6 +25,7 @@ Message Logger::format(WString format, WString file, LogRank rank, ...) {
 	delete[] buffer;
 
 	return msg;
+	VM_LION_WHITE_END
 }
 
 // 直接打INFO Log

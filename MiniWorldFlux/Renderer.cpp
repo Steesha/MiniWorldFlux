@@ -18,7 +18,7 @@ namespace Renderer {
 	IDirect3DTexture9* playerOverlayTex = nullptr;
 
 	void initImGui(HWND hwnd, IDirect3DDevice9* device) {
-		
+		VM_LION_WHITE_START
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
@@ -42,10 +42,11 @@ namespace Renderer {
 
 		ImGui_ImplWin32_Init(hwnd);
 		ImGui_ImplDX9_Init(device);
+		VM_LION_WHITE_END
 	}
 
 	bool hookDx9(HWND hwnd) {
-
+		VM_LION_WHITE_START
 		// 创建D3D
 		IDirect3D9* direct3D9 = Direct3DCreate9(D3D_SDK_VERSION);
 		if (direct3D9 == nullptr) {
@@ -85,7 +86,7 @@ namespace Renderer {
 		direct3DDevice9->Release();
 
 		return true;
-
+		VM_LION_WHITE_END
 	}
 
 	HRESULT createTexture(IDirect3DDevice9* pDevice, IDirect3DTexture9** ppD3Dtex, DWORD colour32) {
@@ -222,7 +223,6 @@ namespace Renderer {
 	}
 
 	HRESULT WINAPI Hook_Present(IDirect3DDevice9* direct3DDevice9, RECT* pSourceRect, RECT* pDestRect, HWND hDestWindowOverride, RGNDATA* pDirtyRegion) {
-
 		presentHook->ResetASM();
 
 		static bool called = false;
@@ -241,7 +241,7 @@ namespace Renderer {
 
 			// 生成上色纹理
 			Renderer::createTexture(direct3DDevice9, &Renderer::playerOverlayTex, D3DCOLOR_RGBA(250, 0, 0, 230));
-
+			
 		}
 
 		// 绘制
@@ -266,7 +266,6 @@ namespace Renderer {
 	}
 
 	HRESULT WINAPI Hook_DrawIndexedPrimitive(IDirect3DDevice9* direct3DDevice9, D3DPRIMITIVETYPE type, INT baseVertexIndex, UINT minVertexIndex, UINT numVertices, UINT startIndex, UINT primCount) {
-		
 		HRESULT res = D3D_OK;
 		dipHook->ResetASM();
 
