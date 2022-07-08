@@ -7,6 +7,8 @@ namespace Offsets {
 	constexpr unsigned long Reach = 0x1056DB3;
 	constexpr unsigned long NoFall = 0x8ED7B7;
 	constexpr unsigned long Phase = 0x8ED24A;
+	constexpr unsigned long MagicBullet = 0xC285D7;
+	constexpr unsigned long MagicBulletRetn = 0xC285DD;
 
 	// World
 	constexpr unsigned long World = 0x1EBD72C;

@@ -222,6 +222,9 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Client\Module\Modules\Visual</Filter>
     </ClCompile>
+    <ClCompile Include="MagicBullet.cpp">
+      <Filter>Client\Module\Modules\Combat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -397,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Client\Module\Modules\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBullet.h">
+      <Filter>Client\Module\Modules\Combat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

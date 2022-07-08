@@ -140,6 +140,7 @@
     </ClCompile>
     <ClCompile Include="KeyboardSimulator.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="MagicBullet.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModeValue.cpp" />
     <ClCompile Include="ModuleManager.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="InlineHook.h" />
     <ClInclude Include="KeyboardSimulator.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MagicBullet.h" />
     <ClInclude Include="Memory.hpp" />
     <ClInclude Include="ModeValue.h" />
     <ClInclude Include="ModuleManager.h" />
