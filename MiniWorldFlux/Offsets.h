@@ -6,6 +6,7 @@ namespace Offsets {
 	constexpr unsigned long FakePosition = 0x110AF9C;
 	constexpr unsigned long Reach = 0x1056DB3;
 	constexpr unsigned long NoFall = 0x8ED7B7;
+	constexpr unsigned long Phase = 0x8ED24A;
 
 	// World
 	constexpr unsigned long World = 0x1EBD72C;

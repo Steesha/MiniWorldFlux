@@ -2,9 +2,8 @@
 
 #include "AbstractModule.h"
 #include "EventManager.h"
-#include "Utility.h"
-#include "ImGuiHeader.h"
 #include "Game.h"
+#include "ProtectDestroyer.h"
 
 class Phase : public AbstractModule {
 
@@ -15,9 +14,9 @@ public:
 	void onEnabled();
 	void onDisabled();
 
-	void onRenderOverlay();
-
 private:
+
+	Memory::ProtectDestroyer addrProtect;
 
 	Phase();
 	DefaultDeconstructor(Phase);
