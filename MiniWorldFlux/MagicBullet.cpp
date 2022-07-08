@@ -16,7 +16,7 @@ __declspec(naked) void detourMB() {
 		pop ecx					// Release
 
 		mov ecx,[ecx+0xC]
-		mov ecx,[ecx+0x4]
+		mov ecx,[ecx+0x4]		// 第几(i * 0x04)个人
 		mov ecx,[ecx+0x50C]
 		add ecx,1
 
@@ -58,6 +58,7 @@ MagicBullet::MagicBullet() : AbstractModule("MagicBullet", Category::Combat) {
 	RtlCopyMemory(&(this->detourBytes[1]), &pDetour, 4);
 
 	mbRetnAddress = Client::hWorld + Offsets::MagicBulletRetn;
+	this->start = false;
 
 }
 
@@ -67,13 +68,36 @@ MagicBullet* MagicBullet::getInstance() {
 }
 
 void MagicBullet::onEnabled() {
-	this->codeProtect.destroy();
-	RtlCopyMemory(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), &(this->detourBytes), 6);
-	this->codeProtect.restore();
+	IngameCheck;
+
+	if (!this->adminCheck()) {
+		NotificationManager::getInstance().notify("Admin needed!", NotiLevel::ERR, 3);
+		this->disable();
+		return;
+	}
+
+	if (!this->start) {
+		this->codeProtect.destroy();
+		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), &(this->detourBytes), 6);
+		this->codeProtect.restore();
+		this->start = true;
+	}	
+
 }
 
 void MagicBullet::onDisabled() {
-	this->codeProtect.destroy();
-	RtlCopyMemory(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), &(this->originBytes), 6);
-	this->codeProtect.restore();
+	IngameCheck;
+
+	if (this->start) {
+		this->codeProtect.destroy();
+		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), &(this->originBytes), 6);
+		this->codeProtect.restore();
+		this->start = false;
+	}
+	
+}
+
+bool MagicBullet::adminCheck() {
+	IngameCheck false;
+	return Game::theRoomManager->permission == SDK::PERMISSION_ROOMADMIN;
 }

@@ -25,6 +25,10 @@ namespace SDK {
 	constexpr int TEAM_ORANGE = 5;
 	constexpr int TEAM_PURPLE = 6;
 
+	constexpr int PERMISSION_SINGLEPLAYER = 0;
+	constexpr int PERMISSION_ROOMMEMBER = 2;
+	constexpr int PERMISSION_ROOMADMIN = 3;
+
 	class World
 	{
 	public:
@@ -210,10 +214,19 @@ namespace SDK {
 		int inRoom; //0x0070
 	}; //Size: 0x0074
 
+	class RoomManager
+	{
+	public:
+		char pad_0000[1576]; //0x0000
+		int32_t permission; //0x0628
+	}; //Size: 0x062C
+
 	World* getWorld();
 	UIRenderer* getUIRenderer();
+	RoomManager* getRoomManager();
 	float getIngameFPS();
 	int getIngamePing();
+	std::string getGameVersion();
 
 }
 

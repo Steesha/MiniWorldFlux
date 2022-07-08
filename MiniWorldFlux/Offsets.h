@@ -1,25 +1,30 @@
 #pragma once
-#define Of_FakePosition 0
-#define Of_Reach 1
-#define Of_NoFall 2
-#define Of_Phase 3
-#define Of_World 4
-#define Of_UIRenderer 5
-#define Of_FPSBase 6
-#define Of_FPS_1 7
-#define Of_Ping 8
-#define Of_NoSpread 9
-#define Of_NoRecoil 10
-#define Of_IsPlaying 11
-#define Of_PlayerInfoBase 12
-#define Of_MpGameSurvive 13
+
+constexpr unsigned int Of_FakePosition = 0;
+constexpr unsigned int Of_Reach = 1;
+constexpr unsigned int Of_NoFall = 2;
+constexpr unsigned int Of_Phase = 3;
+constexpr unsigned int Of_World = 4;
+constexpr unsigned int Of_UIRenderer = 5;
+constexpr unsigned int Of_FPSBase = 6;
+constexpr unsigned int Of_FPS_1 = 7;
+constexpr unsigned int Of_Ping = 8;
+constexpr unsigned int Of_NoSpread = 9;
+constexpr unsigned int Of_NoRecoil = 10;
+constexpr unsigned int Of_IsPlaying = 11;
+constexpr unsigned int Of_PlayerInfoBase = 12;
+constexpr unsigned int Of_MpGameSurvive = 13;
+constexpr unsigned int Of_RoomManager = 14;
+constexpr unsigned int Of_GameVersion = 15;
+
 namespace Offsets {
+
 	constexpr unsigned long World = 0x1EBD72C;
 	constexpr unsigned long MagicBullet = 0xC285D7;
 	constexpr unsigned long MagicBulletRetn = 0xC285DD;
 
-	static unsigned long getOffset(int cate)
-	{
+	static unsigned long getOffset(int cate) {
+
 		// Module
 		unsigned long FakePosition = 0x110AF9C;
 		unsigned long Reach = 0x1056DB3;
@@ -31,6 +36,10 @@ namespace Offsets {
 
 		// Matrix
 		unsigned long UIRenderer = 0x1E5E268;
+
+		// RoomManager
+		unsigned long RoomManager = 0x1E5E354;
+		unsigned long GameVersion = 0x1E5E378;
 
 		// Misc
 		unsigned long FPSBase = 0x1E5E288;
@@ -59,6 +68,8 @@ namespace Offsets {
 		if (cate == Of_IsPlaying) return IsPlaying;
 		if (cate == Of_PlayerInfoBase) return PlayerInfoBase;
 		if (cate == Of_MpGameSurvive) return MpGameSurvive;
+		if (cate == Of_RoomManager) return RoomManager;
+		if (cate == Of_GameVersion) return GameVersion;
 
 		return -1;
 	}

@@ -18,6 +18,9 @@ private:
 	Memory::ProtectDestroyer codeProtect;
 	unsigned char originBytes[6] = { 0 };
 	unsigned char detourBytes[6] = { 0 };
+	bool start = false;
+
+	bool adminCheck();
 
 	MagicBullet();
 	DefaultDeconstructor(MagicBullet);

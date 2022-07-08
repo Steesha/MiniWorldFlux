@@ -239,6 +239,7 @@ namespace Game {
 	LocalPlayer* thePlayer = LocalPlayer::getInstance();
 	SDK::World* theWorld = nullptr;
 	SDK::UIRenderer* theUIRenderer = nullptr;
+	SDK::RoomManager* theRoomManager = nullptr;
 
 	std::vector<SDK::ClientPlayer*> playerInWorld;
 	std::unordered_map<int, SDK::PlayerInfo*> playerInfo;
@@ -249,7 +250,7 @@ namespace Game {
 			Game::playerInWorld.clear();
 		if (!Game::playerInfo.empty())
 			Game::playerInfo.clear();
-
+		
 		Game::theWorld = SDK::getWorld();
 		if (Game::theWorld == nullptr) return;
 
@@ -257,6 +258,9 @@ namespace Game {
 		Game::theUIRenderer = SDK::getUIRenderer();
 		if (Game::theUIRenderer == nullptr) return;
 		
+		Game::theRoomManager = SDK::getRoomManager();
+		if (Game::theRoomManager == nullptr) return;
+
 		// 加载地图的所有房间时length会变成-256或者很大的数
 		if (Game::theWorld->playerList_Level1->length < 0 || Game::theWorld->playerList_Level1->length > 300) return;
 

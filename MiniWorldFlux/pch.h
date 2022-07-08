@@ -8,5 +8,6 @@
 #include <ctime>
 #include <iostream>
 #include <sys/timeb.h>
+#include <stdint.h>
 #include "ImGuiHeader.h"
 #include "Logger.h"

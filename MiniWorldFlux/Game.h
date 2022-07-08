@@ -17,6 +17,8 @@ using Byte = unsigned char;
 #define IngameCheck if (!Game::isPlaying()) return
 #define SinglePlayerCheck if (Game::singlePlayerChecker()) return
 
+#pragma region LocalPlayer
+
 class LocalPlayer {
 
 public:
@@ -90,11 +92,14 @@ private:
 
 };
 
+#pragma endregion
+
 namespace Game {
 
 	extern LocalPlayer* thePlayer;
 	extern SDK::World* theWorld;
 	extern SDK::UIRenderer* theUIRenderer;
+	extern SDK::RoomManager* theRoomManager;
 
 	extern std::vector<SDK::ClientPlayer*> playerInWorld;
 	extern std::unordered_map<int, SDK::PlayerInfo*> playerInfo;

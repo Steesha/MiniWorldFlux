@@ -46,6 +46,7 @@ namespace Client {
 	extern ImFont* fluxIcon;
 	extern ImFont* chinese;
 	extern Address hWorld;
+	extern std::string gameVersion;
 
 	void initClient();
 	void initModules();

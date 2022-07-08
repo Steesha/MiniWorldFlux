@@ -37,6 +37,29 @@ namespace SDK {
 		return nullptr;
 	}
 
+	RoomManager* getRoomManager() {
+		
+		Address* pRoomManager = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_RoomManager));
+		if (IsBadReadPtr(pRoomManager, sizeof(pRoomManager)) == 0) {
+			
+			RoomManager* roomManager = reinterpret_cast<RoomManager*>(*pRoomManager);
+			if (IsBadReadPtr(roomManager, sizeof(roomManager)) == 0)
+				return roomManager;
+			else
+				return nullptr;
+
+		}
+
+		return nullptr;
+	}
+
+	std::string getGameVersion() {
+		char* szVersion = reinterpret_cast<char*>(hWorld + Offsets::getOffset(Of_GameVersion));
+		if (IsBadReadPtr(szVersion, sizeof(szVersion)) == 0)		
+			return std::string(szVersion);
+		return std::string("");
+	}
+
 	float getIngameFPS() {
 
 		Address* pBase = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_FPSBase));

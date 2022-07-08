@@ -27,9 +27,7 @@ void NotificationManager::notify(std::string text, NotiLevel level, float durati
 void NotificationManager::onRenderOverlay() {
     if (this->queue.empty()) return;
 
-    //¸üÐÂX Y×ø±ê
-    startY = Game::getGameViewSize().y * 0.9;
-
+    this->startY = Game::getGameViewSize().y * 0.9;
 
     ImDrawList* dl = ImGui::GetForegroundDrawList();
     ImGuiIO& io = ImGui::GetIO();

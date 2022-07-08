@@ -571,9 +571,12 @@ void ClickGui::renderInfoPanel() {
 	dl->AddText(Client::fluxFont, fontSize, ImVec2(pingX, pingY), FluxColor::InfoPanelText, text);
 	dl->AddLine(ImVec2(clientNameX + 240, seperatorY), ImVec2(clientNameX + 240, seperatorY + seperatorLength), FluxColor::InfoPanelSeperator, seperatorThickness);
 
-	float tickX = pingX + 72;
-	float tickY = clientNameY;
-	dl->AddText(Client::fluxFont, fontSize, ImVec2(tickX, tickY), FluxColor::InfoPanelText, "20.0ticks");
+	// Game Version
+	float gvX = pingX + 72;
+	float gvY = clientNameY;
+	RtlZeroMemory(text, 64);
+	sprintf(text, "%s", Client::gameVersion.c_str());
+	dl->AddText(Client::fluxFont, fontSize, ImVec2(gvX, gvY), FluxColor::InfoPanelText, text);
 
 }
 

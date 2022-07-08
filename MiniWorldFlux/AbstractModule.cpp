@@ -17,7 +17,6 @@ bool AbstractModule::getToggle() {
 }
 
 void AbstractModule::setToggle(bool _New) {
-
 	if (_New == this->i_toggle) return;
 	this->i_toggle = _New;
 	this->onToggled();
@@ -41,8 +40,7 @@ void AbstractModule::toggle() {
 }
 
 void AbstractModule::onToggled() {
-
-	char buffer[128] = { 0 };
+	char* buffer = new char[128];
 	RtlZeroMemory(buffer, 128);
 
 	if (this->i_toggle) {
@@ -57,6 +55,8 @@ void AbstractModule::onToggled() {
 		if (this->getName() != "ClickGui")
 			NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
 	}
+
+	delete[] buffer;
 }
 
 Value* AbstractModule::getValue(std::string name) {
