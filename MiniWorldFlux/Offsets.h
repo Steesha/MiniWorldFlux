@@ -14,6 +14,10 @@
 #define Of_PlayerInfoBase 12
 #define Of_MpGameSurvive 13
 namespace Offsets {
+	constexpr unsigned long World = 0x1EBD72C;
+	constexpr unsigned long MagicBullet = 0xC285D7;
+	constexpr unsigned long MagicBulletRetn = 0xC285DD;
+
 	static unsigned long getOffset(int cate)
 	{
 		// Module
@@ -39,6 +43,7 @@ namespace Offsets {
 		// Player Info
 		unsigned long PlayerInfoBase = 0x238348C;
 		unsigned long MpGameSurvive = 0x40;
+
 
 		if (cate == Of_FakePosition) return FakePosition;
 		if (cate == Of_Reach) return Reach;

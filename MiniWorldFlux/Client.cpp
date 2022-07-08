@@ -54,6 +54,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<TargetHUD>(TargetHUD::getInstance());
 		ModuleManager::getInstance().addModule<NoRecoil>(NoRecoil::getInstance());
 		ModuleManager::getInstance().addModule<Shader>(Shader::getInstance());
+		ModuleManager::getInstance().addModule<MagicBullet>(MagicBullet::getInstance());
 		VM_LION_WHITE_END
 	}
 
