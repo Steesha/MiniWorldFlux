@@ -280,7 +280,10 @@ namespace Renderer {
 		if ((stride == 48 || stride == 40) && shaderMod->getToggle()) {
 
 			if (shaderMod->colorMode()) {
-				Renderer::recolorTexture(&Renderer::playerOverlayTex, shaderMod->getColor());
+				if (shaderMod->rainbowColor())
+					Renderer::recolorTexture(&Renderer::playerOverlayTex, Utility::rainbow(50, 100));
+				else
+					Renderer::recolorTexture(&Renderer::playerOverlayTex, shaderMod->getColor());
 				direct3DDevice9->SetTexture(0, Renderer::playerOverlayTex);
 			}
 

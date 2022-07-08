@@ -16,6 +16,7 @@ public:
 	bool disaledZBuffer();
 	bool wireframeMode();
 	bool colorMode();
+	bool rainbowColor();
 	uint32_t getColor();
 
 private:
@@ -23,6 +24,7 @@ private:
 	BooleanValue* disableZBuffer = new BooleanValue("Disable ZBuffer", false);
 	BooleanValue* wireframe = new BooleanValue("WireFrame", false);
 	BooleanValue* color = new BooleanValue("Pure Color", true);
+	BooleanValue* rainbow = new BooleanValue("Rainbow", true);
 	FloatValue* colR = new FloatValue("R", 250, 0, 255);
 	FloatValue* colG = new FloatValue("G", 0, 0, 255);
 	FloatValue* colB = new FloatValue("B", 0, 0, 255);

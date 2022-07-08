@@ -5,6 +5,7 @@ Shader::Shader() : AbstractModule("Shader", Category::Visual) {
 	this->addValue(this->disableZBuffer);
 	this->addValue(this->wireframe);
 	this->addValue(this->color);
+	this->addValue(this->rainbow);
 	this->addValue(this->colR);
 	this->addValue(this->colG);
 	this->addValue(this->colB);
@@ -34,6 +35,10 @@ bool Shader::wireframeMode() {
 
 bool Shader::colorMode() {
 	return this->color->getValue();
+}
+
+bool Shader::rainbowColor() {
+	return this->rainbow->getValue();
 }
 
 uint32_t Shader::getColor() {
