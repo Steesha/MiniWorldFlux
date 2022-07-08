@@ -42,7 +42,7 @@ void ModuleManager::addModule(MODCLASS* mod) {
 	AbstractModule* module = ToBaseModule(mod);
 	this->modules.push_back(module);
 
-	LOGGER << Logger::format(L"Module %hs Initialized.", L"ModuleManager.h", LogRank::DEBUG, module->getName().c_str());
+	LOGGER << Logger::format(L"Module %hs initialized.", L"ModuleManager.h", LogRank::DEBUG, module->getName().c_str());
 }
 
 template<class MODCLASS>

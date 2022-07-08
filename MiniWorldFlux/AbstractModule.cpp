@@ -42,24 +42,20 @@ void AbstractModule::toggle() {
 
 void AbstractModule::onToggled() {
 
-	char buffer[512] = { 0 };
-	RtlZeroMemory(buffer, 512);
-
-	if (this->getName() == "ClickGui")
-	{
-		//对于ClickGui，不进行Notification
-		return;
-	}
+	char buffer[128] = { 0 };
+	RtlZeroMemory(buffer, 128);
 
 	if (this->i_toggle) {
 		this->onEnabled();
 		sprintf(buffer, "%s Enabled.", this->getName().c_str());
-		NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
+		if (this->getName() != "ClickGui")
+			NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
 	}
 	else {
 		this->onDisabled();
 		sprintf(buffer, "%s Disabled.", this->getName().c_str());
-		NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
+		if (this->getName() != "ClickGui")
+			NotificationManager::getInstance().notify(std::string(buffer), NotiLevel::INFO, 3);
 	}
 }
 
