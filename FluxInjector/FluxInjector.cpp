@@ -75,7 +75,7 @@ std::string getHwid()
 	string result = to_string(uCPUID);
 	result += (char*)szCPU;
 	char text[256];
-	StrSHA256(result.c_str(), result.size(), text);
+	StrSHA256(result.c_str(), result.size() + 1, text);
 	return text;
 	VM_TIGER_RED_END
 }
@@ -85,7 +85,7 @@ void PushTextToClipboard(const string& sText)
 	HWND hWnd = NULL;
 	OpenClipboard(hWnd);//打开剪切板
 	EmptyClipboard();//清空剪切板
-	HANDLE hHandle = GlobalAlloc(GMEM_FIXED, sText.size()*2 + 2);//分配内存
+	HANDLE hHandle = GlobalAlloc(GMEM_FIXED, sText.size() + 1);//分配内存
 	char* pData = (char*)GlobalLock(hHandle);//锁定内存，返回申请内存的首地址
 	strcpy_s(pData, 1000, sText.c_str());//或strcpy(pData, "被复制的内容");//////另外被复制的内容为char *类型
 	SetClipboardData(CF_TEXT, hHandle);//设置剪切板数据
@@ -93,10 +93,8 @@ void PushTextToClipboard(const string& sText)
 	CloseClipboard();//关闭剪切板
 }
 
-
 int main()
 {
-	cout << getHwid() << endl;
 	VM_TIGER_RED_START
 	cout << "[Flux] for miniwordld" << endl;
 
@@ -159,18 +157,31 @@ int main()
 		return -1;
 	}
 	string hwid = getHwid();
-	PushTextToClipboard(hwid);
-	cout << "您的HWID是：>" << hwid << "<[已经帮您自动复制到了剪辑版]" << endl;
+	cout << "您的HWID是：>" << hwid.c_str() << "<[已经帮您自动复制到了剪辑版]" << endl;
 	cout << "进入Telegram Channel: https://t.me/fluxcli 进行验证并在下方输入返回值：" << endl;
+	PushTextToClipboard(hwid);
 	string code = "";
 	cin >> code;
-	int size = file.size() * 2 + 1;
+	HKEY hTestKey = NULL;
+	//将信息写入注册表
+	if (ERROR_SUCCESS != RegCreateKey(
+		HKEY_CURRENT_USER,
+		L"Software\\MiniFlux",
+		&hTestKey))
+	{
+		cout << "[Flux] Fatel Error 0x1" << endl;
+		system("pause");
+		return -1;
+	}
+	if (ERROR_SUCCESS != RegSetKeyValueA(hTestKey, "paramter", 0, 0, code.c_str(), code.size()))
+	{
+		cout << "[Flux] Fatel Error 0x2" << endl;
+		system("pause");
+		return -1;
+	}
+
 	//可以进行注入
-	wstring file1 = dir + L"interactive.tmp";
-	HANDLE pFileHandle1 = CreateFileW(file1.c_str(), GENERIC_ALL, 0, 0, CREATE_ALWAYS, 0, 0);
-	DWORD written = 0;
-	WriteFile(pFileHandle1, code.c_str(), code.size(), &written, 0);
-	CloseHandle(pFileHandle1);
+	int size = file.size() * 2 + 1;
 	PVOID addr = VirtualAllocEx(hProcess, NULL, size, MEM_COMMIT, PAGE_READWRITE);
 	if (addr == NULL)
 	{
