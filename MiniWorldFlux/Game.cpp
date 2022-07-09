@@ -232,6 +232,11 @@ SDK::ClientPlayer* LocalPlayer::getObject() {
 	return this->obj;
 }
 
+SDK::Weapon* LocalPlayer::getWeapon() {
+	IngameCheck nullptr;
+	return this->obj->weapon;
+}
+
 #pragma endregion
 
 namespace Game {
