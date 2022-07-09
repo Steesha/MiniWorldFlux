@@ -7,6 +7,7 @@
 using namespace std;
 int main()
 {
+	VM_TIGER_RED_START
 	cout << "[Flux] for miniwordld" << endl;
 
 	//获取当前目录
@@ -124,7 +125,8 @@ int main()
 	}
 
 	CloseHandle(hProcess);
-	cout << "[Flux] FluxClient注入成功！" << endl;
-	system("pause");
+	cout << "[Flux] FluxClient注入成功，3秒后自动退出" << endl;
+	Sleep(3000);
 	return 0;
+	VM_TIGER_RED_END
 }
