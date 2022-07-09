@@ -22,9 +22,9 @@ constexpr unsigned int Of_FakeMessager = 18;
 constexpr unsigned int Of_FakeMessagerRetn = 19;
 
 namespace Offsets {
-
+	
 	static unsigned long getOffset(int cate) {
-
+		VM_DOLPHIN_RED_START
 		// Module
 		unsigned long FakePosition = 0x110AF9C;
 		unsigned long Reach = 0x1056DB3;
@@ -80,5 +80,6 @@ namespace Offsets {
 		if (cate == Of_FakeMessagerRetn) return FakeMessagerRetn;
 
 		return -1;
+		VM_DOLPHIN_RED_END
 	}
 };

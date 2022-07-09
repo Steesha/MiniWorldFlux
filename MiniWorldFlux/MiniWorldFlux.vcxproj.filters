@@ -231,6 +231,9 @@
     <ClCompile Include="FakeMessager.cpp">
       <Filter>Client\Module\Modules\World</Filter>
     </ClCompile>
+    <ClCompile Include="ClientLogin.cpp">
+      <Filter>Client\Verification</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -412,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="FakeMessager.h">
       <Filter>Client\Module\Modules\World</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientLogin.h">
+      <Filter>Client\Verification</Filter>
     </ClInclude>
     <ClInclude Include="Forwards.hpp">
       <Filter>Include\Forwards</Filter>
