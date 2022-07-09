@@ -104,21 +104,14 @@ namespace Client {
 
 	void handleGuiEvent() {
 
-		static bool opening = false;
-
-		if (ImGui::IsKeyDown(ImGuiKey_RightShift)) {
-			if (!opening) {
+		if (ImGui::IsKeyDown(ImGuiKey_RightShift))
+			if (!ClickGui::getInstance()->getToggle())
 				EventManager::getInstance().call(Events::EventOpenClickGui);
-				opening = true;
-			}
-		}
 
-		if (ImGui::IsKeyDown(ImGuiKey_Escape)) {
-			if (opening) {
+		if (ImGui::IsKeyDown(ImGuiKey_Escape))
+			if (ClickGui::getInstance()->getToggle())
 				EventManager::getInstance().call(Events::EventCloseClickGui);
-				opening = false;
-			}
-		}
+
 	}
 
 	void handleModuleKeyEvent(unsigned char keyCode) {

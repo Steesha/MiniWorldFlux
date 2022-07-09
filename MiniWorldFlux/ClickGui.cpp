@@ -7,6 +7,10 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	EventManager::getInstance().reg(Events::EventOpenClickGui, MakeHandler(this, &ClickGui::enable));
 	EventManager::getInstance().reg(Events::EventCloseClickGui, MakeHandler(this, &ClickGui::disable));
 
+	this->changelogItems.push_back("[+] 增加MagicBullet Module(魔法子弹)");
+	this->changelogItems.push_back("[-] 剔除因版本更新导致失效的Phase Module");
+	this->changelogItems.push_back("[F] 修复因反作弊更新而失效的Phase Module");
+
 }
 
 ClickGui* ClickGui::getInstance() {
@@ -26,6 +30,8 @@ void ClickGui::onDisabled() {
 void ClickGui::onRenderOverlay() {
 
 	this->renderInfoPanel();
+	if (this->changelog)
+		this->renderChangeLog();
 	ToggleCheck;
 	this->renderMainPanel();
 
@@ -34,15 +40,6 @@ void ClickGui::onRenderOverlay() {
 void ClickGui::renderMainPanel() {
 
 	ImDrawList* dl = ImGui::GetBackgroundDrawList();
-
-/*
-	static float offsetX = 0;
-	static float offsetY = 0;
-	static float titleOffsetX = 0;
-	static float titleOffsetY = 0;
-	static float width = 20;
-	static float offsetSmall = 0;
-*/
 
 #pragma region Background
 
@@ -72,7 +69,7 @@ void ClickGui::renderMainPanel() {
 			dragableBlock.x += Client::rendererIO->MouseDelta.x * 1.4f;
 			dragableBlock.y += Client::rendererIO->MouseDelta.y * 1.4f;
 		}
-		
+
 	}
 
 	// 840*590
@@ -104,6 +101,10 @@ void ClickGui::renderMainPanel() {
 	logoBlock.height = categoryPanelBlock.height;
 	dl->AddText(Client::fluxIcon, 35, ImVec2(logoBlock.x + 45, logoBlock.y + 30), FluxColor::Logo, FluxIcon::Logo);
 	dl->AddText(Client::fluxFont, 25, ImVec2(categoryPanelBlock.x + 95, categoryPanelBlock.y + 35), FluxColor::Logo, "Flux");
+	if (Renderer::isBlockClicked(&logoBlock)) {
+		this->disable();
+		this->changelog = true;
+	}
 	if (this->showUIBB) Renderer::drawBlockBoundingBox(&logoBlock);
 
 	struct Block categoriesBlock;
@@ -501,23 +502,6 @@ void ClickGui::renderMainPanel() {
 
 #pragma endregion
 
-/*
-#ifdef _DEBUG
-	ImGui::Begin("Main Panel");
-
-	ImGui::Checkbox("Show Bounding Box", &this->showUIBB);
-
-	ImGui::SliderFloat("OffsetX", &offsetX, 0, 100);
-	ImGui::SliderFloat("OffsetY", &offsetY, 0, 100);
-	ImGui::SliderFloat("Title OffsetX", &titleOffsetX, 0, 100);
-	ImGui::SliderFloat("Title OffsetY", &titleOffsetY, 0, 100);
-	ImGui::SliderFloat("Width", &width, 0, 200);
-	ImGui::SliderFloat("Offset Small", &offsetSmall, 0, 10);
-
-	ImGui::End();
-#endif
-*/
-
 }
 
 void ClickGui::renderInfoPanel() {
@@ -577,6 +561,57 @@ void ClickGui::renderInfoPanel() {
 	RtlZeroMemory(text, 64);
 	sprintf(text, "%s", Client::gameVersion.c_str());
 	dl->AddText(Client::fluxFont, fontSize, ImVec2(gvX, gvY), FluxColor::InfoPanelText, text);
+
+}
+
+void ClickGui::renderChangeLog() {
+
+	ImDrawList* dl = ImGui::GetForegroundDrawList();
+	Vec2 view = Game::getGameViewSize();
+	view.x *= 0.5f;
+	view.y *= 0.5f;
+
+	// Background
+	struct Block panelBlock;
+	panelBlock.width = 840;
+	panelBlock.height = 590;
+	panelBlock.x = view.x - panelBlock.width * 0.5f;
+	panelBlock.y = view.y - panelBlock.height * 0.5f;
+	dl->AddRectFilled(ImVec2(panelBlock.x, panelBlock.y), ImVec2(panelBlock.x + panelBlock.width, panelBlock.y + panelBlock.height), FluxColor::MainPanelBackground, 5);
+	if (this->showUIBB) Renderer::drawBlockBoundingBox(&panelBlock);
+
+	// Title
+	dl->AddText(Client::fluxIcon, 35, ImVec2(panelBlock.x + 20, panelBlock.y + 20), FluxColor::White, FluxIcon::Logo);
+	dl->AddText(Client::fluxFont, 35, ImVec2(panelBlock.x + 70, panelBlock.y + 20), FluxColor::White, "Changelog");
+
+	// Seperator
+	dl->AddLine(ImVec2(panelBlock.x, panelBlock.y + 75), ImVec2(panelBlock.x + panelBlock.width, panelBlock.y + 75), FluxColor::Gray, 2.5f);
+
+	// Content
+	struct Block contentBlock;
+	contentBlock.x = panelBlock.x;
+	contentBlock.y = panelBlock.y + 90;
+	contentBlock.width = panelBlock.width;
+	contentBlock.height = panelBlock.height - 90;
+	if (this->showUIBB) Renderer::drawBlockBoundingBox(&panelBlock);
+	float curY = 5;
+	for (std::string& item : this->changelogItems) {
+		dl->AddText(Client::chinese, 20, ImVec2(contentBlock.x + 40, contentBlock.y + curY), FluxColor::White, Utility::toUtf8(const_cast<char*>(item.c_str())));
+		curY += 30;
+	}
+
+	// Close Button
+	struct Block closeBlock;
+	closeBlock.width = 70;
+	closeBlock.height = 40;
+	closeBlock.x = panelBlock.x + panelBlock.width - closeBlock.width;
+	closeBlock.y = panelBlock.y + panelBlock.height - closeBlock.height;
+	if (Renderer::isBlockHovered(&closeBlock))
+		dl->AddText(Client::fluxFont, 25, ImVec2(closeBlock.x + 10, closeBlock.y + 5), FluxColor::ItemSelected, "Close");
+	else	
+		dl->AddText(Client::fluxFont, 25, ImVec2(closeBlock.x + 10, closeBlock.y + 5), FluxColor::ItemNonSelected, "Close");
+	if (this->showUIBB) Renderer::drawBlockBoundingBox(&closeBlock);
+	if (Renderer::isBlockClicked(&closeBlock)) this->changelog = false;
 
 }
 

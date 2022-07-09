@@ -40,4 +40,6 @@ namespace Utility {
 
 	int rainbow(int delay, long timeOffset);
 
+	char* toUtf8(char* target);
+
 }

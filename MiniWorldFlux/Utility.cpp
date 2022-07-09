@@ -230,5 +230,23 @@ namespace Utility {
         return (0xFF << 24) | (static_cast<int>(rainbowRGB.r) << 16) | (static_cast<int>(rainbowRGB.g) << 8) | static_cast<int>(rainbowRGB.b);
     }
 
+    char* toUtf8(char* target) {
+
+        int nwLen = ::MultiByteToWideChar(CP_ACP, 0, target, -1, NULL, 0);
+
+        wchar_t* pwBuf = new wchar_t[nwLen + 1];
+        ZeroMemory(pwBuf, nwLen * 2 + 2);
+
+        ::MultiByteToWideChar(CP_ACP, 0, target, strlen(target), pwBuf, nwLen);
+
+        int nLen = ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
+
+        char* pBuf = new char[nLen + 1];
+        ZeroMemory(pBuf, nLen + 1);
+
+        ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, nwLen, pBuf, nLen, NULL, NULL);
+
+        return pBuf;
+    }
 
 }

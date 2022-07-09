@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include "AbstractModule.h"
 #include "ImGuiHeader.h"
 #include "EventManager.h"
@@ -26,12 +27,15 @@ public:
 
 	void renderInfoPanel();
 	void renderMainPanel();
+	void renderChangeLog();
 
 	void startBindKey(AbstractModule* target);
 	void endBindKey();
 
 private:
 
+	bool changelog = false;
+	std::vector<std::string> changelogItems;
 	float modulePanelScrollY = 0;
 
 	Category curCategory = Category::Combat;
