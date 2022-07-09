@@ -3,6 +3,7 @@
 #include "EventManager.h"
 #include "Game.h"
 #include "ProtectDestroyer.h"
+#include "Forwards.hpp"
 
 class FakeMessager : public AbstractModule {
 
@@ -16,8 +17,7 @@ public:
 private:
 
 	Memory::ProtectDestroyer codeProtect;
-	unsigned char originBytes[6] = { 0 };
-	unsigned char detourBytes[6] = { 0 };
+	Forwards codeForwards;
 	bool hook = false;
 
 	bool check();
