@@ -76,6 +76,9 @@
     <Filter Include="Client\Utility\Logger">
       <UniqueIdentifier>{6ea15904-4867-4a81-9ead-ff51b2dce657}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Forwards">
+      <UniqueIdentifier>{de634b82-fe88-4e54-9fdb-922b9a93f0fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui.cpp">
@@ -409,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="FakeMessager.h">
       <Filter>Client\Module\Modules\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Forwards.hpp">
+      <Filter>Include\Forwards</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

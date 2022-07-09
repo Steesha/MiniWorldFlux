@@ -188,6 +188,7 @@
     <ClInclude Include="FluxFont.h" />
     <ClInclude Include="FluxIconFont.h" />
     <ClInclude Include="Fly.h" />
+    <ClInclude Include="Forwards.hpp" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStructs.h" />
     <ClInclude Include="HighJump.h" />

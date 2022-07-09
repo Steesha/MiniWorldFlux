@@ -16,3 +16,4 @@
 #include "BooleanValue.h"
 #include "ModeValue.h"
 #include "InlineHook.h"
+#include "Forwards.hpp"

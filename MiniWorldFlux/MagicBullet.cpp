@@ -8,15 +8,15 @@ namespace MagicBulletParams {
 
 }
 
-__declspec(naked) void detourMB() {
+FORWARDS_FN_START(detourMB) {
 	
 	__asm {
-	
+		
 		push ecx				// Store
 		mov ecx,Client::hWorld
-		add ecx, MagicBulletParams::worldOffset
+		add ecx,MagicBulletParams::worldOffset
 		mov ecx,[ecx]
-		push [ecx+0x4720]
+		push[ecx+0x4720]
 		mov ecx,0x520				// ?
 		pop ecx					// Release
 
@@ -26,41 +26,31 @@ __declspec(naked) void detourMB() {
 		add ecx,1
 
 		push ecx				// Store
-		sub dword ptr [esp],1
+		sub dword ptr[esp],1
 		pop ecx					// Release
 
 		mov eax,[ecx+0x3C]		// posX
-		mov [edi+0x3C],eax
+		mov[edi+0x3C],eax
 
 		mov eax,[ecx+0x40]		// posY
 		add eax,0x70			// Í·²¿Æ«ÒÆ
-		mov[edi+0x40], eax
+		mov[edi+0x40],eax
 
 		mov eax,[ecx+0x44]		// posZ
 		pop ecx					// ?
-		mov[edi+0x44], eax
+		mov[edi+0x44],eax
 
 		lea eax,[edi+0x70]
 
-		push [MagicBulletParams::retnAddr]
-		ret
-
 	}
 
+	FORWARDS_FN_END(MagicBulletParams::retnAddr)
 }
 
 MagicBullet::MagicBullet() : AbstractModule("MagicBullet", Category::Combat) {
 
 	this->codeProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), 6);
-
-	// Backup origin code
-	RtlCopyMemory(&(this->originBytes), ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), 6);
-
-	// Build detour code
-	this->detourBytes[0] = 0x68;
-	this->detourBytes[5] = 0xC3;
-	DWORD pDetour = ToAddress(detourMB);
-	RtlCopyMemory(&(this->detourBytes[1]), &pDetour, 4);
+	this->codeForwards.init(Client::hWorld + Offsets::getOffset(Of_MagicBullet), ToAddress(detourMB));
 
 	MagicBulletParams::worldOffset = Offsets::getOffset(Of_World);
 	MagicBulletParams::retnAddr = Client::hWorld + Offsets::getOffset(Of_MagicBulletRetn);
@@ -83,7 +73,7 @@ void MagicBullet::onEnabled() {
 
 	if (!this->hook) {
 		this->codeProtect.destroy();
-		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), &(this->detourBytes), 6);
+		this->codeForwards.forward();
 		this->codeProtect.restore();
 		this->hook = true;
 	}
@@ -94,7 +84,7 @@ void MagicBullet::onDisabled() {
 
 	if (this->hook) {
 		this->codeProtect.destroy();
-		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), &(this->originBytes), 6);
+		this->codeForwards.reset();
 		this->codeProtect.restore();
 		this->hook = false;
 	}
