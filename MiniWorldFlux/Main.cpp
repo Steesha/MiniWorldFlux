@@ -1,6 +1,6 @@
 #include "pch.h"
-#include <Windows.h>
 #include "Client.h"
+#include "ClientLogin.h"
 
 #ifdef _DEBUG
 LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {

@@ -100,6 +100,7 @@
     <ClCompile Include="BoxESP.cpp" />
     <ClCompile Include="ClickGui.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="ClientLogin.cpp" />
     <ClCompile Include="Disabler.cpp" />
     <ClCompile Include="ESP.cpp" />
     <ClCompile Include="EventManager.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="BoxESP.h" />
     <ClInclude Include="ClickGui.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="ClientLogin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Disabler.h" />
     <ClInclude Include="ESP.h" />
