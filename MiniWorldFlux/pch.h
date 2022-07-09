@@ -11,3 +11,8 @@
 #include <stdint.h>
 #include "ImGuiHeader.h"
 #include "Logger.h"
+#include "Value.h"
+#include "FloatValue.h"
+#include "BooleanValue.h"
+#include "ModeValue.h"
+#include "InlineHook.h"

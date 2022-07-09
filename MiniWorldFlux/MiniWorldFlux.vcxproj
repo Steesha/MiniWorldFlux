@@ -103,6 +103,7 @@
     <ClCompile Include="Disabler.cpp" />
     <ClCompile Include="ESP.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="FakeMessager.cpp" />
     <ClCompile Include="FakePosition.cpp" />
     <ClCompile Include="FasterSpeed.cpp" />
     <ClCompile Include="FloatValue.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="ESP.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Events.h" />
+    <ClInclude Include="FakeMessager.h" />
     <ClInclude Include="FakePosition.h" />
     <ClInclude Include="FasterSpeed.h" />
     <ClInclude Include="FloatValue.h" />

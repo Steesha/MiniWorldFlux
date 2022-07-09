@@ -1,8 +1,6 @@
 #pragma once
 #include "AbstractModule.h"
 #include "EventManager.h"
-#include "Utility.h"
-#include "ImGuiHeader.h"
 #include "Game.h"
 
 #define TeamCheck Team::getInstance()->getToggle()

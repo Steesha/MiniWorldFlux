@@ -1,7 +1,12 @@
 #include "pch.h"
 #include "MagicBullet.h"
 
-static DWORD mbRetnAddress = 0;
+namespace MagicBulletParams {
+
+	static DWORD retnAddr = 0;
+	static DWORD worldOffset = 0;
+
+}
 
 __declspec(naked) void detourMB() {
 	
@@ -9,7 +14,7 @@ __declspec(naked) void detourMB() {
 	
 		push ecx				// Store
 		mov ecx,Client::hWorld
-		add ecx,Offsets::World
+		add ecx, MagicBulletParams::worldOffset
 		mov ecx,[ecx]
 		push [ecx+0x4720]
 		mov ecx,0x520				// ?
@@ -37,7 +42,7 @@ __declspec(naked) void detourMB() {
 
 		lea eax,[edi+0x70]
 
-		push [mbRetnAddress]
+		push [MagicBulletParams::retnAddr]
 		ret
 
 	}
@@ -46,10 +51,10 @@ __declspec(naked) void detourMB() {
 
 MagicBullet::MagicBullet() : AbstractModule("MagicBullet", Category::Combat) {
 
-	this->codeProtect.init(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), 6);
+	this->codeProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), 6);
 
 	// Backup origin code
-	RtlCopyMemory(&(this->originBytes), ToPointer(Client::hWorld + Offsets::MagicBullet, Address), 6);
+	RtlCopyMemory(&(this->originBytes), ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), 6);
 
 	// Build detour code
 	this->detourBytes[0] = 0x68;
@@ -57,8 +62,9 @@ MagicBullet::MagicBullet() : AbstractModule("MagicBullet", Category::Combat) {
 	DWORD pDetour = ToAddress(detourMB);
 	RtlCopyMemory(&(this->detourBytes[1]), &pDetour, 4);
 
-	mbRetnAddress = Client::hWorld + Offsets::MagicBulletRetn;
-	this->start = false;
+	MagicBulletParams::worldOffset = Offsets::getOffset(Of_World);
+	MagicBulletParams::retnAddr = Client::hWorld + Offsets::getOffset(Of_MagicBulletRetn);
+	this->hook = false;
 
 }
 
@@ -68,7 +74,6 @@ MagicBullet* MagicBullet::getInstance() {
 }
 
 void MagicBullet::onEnabled() {
-	IngameCheck;
 
 	if (!this->adminCheck()) {
 		NotificationManager::getInstance().notify("Admin needed!", NotiLevel::ERR, 3);
@@ -76,23 +81,22 @@ void MagicBullet::onEnabled() {
 		return;
 	}
 
-	if (!this->start) {
+	if (!this->hook) {
 		this->codeProtect.destroy();
-		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), &(this->detourBytes), 6);
+		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), &(this->detourBytes), 6);
 		this->codeProtect.restore();
-		this->start = true;
-	}	
+		this->hook = true;
+	}
 
 }
 
 void MagicBullet::onDisabled() {
-	IngameCheck;
 
-	if (this->start) {
+	if (this->hook) {
 		this->codeProtect.destroy();
-		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::MagicBullet, Address), &(this->originBytes), 6);
+		RtlCopyMemory(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), &(this->originBytes), 6);
 		this->codeProtect.restore();
-		this->start = false;
+		this->hook = false;
 	}
 	
 }

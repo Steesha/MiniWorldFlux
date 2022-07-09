@@ -4,11 +4,11 @@
 #include "Game.h"
 #include "ProtectDestroyer.h"
 
-class MagicBullet : public AbstractModule {
+class FakeMessager : public AbstractModule {
 
 public:
 
-	static MagicBullet* getInstance();
+	static FakeMessager* getInstance();
 
 	void onEnabled();
 	void onDisabled();
@@ -20,13 +20,13 @@ private:
 	unsigned char detourBytes[6] = { 0 };
 	bool hook = false;
 
-	bool adminCheck();
+	bool check();
 
-	MagicBullet();
-	DefaultDeconstructor(MagicBullet);
-	NoMoveConstructor(MagicBullet);
-	NoCopyConstructor(MagicBullet);
-	NoAssignOperator(MagicBullet);
+	FakeMessager();
+	DefaultDeconstructor(FakeMessager);
+	NoMoveConstructor(FakeMessager);
+	NoCopyConstructor(FakeMessager);
+	NoAssignOperator(FakeMessager);
 
 };
 
