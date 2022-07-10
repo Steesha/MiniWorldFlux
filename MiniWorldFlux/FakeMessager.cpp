@@ -23,10 +23,10 @@ FORWARDS_FN_START(detourFM) {
 
 FakeMessager::FakeMessager() : AbstractModule("FakeMessager", Category::World) {
 	VM_TIGER_WHITE_START
-	this->codeProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_FakeMessager) ^ Client::_XorKey, Address), 6);
-	this->codeForwards.init(Client::hWorld + Offsets::getOffset(Of_FakeMessager) ^ Client::_XorKey, ToAddress(detourFM));
+	this->codeProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_FakeMessager) ^ Client::_XorKey), Address), 6);
+	this->codeForwards.init(Client::hWorld + (Offsets::getOffset(Of_FakeMessager) ^ Client::_XorKey), ToAddress(detourFM));
 
-	FakeMessagerParams::retnAddr = Client::hWorld + Offsets::getOffset(Of_FakeMessagerRetn) ^ Client::_XorKey;
+	FakeMessagerParams::retnAddr = Client::hWorld + (Offsets::getOffset(Of_FakeMessagerRetn) ^ Client::_XorKey);
 	this->hook = false;
 	VM_TIGER_WHITE_END
 }

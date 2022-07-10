@@ -8,7 +8,7 @@ namespace SDK {
 
 	World* getWorld() {
 		VM_TIGER_WHITE_START
-		Address* ppWorld = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_World) ^ Client::_XorKey);
+		Address* ppWorld = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_World) ^ Client::_XorKey));
 		VM_TIGER_WHITE_END
 		if (IsBadReadPtr(ppWorld, sizeof(ppWorld)) == 0) {
 			
@@ -25,7 +25,7 @@ namespace SDK {
 
 	UIRenderer* getUIRenderer() {
 		VM_TIGER_WHITE_START
-		Address* pUIRenderer = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_UIRenderer) ^ Client::_XorKey);
+		Address* pUIRenderer = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_UIRenderer) ^ Client::_XorKey));
 		VM_TIGER_WHITE_END
 		if (IsBadReadPtr(pUIRenderer, sizeof(pUIRenderer)) == 0) {
 			
@@ -42,7 +42,7 @@ namespace SDK {
 
 	RoomManager* getRoomManager() {
 		VM_TIGER_WHITE_START
-		Address* pRoomManager = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_RoomManager) ^ Client::_XorKey);
+		Address* pRoomManager = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_RoomManager) ^ Client::_XorKey));
 		VM_TIGER_WHITE_END
 		if (IsBadReadPtr(pRoomManager, sizeof(pRoomManager)) == 0) {
 			
@@ -59,7 +59,7 @@ namespace SDK {
 
 	std::string getGameVersion() {
 		VM_TIGER_WHITE_START
-		char* szVersion = reinterpret_cast<char*>(hWorld + Offsets::getOffset(Of_GameVersion) ^ Client::_XorKey);
+		char* szVersion = reinterpret_cast<char*>(hWorld + (Offsets::getOffset(Of_GameVersion) ^ Client::_XorKey));
 		VM_TIGER_WHITE_END
 		if (IsBadReadPtr(szVersion, sizeof(szVersion)) == 0)		
 			return std::string(szVersion);
@@ -68,9 +68,9 @@ namespace SDK {
 
 	float getIngameFPS() {
 		VM_TIGER_WHITE_START
-		Address* pBase = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_FPSBase) ^ Client::_XorKey);
+		Address* pBase = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_FPSBase) ^ Client::_XorKey));
 		if (IsBadReadPtr(pBase, sizeof(pBase)) == 0) {
-			float* pFPS = reinterpret_cast<float*>((*pBase) + Offsets::getOffset(Of_FPS_1) ^ Client::_XorKey);
+			float* pFPS = reinterpret_cast<float*>((*pBase) + (Offsets::getOffset(Of_FPS_1) ^ Client::_XorKey));
 			if (IsBadReadPtr(pFPS, sizeof(pFPS)) == 0) {
 				return *pFPS;
 			}
@@ -81,7 +81,7 @@ namespace SDK {
 
 	int getIngamePing() {
 		
-		Address* pPing = reinterpret_cast<Address*>(hWorld + Offsets::getOffset(Of_Ping) ^ Client::_XorKey);
+		Address* pPing = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_Ping) ^ Client::_XorKey));
 		if (IsBadReadPtr(pPing, sizeof(pPing)) == 0)
 			return *pPing;
 		return -1;

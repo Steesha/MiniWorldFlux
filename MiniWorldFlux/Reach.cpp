@@ -3,7 +3,7 @@
 
 Reach::Reach() : AbstractModule("Reach", Category::Combat) {
 	VM_TIGER_WHITE_START
-	this->reachChecker.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_Reach) ^ Client::_XorKey, unsigned char), 1);
+	this->reachChecker.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_Reach) ^ Client::_XorKey), unsigned char), 1);
 	VM_TIGER_WHITE_END
 }
 
@@ -34,7 +34,7 @@ bool Reach::startReach() {
 
 	this->reachChecker.destroy();
 	VM_TIGER_WHITE_START
-	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Reach) ^ Client::_XorKey, 0x74);
+	bool res = Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_Reach) ^ Client::_XorKey), 0x74);
 	VM_TIGER_WHITE_END
 	this->reachChecker.restore();
 
@@ -45,7 +45,7 @@ void Reach::endReach() {
 
 	this->reachChecker.destroy();
 	VM_TIGER_WHITE_START
-	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Reach) ^ Client::_XorKey, 0x75);
+	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_Reach) ^ Client::_XorKey), 0x75);
 	VM_TIGER_WHITE_END
 	this->reachChecker.restore();
 
