@@ -11,6 +11,7 @@ Phase* Phase::getInstance() {
 }
 
 void Phase::onEnabled() {
+	VM_TIGER_WHITE_START
 	this->addrProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 0, 0x90);
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 1, 0x90);
@@ -19,9 +20,11 @@ void Phase::onEnabled() {
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 4, 0x90);
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 5, 0x90);
 	this->addrProtect.restore();
+	VM_TIGER_WHITE_END
 }
 
 void Phase::onDisabled() {
+	VM_TIGER_WHITE_START
 	this->addrProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 0, 0x0F);
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 1, 0x84);
@@ -30,4 +33,5 @@ void Phase::onDisabled() {
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 4, 0xFF);
 	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey + 5, 0xFF);
 	this->addrProtect.restore();
+	VM_TIGER_WHITE_END
 }
