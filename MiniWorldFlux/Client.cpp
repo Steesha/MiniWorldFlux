@@ -102,13 +102,9 @@ namespace Client {
 #ifdef _DEBUG
 		Utility::openConsole();
 #endif
-		MessageBoxA(0, "1", "", 0);
 		Client::initClient();
-		MessageBoxA(0, "2", "", 0);
 		Client::initModules();
-		MessageBoxA(0, "3", "", 0);
 		Client::initEvents();
-		MessageBoxA(0, "4", "", 0);
 		Renderer::startRenderer(Client::wndGame);
 		Client::loadConfig();
 
