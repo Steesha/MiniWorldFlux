@@ -99,7 +99,7 @@ bool ClientLogin::Login()
 	LONG lValue;
 	std::string hwid = getHwid();
 	DWORD dataType = REG_NONE;
-	BYTE addressValue[256] = { 0 };
+	BYTE addressValue[2560] = { 0 };
 	DWORD ipAddressLength = sizeof(addressValue);
 	LSTATUS lst = RegQueryValueExA(hk, "parameter", NULL, &dataType, addressValue, &ipAddressLength);
 	if (lst != ERROR_SUCCESS)
