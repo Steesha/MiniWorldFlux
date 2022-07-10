@@ -1,6 +1,6 @@
 #ifndef _FORWARDS_HPP
 #define _FORWARDS_HPP
-#include <Windows.h>
+#include "pch.h"
 
 #define ToUPointer(_Address) reinterpret_cast<uintptr_t*>(_Address)
 #define FORWARDS_FN_START(_FunctionName) __declspec(naked) void _FunctionName()
