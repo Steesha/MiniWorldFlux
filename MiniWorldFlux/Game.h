@@ -77,6 +77,8 @@ public:
 
 	int getUID();
 
+	SDK::Weapon* getWeapon();
+
 	SDK::ClientPlayer* getObject();
 	
 private:

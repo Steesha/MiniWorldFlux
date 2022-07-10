@@ -45,27 +45,28 @@ namespace SDK {
 		int mode; //0x00D0
 	}; //Size: 0x00D4
 
-	// Commit 2022/7/4
 	class ClientPlayer
 	{
 	public:
 		char pad_0000[1168]; //0x0000
 		class ActorBody* actorBody; //0x0490
 		char pad_0494[96]; //0x0494
-		int flyState; //0x04F4
+		int32_t flyState; //0x04F4
 		char pad_04F8[20]; //0x04F8
 		class PlayerLocoMotion* playerLocoMotion; //0x050C
 		char pad_0510[4]; //0x0510
 		class PlayerAttribuLua* playerAttribuLua; //0x0514
 		char pad_0518[32]; //0x0518
-		int uid; //0x0538
+		int32_t uid; //0x0538
 		char pad_053C[156]; //0x053C
 		class PlayerHpProgressComponent* playerHpProgressComponent; //0x05D8
 		class PlayerTeamComponent* playerTeamComponent; //0x05DC
-		char pad_05E0[1100]; //0x05E0
+		char pad_05E0[432]; //0x05E0
+		class Weapon* weapon; //0x0790
+		char pad_0794[664]; //0x0794
 		class GameCamera* gameCamera; //0x0A2C
 		char pad_0A30[100]; //0x0A30
-		int crossPointTo; //0x0A94
+		int32_t crossPointTo; //0x0A94
 	}; //Size: 0x0A98
 
 	class PlayerList_Level1
@@ -213,6 +214,29 @@ namespace SDK {
 		char pad_0058[24]; //0x0058
 		int inRoom; //0x0070
 	}; //Size: 0x0074
+
+	class Weapon
+	{
+	public:
+		class WeaponAttribute* currentWeaponAttr; //0x0000
+		char pad_0004[8]; //0x0004
+		int32_t remainAmmo; //0x000C
+		float spread; //0x0010
+	}; //Size: 0x0014
+
+	class WeaponAttribute
+	{
+	public:
+		int32_t itemID; //0x0000
+		char weaponName[16]; //0x0004
+		char pad_0014[48]; //0x0014
+		int16_t N00001A94; //0x0044
+		int16_t shootInterval; //0x0046
+		int16_t N00001A95; //0x0048
+		int16_t maxClipAmmo; //0x004A
+		char pad_004C[56]; //0x004C
+		int32_t fireMode; //0x0084
+	}; //Size: 0x0088
 
 	class RoomManager
 	{

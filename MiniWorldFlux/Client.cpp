@@ -64,6 +64,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<Shader>(Shader::getInstance());
 		ModuleManager::getInstance().addModule<MagicBullet>(MagicBullet::getInstance());
 		ModuleManager::getInstance().addModule<FakeMessager>(FakeMessager::getInstance());
+		ModuleManager::getInstance().addModule<FastBullet>(FastBullet::getInstance());
 		VM_LION_WHITE_END
 	}
 
@@ -114,21 +115,14 @@ namespace Client {
 
 	void handleGuiEvent() {
 
-		static bool opening = false;
-
-		if (ImGui::IsKeyDown(ImGuiKey_RightShift)) {
-			if (!opening) {
+		if (ImGui::IsKeyDown(ImGuiKey_RightShift))
+			if (!ClickGui::getInstance()->getToggle())
 				EventManager::getInstance().call(Events::EventOpenClickGui);
-				opening = true;
-			}
-		}
 
-		if (ImGui::IsKeyDown(ImGuiKey_Escape)) {
-			if (opening) {
+		if (ImGui::IsKeyDown(ImGuiKey_Escape))
+			if (ClickGui::getInstance()->getToggle())
 				EventManager::getInstance().call(Events::EventCloseClickGui);
-				opening = false;
-			}
-		}
+
 	}
 
 	void handleModuleKeyEvent(unsigned char keyCode) {
