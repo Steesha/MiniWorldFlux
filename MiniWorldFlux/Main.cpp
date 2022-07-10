@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Client.h"
-#include "ClientLogin.h"
 
 #ifdef _DEBUG
 LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
@@ -45,6 +44,7 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 
 BOOL WINAPI DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved) {
 	VM_LION_WHITE_START
+	
 	if (dwReason == DLL_PROCESS_ATTACH) {
 #ifdef _DEBUG
 		AddVectoredExceptionHandler(true, NullptrHandler);

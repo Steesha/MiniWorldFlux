@@ -2,7 +2,7 @@
 #include "FakePosition.h"
 
 FakePosition::FakePosition() : AbstractModule("FakePosition", Category::Player) {
-	addrProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_FakePosition), void), 2);
+	addrProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey, void), 2);
 }
 
 FakePosition* FakePosition::getInstance() {
@@ -45,7 +45,7 @@ bool FakePosition::startFakePosition() {
 	IngameCheck false;
 
 	this->addrProtect.destroy();
-	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition), 0x90) && Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) + 1, 0x90);
+	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey, 0x90) && Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey + 1, 0x90);
 	this->addrProtect.restore();
 
 	return res;
@@ -54,8 +54,8 @@ bool FakePosition::startFakePosition() {
 void FakePosition::endFakePosition() {
 
 	this->addrProtect.destroy();
-	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition), 0x75);
-	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) + 1, 0x0C);
+	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey, 0x75);
+	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey + 1, 0x0C);
 	this->addrProtect.restore();
 
 }

@@ -234,6 +234,9 @@
     <ClCompile Include="ClientLogin.cpp">
       <Filter>Client\Verification</Filter>
     </ClCompile>
+    <ClCompile Include="AES.cpp">
+      <Filter>Client\Verification</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="Forwards.hpp">
       <Filter>Include\Forwards</Filter>
+    </ClInclude>
+    <ClInclude Include="AES.h">
+      <Filter>Client\Verification</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

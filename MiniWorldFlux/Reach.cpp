@@ -2,7 +2,7 @@
 #include "Reach.h"
 
 Reach::Reach() : AbstractModule("Reach", Category::Combat) {
-	this->reachChecker.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_Reach), unsigned char), 1);
+	this->reachChecker.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_Reach) ^ Client::_XorKey, unsigned char), 1);
 }
 
 Reach* Reach::getInstance() {
@@ -31,7 +31,7 @@ void Reach::onDisabled() {
 bool Reach::startReach() {
 
 	this->reachChecker.destroy();
-	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Reach), 0x74);
+	bool res = Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Reach) ^ Client::_XorKey, 0x74);
 	this->reachChecker.restore();
 
 	return res;
@@ -40,7 +40,7 @@ bool Reach::startReach() {
 void Reach::endReach() {
 
 	this->reachChecker.destroy();
-	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Reach), 0x75);
+	Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_Reach) ^ Client::_XorKey, 0x75);
 	this->reachChecker.restore();
 
 }

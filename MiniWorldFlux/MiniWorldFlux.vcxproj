@@ -61,7 +61,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <DisableSpecificWarnings>4244;4996;6387;4018;6031;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4244;6386;4996;6387;4018;4309;6031;4838;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -79,7 +79,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <DisableSpecificWarnings>4244;4996;6387;4018;6031;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4244;6386;4996;6387;4018;4309;6031;4838;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractModule.cpp" />
+    <ClCompile Include="AES.cpp" />
     <ClCompile Include="Aimbot.cpp" />
     <ClCompile Include="AirJump.cpp" />
     <ClCompile Include="AutoClicker.cpp" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractModule.h" />
+    <ClInclude Include="AES.h" />
     <ClInclude Include="Aimbot.h" />
     <ClInclude Include="AirJump.h" />
     <ClInclude Include="AutoClicker.h" />

@@ -283,10 +283,10 @@ namespace Game {
 		SinglePlayerCheck;
 
 		// 同步房间内玩家信息
-		Address* pPlayerInfoBase = ToPointer(Client::hWorld + Offsets::getOffset(Of_PlayerInfoBase), Address);
+		Address* pPlayerInfoBase = ToPointer(Client::hWorld + Offsets::getOffset(Of_PlayerInfoBase) ^ Client::_XorKey, Address);
 		if (Utility::isReadablePtr(pPlayerInfoBase)) {
 
-			unsigned long* pMpGameSurvive = ToPointer((*pPlayerInfoBase) + Offsets::getOffset(Of_MpGameSurvive), Address);
+			unsigned long* pMpGameSurvive = ToPointer((*pPlayerInfoBase) + Offsets::getOffset(Of_MpGameSurvive) ^ Client::_XorKey, Address);
 			if (Utility::isReadablePtr(pMpGameSurvive)) {
 				
 				SDK::MpGameSurvive* mpGameSurvive = ToPointer(*pMpGameSurvive, SDK::MpGameSurvive);
@@ -321,7 +321,7 @@ namespace Game {
 	}
 
 	bool isPlaying() {
-		char* flag = ToPointer(Client::hWorld + Offsets::getOffset(Of_IsPlaying), char);
+		char* flag = ToPointer(Client::hWorld + Offsets::getOffset(Of_IsPlaying) ^ Client::_XorKey, char);
 		if (!Utility::isReadablePtr(flag)) return false;
 		return *flag;
 	}

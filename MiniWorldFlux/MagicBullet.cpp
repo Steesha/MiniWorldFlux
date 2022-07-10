@@ -49,11 +49,11 @@ FORWARDS_FN_START(detourMB) {
 
 MagicBullet::MagicBullet() : AbstractModule("MagicBullet", Category::Combat) {
 
-	this->codeProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet), Address), 6);
-	this->codeForwards.init(Client::hWorld + Offsets::getOffset(Of_MagicBullet), ToAddress(detourMB));
+	this->codeProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_MagicBullet) ^ Client::_XorKey, Address), 6);
+	this->codeForwards.init(Client::hWorld + Offsets::getOffset(Of_MagicBullet) ^ Client::_XorKey, ToAddress(detourMB));
 
-	MagicBulletParams::worldOffset = Offsets::getOffset(Of_World);
-	MagicBulletParams::retnAddr = Client::hWorld + Offsets::getOffset(Of_MagicBulletRetn);
+	MagicBulletParams::worldOffset = Offsets::getOffset(Of_World) ^ Client::_XorKey;
+	MagicBulletParams::retnAddr = Client::hWorld + Offsets::getOffset(Of_MagicBulletRetn) ^ Client::_XorKey;
 	this->hook = false;
 
 }

@@ -48,6 +48,7 @@ namespace Client {
 	extern ImFont* chinese;
 	extern Address hWorld;
 	extern std::string gameVersion;
+	extern DWORD _XorKey;
 
 	void initClient();
 	void initModules();
@@ -56,6 +57,6 @@ namespace Client {
 	void handleGuiEvent();
 	void handleModuleKeyEvent(unsigned char keyCode);
 	void loadConfig();
-
+	
 }
 

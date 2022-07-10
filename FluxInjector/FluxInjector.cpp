@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include <string>
 #include <tlhelp32.h>
-
 #include <ThemidaSDK\ThemidaSDK.h>
 using namespace std;
 
@@ -93,6 +92,14 @@ void PushTextToClipboard(const string& sText)
 	CloseClipboard();//关闭剪切板
 }
 
+int hex2char(uint8_t c)
+{
+	return ((c >= '0') && (c <= '9')) ? int(c - '0') :
+		((c >= 'A') && (c <= 'F')) ? int(c - 'A' + 10) :
+		((c >= 'a') && (c <= 'f')) ? int(c - 'a' + 10) :
+		-1;
+}
+
 int main()
 {
 	VM_TIGER_RED_START
@@ -157,29 +164,34 @@ int main()
 		return -1;
 	}
 	string hwid = getHwid();
-	cout << "您的HWID是：>" << hwid.c_str() << "<[已经帮您自动复制到了剪辑版]" << endl;
-	cout << "进入Telegram Channel: https://t.me/fluxcli 进行验证并在下方输入返回值：" << endl;
-	PushTextToClipboard(hwid);
+	cout << "您的HWID是：>" << hwid.c_str() << "<" << endl;
+	cout << "进入Telegram Channel: https://t.me/fluxcli 进行验证并在下方输入Key：" << endl;
+	//PushTextToClipboard(hwid);
 	string code = "";
+	cout << "[输入0不更新Key，但是你上次必须输入过]" << endl;
 	cin >> code;
-	HKEY hTestKey = NULL;
-	//将信息写入注册表
-	if (ERROR_SUCCESS != RegCreateKey(
-		HKEY_CURRENT_USER,
-		L"Software\\MiniFlux",
-		&hTestKey))
+	if (code != "0")
 	{
-		cout << "[Flux] Fatel Error 0x1" << endl;
-		system("pause");
-		return -1;
+		HKEY hTestKey = NULL;
+		//将信息写入注册表
+		if (ERROR_SUCCESS != RegCreateKey(
+			HKEY_CURRENT_USER,
+			L"Software\\MiniFlux",
+			&hTestKey))
+		{
+			cout << "[Flux] Fatel Error 0x1" << endl;
+			system("pause");
+			return -1;
+		}
+		if (ERROR_SUCCESS != RegSetKeyValueA(hTestKey, "parameter", 0, 0, code.c_str(), code.size()))
+		{
+			cout << "[Flux] Fatel Error 0x2" << endl;
+			system("pause");
+			return -1;
+		}
+		RegCloseKey(hTestKey);
 	}
-	if (ERROR_SUCCESS != RegSetKeyValueA(hTestKey, "paramter", 0, 0, code.c_str(), code.size()))
-	{
-		cout << "[Flux] Fatel Error 0x2" << endl;
-		system("pause");
-		return -1;
-	}
-
+	
 	//可以进行注入
 	int size = file.size() * 2 + 1;
 	PVOID addr = VirtualAllocEx(hProcess, NULL, size, MEM_COMMIT, PAGE_READWRITE);

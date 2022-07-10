@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Client.h"
+#include "ClientLogin.h"
 
 namespace Client {
 
@@ -18,6 +19,7 @@ namespace Client {
 	ImFont* chinese = nullptr;					// Î¢ÈíÑÅºÚ
 	Address hWorld = 0;							// libiworld_micro.dll»ùÖ·
 	std::string gameVersion("");				// ÓÎÏ·°æ±¾
+	DWORD _XorKey = 0;                          // xorKEY
 
 	void initClient() {
 		VM_LION_WHITE_START
@@ -85,6 +87,14 @@ namespace Client {
 	}
 
 	void startClient(HMODULE thisModule) {
+		ClientLogin* login = new ClientLogin();
+		if (!login->Login())
+		{
+			delete login;
+			ExitProcess(-1);
+			return;
+		}
+		_XorKey = login->getXORKEY();
 
 		Client::clientModule = thisModule;
 
