@@ -118,6 +118,7 @@ bool ClientLogin::Login()
 	transform(hex.begin(), hex.end(), hex.begin(), ::tolower);
 	if (hex.size() % 2 != 0 || hex.size() < 64)
 	{
+		MessageBoxW(0, L"请使用专用注入器或检测Key是否无效3", L"Flux Fatel Error", MB_ICONERROR | MB_OK);
 		return FALSE;
 	}
 	char* result = new char[hex.size() / 2];
@@ -133,6 +134,7 @@ bool ClientLogin::Login()
 	string dep = string((char*)De_P);
 	if (dep.size() < 32)
 	{
+		MessageBoxW(0, L"请使用专用注入器或检测Key是否无效4", L"Flux Fatel Error", MB_ICONERROR | MB_OK);
 		return FALSE;
 	}
 	char textsha256[256];
@@ -141,6 +143,7 @@ bool ClientLogin::Login()
 	transform(dep.begin(), dep.end(), dep.begin(), ::tolower);
 	if (processed_hwid.substr(0, 20) != dep.substr(0, 20))
 	{
+		MessageBoxW(0, L"请使用专用注入器或检测Key是否无效5", L"Flux Fatel Error", MB_ICONERROR | MB_OK);
 		return FALSE;
 	}
 	string xorKEY = dep.substr(20, 8);
