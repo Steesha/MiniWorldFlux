@@ -1,7 +1,5 @@
 #pragma once
 #include "pch.h"
-#include "FluxFont.h"
-#include "FluxIconFont.h"
 #include "InlineHook.h"
 #include "Client.h"
 #include "EventManager.h"

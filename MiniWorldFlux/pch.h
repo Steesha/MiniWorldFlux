@@ -23,3 +23,5 @@
 #include "AbstractModule.h"
 #include "ModuleManager.h"
 #include "EventManager.h"
+#include "FluxFont.h"
+#include "FluxIconFont.h"

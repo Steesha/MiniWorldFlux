@@ -45,11 +45,12 @@ namespace Renderer {
 		Client::chinese = io.Fonts->AddFontFromFileTTF(buffer, 18, nullptr, io.Fonts->GetGlyphRangesChineseFull());
 		delete[] buffer;
 
+		ImGui_ImplWin32_Init(hwnd);
+		ImGui_ImplDX9_Init(device);
 		VM_LION_WHITE_END
 	}
 
 	bool hookDx9(HWND hwnd) {
-		VM_LION_WHITE_START
 		// ´´½¨D3D
 		IDirect3D9* direct3D9 = Direct3DCreate9(D3D_SDK_VERSION);
 		if (direct3D9 == nullptr) {
@@ -89,7 +90,6 @@ namespace Renderer {
 		direct3DDevice9->Release();
 
 		return true;
-		VM_LION_WHITE_END
 	}
 
 	HRESULT createTexture(IDirect3DDevice9* pDevice, IDirect3DTexture9** ppD3Dtex, DWORD colour32) {
