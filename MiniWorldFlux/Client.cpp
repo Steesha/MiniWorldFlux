@@ -8,7 +8,7 @@ namespace Client {
 	HWND wndGame = nullptr;						// 游戏窗口句柄
 	HMODULE clientModule = nullptr;				// DLL句柄
 	std::string clientName("Flux");				// 端名
-	std::string clientAuthor("阿茵Ayin");		// 作者名
+	std::string clientAuthor("Flux-Team");		// 作者名
 	std::string clientMajorVersion("0");		// 主版本号
 	std::string clientMinorVersion("1");		// 副版本号
 	std::string clientDllPath("");				// 客户端DLL路径
