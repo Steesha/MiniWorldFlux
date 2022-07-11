@@ -8,14 +8,6 @@
 
 #define D3D_FAILED 0x857
 
-struct Picture {
-
-	IDirect3DTexture9*		texture;
-	int						width;
-	int						height;
-
-};
-
 struct Block {
 
 	float x;
@@ -46,8 +38,6 @@ namespace Renderer {
 	HRESULT createTexture(IDirect3DDevice9* pDevice, IDirect3DTexture9** ppD3Dtex, DWORD colour32);
 
 	void recolorTexture(IDirect3DTexture9** ppD3Dtex, DWORD colour32);
-
-	bool loadTextureFromFile(IDirect3DDevice9* device, const char* filename, Picture* pic);
 
 	bool isBlockHovered(Block* block);
 

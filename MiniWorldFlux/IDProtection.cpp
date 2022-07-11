@@ -23,6 +23,7 @@ void IDProtection::onRenderOverlay() {
 	ToggleCheck;
 	IngameCheck;
 
+	/*
 	static int targetPtr = 0;
 	ImGui::Begin("Attack Entity");
 	ImGui::InputInt("Target Address", &targetPtr);
@@ -33,17 +34,16 @@ void IDProtection::onRenderOverlay() {
 		}
 	}
 	ImGui::End();
+	*/
 	
 	constexpr float maskOffsetX = 330;
-	constexpr float maskOffsetY = 15;
-	constexpr float maskWidth = 150;
+	constexpr float maskOffsetY = 17;
 
-	Block idMaskBlock;
-	
 	Vec2 view = Game::getGameViewSize();
+	Block idMaskBlock;
 	idMaskBlock.x = view.x - maskOffsetX;
 	idMaskBlock.y = view.y - maskOffsetY;
-	idMaskBlock.width = maskWidth;
+	idMaskBlock.width = view.x;
 	idMaskBlock.height = maskOffsetY;
 	ImGui::GetForegroundDrawList()->AddRectFilled(ImVec2(idMaskBlock.x, idMaskBlock.y), ImVec2(idMaskBlock.x + idMaskBlock.width, idMaskBlock.y + idMaskBlock.height), FluxColor::Gray);
 	if (ClickGui::getInstance()->showUIBB) Renderer::drawBlockBoundingBox(&idMaskBlock);

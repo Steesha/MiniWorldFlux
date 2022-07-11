@@ -41,6 +41,7 @@ namespace Client {
 
 	void initModules() {
 		VM_LION_WHITE_START
+
 		ModuleManager::getInstance().addModule<ClickGui>(ClickGui::getInstance());
 		ModuleManager::getInstance().addModule<Disabler>(Disabler::getInstance());
 		ModuleManager::getInstance().addModule<IDProtection>(IDProtection::getInstance());
@@ -53,7 +54,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<Aimbot>(Aimbot::getInstance());
 		ModuleManager::getInstance().addModule<FakePosition>(FakePosition::getInstance());
 		ModuleManager::getInstance().addModule<Phase>(Phase::getInstance());
-		ModuleManager::getInstance().addModule<Reach>(Reach::getInstance());
+		// ModuleManager::getInstance().addModule<Reach>(Reach::getInstance());
 		ModuleManager::getInstance().addModule<BoxESP>(BoxESP::getInstance());
 		ModuleManager::getInstance().addModule<AutoClicker>(AutoClicker::getInstance());
 		ModuleManager::getInstance().addModule<Team>(Team::getInstance());
@@ -65,6 +66,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<MagicBullet>(MagicBullet::getInstance());
 		ModuleManager::getInstance().addModule<FakeMessager>(FakeMessager::getInstance());
 		ModuleManager::getInstance().addModule<FastBullet>(FastBullet::getInstance());
+
 		VM_LION_WHITE_END
 	}
 

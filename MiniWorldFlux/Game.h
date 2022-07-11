@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <unordered_map>
-#include "GameStructs.h"
+#include "SDK.h"
 #include "Structs.h"
 #include "Memory.hpp"
 #include "ProtectDestroyer.h"

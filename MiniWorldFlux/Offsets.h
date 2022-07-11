@@ -29,6 +29,7 @@ namespace Offsets {
 	
 	static unsigned long getOffset(int cate) {
 		VM_DOLPHIN_RED_START
+
 		// Module
 		unsigned long FakePosition = 0x110AF9C ^ g_XORKEY;
 		unsigned long Reach = 0x1056DB3 ^ g_XORKEY;
