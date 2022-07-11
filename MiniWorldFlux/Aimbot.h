@@ -27,8 +27,8 @@ private:
 
 	SDK::ClientPlayer* target = nullptr;
 
-	ModeValue* priority = new ModeValue("Priority", "Dist2Cross");
 	BooleanValue* targetLine = new BooleanValue("Target Line", true);
+	ModeValue* priority = new ModeValue("Priority", "Dist2Cross");
 
 	Aimbot();
 	DefaultDeconstructor(Aimbot);

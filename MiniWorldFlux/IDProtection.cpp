@@ -22,6 +22,17 @@ void IDProtection::onDisabled() {
 void IDProtection::onRenderOverlay() {
 	ToggleCheck;
 	IngameCheck;
+
+	static int targetPtr = 0;
+	ImGui::Begin("Attack Entity");
+	ImGui::InputInt("Target Address", &targetPtr);
+	if (ImGui::Button("Call")) {
+		if (targetPtr != 0) {
+			Game::thePlayer->getObject()->attackEntity(targetPtr);
+			LOG(L"IDProtection.cpp", L"Attack call called.", DEBUG);
+		}
+	}
+	ImGui::End();
 	
 	constexpr float maskOffsetX = 330;
 	constexpr float maskOffsetY = 15;

@@ -5,8 +5,8 @@ Aimbot::Aimbot() : AbstractModule("Aimbot", Category::Combat) {
 
 	this->priority->addMode("Distance3D");
 
-	this->addValue(this->priority);
 	this->addValue(this->targetLine);
+	this->addValue(this->priority);
 	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &Aimbot::onRenderOverlay));
 }
 
@@ -67,16 +67,19 @@ void Aimbot::onRenderOverlay() {
 		if (TeamCheck) {
 
 			for (SDK::ClientPlayer* p : Game::playerInWorld) {
+
 				//判断是否为同一个队伍
 				if (!Team::isSameTeam(p)) {
+
 					//如果不是同一个队伍
-					if (p->playerAttribuLua->currentHealth <= 0)
-					{
+					if (p->playerAttribuLua->currentHealth <= 0) {
 						continue;
 					}
+
 					tar = p;
 					break;
 				}
+
 			}
 
 		}
@@ -121,8 +124,10 @@ void Aimbot::onRenderOverlay() {
 		
 		Vec3 lpCamPos = Game::thePlayer->getCameraPosition();
 		Vec2 angle = Utility::calcAimAngle(&lpCamPos, &ePos);
+
 		Game::thePlayer->setYaw(angle.x);
 		Game::thePlayer->setPitch(angle.y);
+		
 	}
 }
 

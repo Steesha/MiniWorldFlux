@@ -20,8 +20,10 @@ constexpr unsigned int Of_RoomManager = 14;
 constexpr unsigned int Of_GameVersion = 15;
 constexpr unsigned int Of_MagicBullet = 16;
 constexpr unsigned int Of_MagicBulletRetn = 17;
-constexpr unsigned int Of_FakeMessager = 18;
-constexpr unsigned int Of_FakeMessagerRetn = 19;
+constexpr unsigned int Of_FakeMessager_System = 18;
+constexpr unsigned int Of_FakeMessager_System_Retn = 19;
+constexpr unsigned int Of_FakeMessager_Player = 20;
+constexpr unsigned int Of_FakeMessager_Player_Retn = 21;
 
 namespace Offsets {
 	
@@ -36,8 +38,10 @@ namespace Offsets {
 		unsigned long NoRecoil = 0x10B9B63 ^ g_XORKEY;
 		unsigned long MagicBullet = 0xC285D7 ^ g_XORKEY;
 		unsigned long MagicBulletRetn = 0xC285DD ^ g_XORKEY;
-		unsigned long FakeMessager = 0xD7FA3F ^ g_XORKEY;
-		unsigned long FakeMessagerRetn = 0xD7FA49 ^ g_XORKEY;
+		unsigned long FakeMessager_System = 0xD7FA3F ^ g_XORKEY;
+		unsigned long FakeMessager_System_Retn = 0xD7FA49 ^ g_XORKEY;
+		unsigned long FakeMessager_Player = 0x80C2A6 ^ g_XORKEY;
+		unsigned long FakeMessager_Player_Retn = 0x80C2AD ^ g_XORKEY;
 
 		// World
 		unsigned long World = 0x1EBD72C ^ g_XORKEY;
@@ -80,8 +84,10 @@ namespace Offsets {
 		if (cate == Of_GameVersion) result = GameVersion;
 		if (cate == Of_MagicBullet) result = MagicBullet;
 		if (cate == Of_MagicBulletRetn) result = MagicBulletRetn;
-		if (cate == Of_FakeMessager) result = FakeMessager;
-		if (cate == Of_FakeMessagerRetn) result = FakeMessagerRetn;
+		if (cate == Of_FakeMessager_System) result = FakeMessager_System;
+		if (cate == Of_FakeMessager_System_Retn) result = FakeMessager_System_Retn;
+		if (cate == Of_FakeMessager_Player) result = FakeMessager_Player;
+		if (cate == Of_FakeMessager_Player_Retn) result = FakeMessager_Player_Retn;
 
 		return result;
 		VM_DOLPHIN_RED_END
