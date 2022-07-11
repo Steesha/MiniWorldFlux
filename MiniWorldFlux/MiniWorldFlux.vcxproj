@@ -111,7 +111,7 @@
     <ClCompile Include="FloatValue.cpp" />
     <ClCompile Include="Fly.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameStructs.cpp" />
+    <ClCompile Include="SDK.cpp" />
     <ClCompile Include="HighJump.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="IDProtection.cpp" />
@@ -195,7 +195,7 @@
     <ClInclude Include="Fly.h" />
     <ClInclude Include="Forwards.hpp" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameStructs.h" />
+    <ClInclude Include="SDK.h" />
     <ClInclude Include="HighJump.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Icon.h" />

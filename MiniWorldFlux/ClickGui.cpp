@@ -7,9 +7,8 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	EventManager::getInstance().reg(Events::EventOpenClickGui, MakeHandler(this, &ClickGui::enable));
 	EventManager::getInstance().reg(Events::EventCloseClickGui, MakeHandler(this, &ClickGui::disable));
 
-	this->changelogItems.push_back("[+] 增加MagicBullet Module(魔法子弹)");
-	this->changelogItems.push_back("[-] 剔除因版本更新导致失效的Phase Module");
-	this->changelogItems.push_back("[F] 修复因反作弊更新而失效的Phase Module");
+	this->changelogItems.push_back("[Flux for MW Alpha Ver.]");
+	this->changelogItems.push_back("由于需介绍的款项太多，请到Telegram频道查看详细使用说明");
 
 }
 

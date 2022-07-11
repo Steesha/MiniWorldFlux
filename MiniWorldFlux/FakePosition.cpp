@@ -14,9 +14,9 @@ FakePosition* FakePosition::getInstance() {
 
 void FakePosition::onEnabled() {
 
+	this->faked = true;
 	if (this->startFakePosition()) {
 
-		this->faked = true;
 		if (!Fly::getInstance()->getToggle())
 			Fly::getInstance()->enable();
 
@@ -24,7 +24,6 @@ void FakePosition::onEnabled() {
 	else {
 		
 		NotificationManager::getInstance().notify("FakePosition Failed.", NotiLevel::ERR, 3);
-		this->faked = false;
 		this->disable();
 
 	}
@@ -39,6 +38,7 @@ void FakePosition::onDisabled() {
 		if (Fly::getInstance()->getToggle())
 			Fly::getInstance()->disable();
 
+		this->faked = false;
 	}
 
 }
@@ -47,7 +47,7 @@ bool FakePosition::startFakePosition() {
 	IngameCheck false;
 	VM_TIGER_WHITE_START
 	this->addrProtect.destroy();
-	bool res = Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey), 0x90) && Memory::write<unsigned char>(Client::hWorld + Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey + 1, 0x90);
+	bool res = Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey), 0x90) && Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey) + 1, 0x90);
 	this->addrProtect.restore();
 	VM_TIGER_WHITE_END
 	return res;

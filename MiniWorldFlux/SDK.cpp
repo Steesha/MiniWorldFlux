@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "GameStructs.h"
+#include "SDK.h"
 #include "Client.h"
 
 namespace SDK {

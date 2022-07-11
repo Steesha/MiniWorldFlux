@@ -129,25 +129,6 @@ namespace Renderer {
 		return res;
 	}
 
-	// Simple helper function to load an image into a DX9 texture with common settings
-	bool loadTextureFromFile(IDirect3DDevice9* device, const char* filename, Picture* pic) {
-
-		// Load texture from disk
-		PDIRECT3DTEXTURE9 texture;
-		HRESULT hr = D3DXCreateTextureFromFileA(device, filename, &texture);
-		if (hr != S_OK)
-			return false;
-
-		// Retrieve description of the texture surface so we can access its size
-		D3DSURFACE_DESC my_image_desc;
-		texture->GetLevelDesc(0, &my_image_desc);
-		pic->texture = texture;
-		pic->width = (int)my_image_desc.Width;
-		pic->height = (int)my_image_desc.Height;
-
-		return true;
-	}
-
 	bool isBlockHovered(Block* block) {
 
 		return Client::rendererIO->MousePos.x >= block->x &&
@@ -276,7 +257,7 @@ namespace Renderer {
 			vertexBuffer->Release();
 		
 		Shader* shaderMod = Shader::getInstance();
-		if ((stride == 48 || stride == 40) && shaderMod->getToggle()) {
+		if ((stride == 48 || stride == 40) && shaderMod->getToggle() && Game::isPlaying()) {
 
 			if (shaderMod->colorMode()) {
 				if (shaderMod->rainbowColor())

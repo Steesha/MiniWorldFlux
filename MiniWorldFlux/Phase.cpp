@@ -2,7 +2,7 @@
 #include "Phase.h"
 
 Phase::Phase() : AbstractModule("Phase", Category::Player) {
-	this->addrProtect.init(ToPointer(Client::hWorld + Offsets::getOffset(Of_Phase) ^ Client::_XorKey, Address), 6);
+	this->addrProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_Phase) ^ Client::_XorKey), Address), 6);
 }
 
 Phase* Phase::getInstance() {

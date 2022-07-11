@@ -126,7 +126,7 @@
     <ClCompile Include="ClickGui.cpp">
       <Filter>Client\Module\Modules\Visual</Filter>
     </ClCompile>
-    <ClCompile Include="GameStructs.cpp">
+    <ClCompile Include="SDK.cpp">
       <Filter>Client\SDK</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -284,12 +284,6 @@
     <ClInclude Include="Client.h">
       <Filter>Client</Filter>
     </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Client\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiHeader.h">
-      <Filter>Client\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Client\Utility</Filter>
     </ClInclude>
@@ -299,10 +293,7 @@
     <ClInclude Include="ClickGui.h">
       <Filter>Client\Module\Modules\Visual</Filter>
     </ClInclude>
-    <ClInclude Include="Icon.h">
-      <Filter>Client\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStructs.h">
+    <ClInclude Include="SDK.h">
       <Filter>Client\SDK</Filter>
     </ClInclude>
     <ClInclude Include="Offsets.h">
@@ -427,6 +418,21 @@
     </ClInclude>
     <ClInclude Include="Forwards.hpp">
       <Filter>Include\Forwards</Filter>
+    </ClInclude>
+    <ClInclude Include="FastBullet.h">
+      <Filter>Client\Module\Modules\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Client\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Icon.h">
+      <Filter>Client\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiHeader.h">
+      <Filter>Client\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="AES.h">
+      <Filter>Client\Verification</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
