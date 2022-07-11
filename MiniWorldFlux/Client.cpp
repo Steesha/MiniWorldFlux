@@ -64,7 +64,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<NoRecoil>(NoRecoil::getInstance());
 		ModuleManager::getInstance().addModule<Shader>(Shader::getInstance());
 		ModuleManager::getInstance().addModule<MagicBullet>(MagicBullet::getInstance());
-		ModuleManager::getInstance().addModule<FakeMessager>(FakeMessager::getInstance());
+		ModuleManager::getInstance().addModule<FakeMessenger>(FakeMessenger::getInstance());
 		ModuleManager::getInstance().addModule<FastBullet>(FastBullet::getInstance());
 
 		VM_LION_WHITE_END

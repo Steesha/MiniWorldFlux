@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "FakeMessager.h"
+#include "FakeMessenger.h"
 
-namespace FakeMessagerParams {
+namespace FakeMessengerParams {
 	
 	static DWORD sysModeRetnAddr = 0;
 	static DWORD playerModeRetnAddr = 0;
@@ -20,33 +20,33 @@ FORWARDS_FN_START(detourFMSYS) {
 
 	}
 	
-	FORWARDS_FN_END(FakeMessagerParams::sysModeRetnAddr)
+	FORWARDS_FN_END(FakeMessengerParams::sysModeRetnAddr)
 }
 
 FORWARDS_FN_START(detourFMPLAYER) {
 	
 	__asm {
 		
-		mov ecx,FakeMessagerParams::fakeTargetUID
+		mov ecx, FakeMessengerParams::fakeTargetUID
 		mov eax,[eax+04]
 		xor eax,ecx
 
 	}
 
-	FORWARDS_FN_END(FakeMessagerParams::playerModeRetnAddr)
+	FORWARDS_FN_END(FakeMessengerParams::playerModeRetnAddr)
 }
 
-FakeMessager::FakeMessager() : AbstractModule("FakeMessager", Category::World) {
+FakeMessenger::FakeMessenger() : AbstractModule("FakeMessenger", Category::World) {
 	VM_TIGER_WHITE_START
 
-	this->sysModeCodeProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_FakeMessager_System) ^ Client::_XorKey), Address), 6);
-	this->sysModeCodeForwards.init(Client::hWorld + (Offsets::getOffset(Of_FakeMessager_System) ^ Client::_XorKey), ToAddress(detourFMSYS));
+	this->sysModeCodeProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_FakeMessenger_System) ^ Client::_XorKey), Address), 6);
+	this->sysModeCodeForwards.init(Client::hWorld + (Offsets::getOffset(Of_FakeMessenger_System) ^ Client::_XorKey), ToAddress(detourFMSYS));
 
-	this->playerModeCodeProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_FakeMessager_Player) ^ Client::_XorKey), Address), 6);
-	this->playerModeCodeForwards.init(Client::hWorld + (Offsets::getOffset(Of_FakeMessager_Player) ^ Client::_XorKey), ToAddress(detourFMPLAYER));
+	this->playerModeCodeProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_FakeMessenger_Player) ^ Client::_XorKey), Address), 6);
+	this->playerModeCodeForwards.init(Client::hWorld + (Offsets::getOffset(Of_FakeMessenger_Player) ^ Client::_XorKey), ToAddress(detourFMPLAYER));
 
-	FakeMessagerParams::sysModeRetnAddr = Client::hWorld + (Offsets::getOffset(Of_FakeMessager_System_Retn) ^ Client::_XorKey);
-	FakeMessagerParams::playerModeRetnAddr = Client::hWorld + (Offsets::getOffset(Of_FakeMessager_Player_Retn) ^ Client::_XorKey);
+	FakeMessengerParams::sysModeRetnAddr = Client::hWorld + (Offsets::getOffset(Of_FakeMessenger_System_Retn) ^ Client::_XorKey);
+	FakeMessengerParams::playerModeRetnAddr = Client::hWorld + (Offsets::getOffset(Of_FakeMessenger_Player_Retn) ^ Client::_XorKey);
 
 	this->sysModeHook = false;
 	this->playerModeHook = false;
@@ -54,17 +54,17 @@ FakeMessager::FakeMessager() : AbstractModule("FakeMessager", Category::World) {
 	this->mode->addMode("Player");
 	this->addValue(this->mode);
 
-	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &FakeMessager::onRenderOverlay));
+	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &FakeMessenger::onRenderOverlay));
 
 	VM_TIGER_WHITE_END
 }
 
-FakeMessager* FakeMessager::getInstance() {
-	static FakeMessager* inst = new FakeMessager();
+FakeMessenger* FakeMessenger::getInstance() {
+	static FakeMessenger* inst = new FakeMessenger();
 	return inst;
 }
 
-void FakeMessager::onEnabled() {
+void FakeMessenger::onEnabled() {
 	
 	if (!this->check()) {
 		NotificationManager::getInstance().notify("Only for room!", NotiLevel::ERR, 3);
@@ -74,7 +74,7 @@ void FakeMessager::onEnabled() {
 
 }
 
-void FakeMessager::onDisabled() {
+void FakeMessenger::onDisabled() {
 	
 	if (this->sysModeHook)
 		this->resetSystemMode();
@@ -83,7 +83,7 @@ void FakeMessager::onDisabled() {
 
 }
 
-void FakeMessager::onRenderOverlay() {
+void FakeMessenger::onRenderOverlay() {
 	IngameCheck;
 
 	if (this->mode->isCurrentMode("System")) {
@@ -103,42 +103,42 @@ void FakeMessager::onRenderOverlay() {
 		
 		ImGui::SetNextWindowCollapsed(false, ImGuiCond_Always);
 		ImGui::SetNextWindowSize(ImVec2(485, 110), ImGuiCond_Always);
-		ImGui::Begin("FakeMessager", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-		ImGui::InputInt("Target UID", &FakeMessagerParams::fakeTargetUID);
+		ImGui::Begin("FakeMessenger", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+		ImGui::InputInt("Target UID", &FakeMessengerParams::fakeTargetUID);
 		ImGui::End();
 
 	}
 
 }
 
-bool FakeMessager::check() {
+bool FakeMessenger::check() {
 	IngameCheck false;
 	return Game::theRoomManager->permission == SDK::PERMISSION_ROOMMEMBER 
 		|| Game::theRoomManager->permission == SDK::PERMISSION_ROOMADMIN;
 }
 
-void FakeMessager::forwardSystemMode() {
+void FakeMessenger::forwardSystemMode() {
 	this->sysModeCodeProtect.destroy();
 	this->sysModeCodeForwards.forward();
 	this->sysModeCodeProtect.restore();
 	this->sysModeHook = true;
 }
 
-void FakeMessager::forwardPlayerMode() {
+void FakeMessenger::forwardPlayerMode() {
 	this->playerModeCodeProtect.destroy();
 	this->playerModeCodeForwards.forward();
 	this->playerModeCodeProtect.restore();
 	this->playerModeHook = true;
 }
 
-void FakeMessager::resetSystemMode() {
+void FakeMessenger::resetSystemMode() {
 	this->sysModeCodeProtect.destroy();
 	this->sysModeCodeForwards.reset();
 	this->sysModeCodeProtect.restore();
 	this->sysModeHook = false;
 }
 
-void FakeMessager::resetPlayerMode() {
+void FakeMessenger::resetPlayerMode() {
 	this->playerModeCodeProtect.destroy();
 	this->playerModeCodeForwards.reset();
 	this->playerModeCodeProtect.restore();

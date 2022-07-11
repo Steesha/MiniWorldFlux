@@ -228,7 +228,7 @@
     <ClCompile Include="MagicBullet.cpp">
       <Filter>Client\Module\Modules\Combat</Filter>
     </ClCompile>
-    <ClCompile Include="FakeMessager.cpp">
+    <ClCompile Include="FakeMessenger.cpp">
       <Filter>Client\Module\Modules\World</Filter>
     </ClCompile>
     <ClCompile Include="ClientLogin.cpp">
@@ -413,7 +413,7 @@
     <ClInclude Include="MagicBullet.h">
       <Filter>Client\Module\Modules\Combat</Filter>
     </ClInclude>
-    <ClInclude Include="FakeMessager.h">
+    <ClInclude Include="FakeMessenger.h">
       <Filter>Client\Module\Modules\World</Filter>
     </ClInclude>
     <ClInclude Include="ClientLogin.h">

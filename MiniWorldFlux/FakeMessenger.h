@@ -6,11 +6,11 @@
 #include "Forwards.hpp"
 #include "ModeValue.h"
 
-class FakeMessager : public AbstractModule {
+class FakeMessenger : public AbstractModule {
 
 public:
 
-	static FakeMessager* getInstance();
+	static FakeMessenger* getInstance();
 
 	void onEnabled();
 	void onDisabled();
@@ -33,11 +33,11 @@ private:
 	void resetSystemMode();
 	void resetPlayerMode();
 
-	FakeMessager();
-	DefaultDeconstructor(FakeMessager);
-	NoMoveConstructor(FakeMessager);
-	NoCopyConstructor(FakeMessager);
-	NoAssignOperator(FakeMessager);
+	FakeMessenger();
+	DefaultDeconstructor(FakeMessenger);
+	NoMoveConstructor(FakeMessenger);
+	NoCopyConstructor(FakeMessenger);
+	NoAssignOperator(FakeMessenger);
 
 };
 

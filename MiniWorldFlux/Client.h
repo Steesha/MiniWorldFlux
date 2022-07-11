@@ -30,7 +30,7 @@
 #include "NoRecoil.h"
 #include "Shader.h"
 #include "MagicBullet.h"
-#include "FakeMessager.h"
+#include "FakeMessenger.h"
 #include "FastBullet.h"
 
 #define MakeDisposableThread(_Executor, _Param) CloseHandle(CreateThread(nullptr, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(_Executor), _Param, 0, nullptr))
