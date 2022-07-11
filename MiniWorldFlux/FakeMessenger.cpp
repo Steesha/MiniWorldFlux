@@ -76,10 +76,8 @@ void FakeMessenger::onEnabled() {
 
 void FakeMessenger::onDisabled() {
 	
-	if (this->sysModeHook)
-		this->resetSystemMode();
-	if (this->playerModeHook)
-		this->resetPlayerMode();
+	this->resetSystemMode();
+	this->resetPlayerMode();
 
 }
 

@@ -31,6 +31,7 @@ namespace Renderer {
 
 		// 主题
 		ImGui::StyleColorsLight();
+		ImGui::GetStyle().FrameRounding = 5;
 
 		// 平台&渲染引擎初始化
 		ImGui_ImplWin32_Init(hwnd);
