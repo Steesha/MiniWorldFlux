@@ -45,8 +45,6 @@ namespace Renderer {
 		Client::chinese = io.Fonts->AddFontFromFileTTF(buffer, 18, nullptr, io.Fonts->GetGlyphRangesChineseFull());
 		delete[] buffer;
 
-		ImGui_ImplWin32_Init(hwnd);
-		ImGui_ImplDX9_Init(device);
 		VM_LION_WHITE_END
 	}
 

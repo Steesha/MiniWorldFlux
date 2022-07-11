@@ -30,7 +30,7 @@ void ClickGui::onDisabled() {
 }
 
 void ClickGui::onRenderOverlay() {
-
+	
 	this->renderInfoPanel();
 	if (this->changelog)
 		this->renderChangeLog();
@@ -46,32 +46,30 @@ void ClickGui::renderMainPanel() {
 #pragma region Background
 
 	// 840*15
-	static struct Block dragableBlock;
-	static bool inited = false;
-	if (!inited) {
-		dragableBlock.x = 100;
-		dragableBlock.y = 50;
-		inited = true;
-	}
+	struct Block dragableBlock;
+	dragableBlock.x = this->clickguiX;
+	dragableBlock.y = this->clickguiY;
 	dragableBlock.width = 840;
 	dragableBlock.height = 30;
 	dl->AddRectFilled(ImVec2(dragableBlock.x, dragableBlock.y), ImVec2(dragableBlock.x + dragableBlock.width, dragableBlock.y + dragableBlock.height), FluxColor::Orange, 5);
 	if (this->showUIBB) Renderer::drawBlockBoundingBox(&dragableBlock);
-	static struct Block dragableArea;
-	dragableArea.x = dragableBlock.x - 150;
-	dragableArea.y = dragableBlock.y - 90;
-	dragableArea.width = dragableBlock.width + 300;
-	dragableArea.height = dragableBlock.height + 90;
-	if (this->showUIBB) Renderer::drawBlockBoundingBox(&dragableArea);
 
 	// ´¦ÀíÍÏ¶¯
-	if (Renderer::isBlockDragging(&dragableArea, 0.0f)) {
-
-		if (Client::rendererIO->MouseDelta.x != 0 && Client::rendererIO->MouseDelta.y != 0) {
-			dragableBlock.x += Client::rendererIO->MouseDelta.x * 1.4f;
-			dragableBlock.y += Client::rendererIO->MouseDelta.y * 1.4f;
+	if (Renderer::isBlockHovered(&dragableBlock)) {
+		if ((!this->dragging) && ImGui::IsMouseDown(ImGuiMouseButton_Left)) {
+			this->dragging = true;
+			this->dragOffsetX = Client::rendererIO->MousePos.x - dragableBlock.x;
+			this->dragOffsetY = Client::rendererIO->MousePos.y - dragableBlock.y;
 		}
+	}
 
+	if (ImGui::IsMouseReleased(ImGuiMouseButton_Left)) {
+		this->dragging = false;
+	}
+
+	if (this->dragging || ImGui::IsMouseDragging(ImGuiMouseButton_Left)) {
+		this->clickguiX = Client::rendererIO->MousePos.x - this->dragOffsetX;
+		this->clickguiY = Client::rendererIO->MousePos.y - this->dragOffsetY;
 	}
 
 	// 840*590

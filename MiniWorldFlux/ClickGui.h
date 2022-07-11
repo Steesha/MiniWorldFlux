@@ -12,7 +12,7 @@ class ClickGui : public AbstractModule {
 public:
 
 	// Show UI Bounding Box
-	bool showUIBB = false;
+	bool showUIBB = true;
 
 	// Key Binding
 	bool bindingKey = false;
@@ -36,10 +36,16 @@ private:
 
 	bool changelog = false;
 	std::vector<std::string> changelogItems;
-	float modulePanelScrollY = 0;
 
+	float modulePanelScrollY = 0;
 	Category curCategory = Category::Combat;
 	int curModule = 0;
+
+	bool dragging = false;
+	float clickguiX = 300;
+	float clickguiY = 120;
+	float dragOffsetX = 0;
+	float dragOffsetY = 0;
 
 	void selectCategory(Category category);
 	void selectModule(int mod);
