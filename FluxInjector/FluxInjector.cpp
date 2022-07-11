@@ -103,7 +103,7 @@ int hex2char(uint8_t c)
 int main()
 {
 	VM_TIGER_RED_START
-	cout << "[Flux] for miniwordld" << endl;
+	cout << "[Flux] For MiniWorld" << endl;
 
 	//获取当前目录
 	TCHAR Buffer[MAX_PATH];
