@@ -323,6 +323,16 @@ namespace Renderer {
 				|| uMsg == WM_RBUTTONUP
 				|| uMsg == WM_RBUTTONDBLCLK)) return true;
 
+		if (ClickGui::getInstance()->getToggle()) {
+			if (uMsg == WM_KEYDOWN || uMsg == WM_KEYUP) {
+				unsigned char key = static_cast<unsigned char>(wParam);
+				if (key == VK_RETURN)
+					return true;
+				if (key == VK_ESCAPE)
+					return true;
+			}
+		}
+
 		// 调用原先的窗口处理
 		return CallWindowProcA(Renderer::originalWndProc, hWnd, uMsg, wParam, lParam);
 	}

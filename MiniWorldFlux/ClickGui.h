@@ -12,7 +12,7 @@ class ClickGui : public AbstractModule {
 public:
 
 	// Show UI Bounding Box
-	bool showUIBB = true;
+	bool showUIBB = false;
 
 	// Key Binding
 	bool bindingKey = false;
