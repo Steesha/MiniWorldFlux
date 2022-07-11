@@ -76,7 +76,9 @@ std::string getHwid()
 
 DWORD ClientLogin::getXORKEY()
 {
+	VM_TIGER_RED_START
 	return xorkey;
+	VM_TIGER_RED_END
 }
 
 bool ClientLogin::Login()
@@ -86,32 +88,32 @@ bool ClientLogin::Login()
 	return TRUE;
 #endif
 	VM_SHARK_WHITE_START
+
 	LSTATUS r;
 	HKEY hk;
 	r = RegOpenKeyExA(HKEY_CURRENT_USER,
-		"SOFTWARE\\MiniFlux", //注册表路径
+		"SOFTWARE\\MiniFlux\\parameter", //注册表路径
 		0, KEY_READ, &hk);
 	if (r != ERROR_SUCCESS)
 	{
 		MessageBoxW(0, L"请使用专用注入器或检测Key是否无效1", L"Flux Fatel Error", MB_ICONERROR | MB_OK);
 		return FALSE;
 	}
-	LONG lValue;
 	std::string hwid = getHwid();
-	DWORD dataType = REG_NONE;
-	BYTE addressValue[2560] = { 0 };
-	DWORD ipAddressLength = sizeof(addressValue);
-	LSTATUS lst = RegQueryValueExA(hk, "parameter", NULL, &dataType, addressValue, &ipAddressLength);
+	BYTE addressValue[256] = { 0 };
+	DWORD ipAddressLength = sizeof(addressValue) - 1;
+	LSTATUS lst = RegQueryValueExA(hk, "", NULL, NULL, addressValue, &ipAddressLength);
 	if (lst != ERROR_SUCCESS)
 	{
 		MessageBoxA(0, to_string(lst).c_str(), "", 0);
 		MessageBoxW(0, L"请使用专用注入器或检测Key是否无效2", L"Flux Fatel Error", MB_ICONERROR | MB_OK);
 		return FALSE;
 	}
+
 	RegCloseKey(hk);
 	unsigned char key[16] = { 11,45,14,191,98,10,110,3,2,232,2,5,74,88,7,33 };
 	KeyExpansion(key);
-	
+
 	std::string hex = string((char*)addressValue);
 	transform(hex.begin(), hex.end(), hex.begin(), ::tolower);
 	if (hex.size() % 2 != 0 || hex.size() < 64)
@@ -135,7 +137,9 @@ bool ClientLogin::Login()
 	}
 	char textsha256[256];
 	std::string processed_hwid = StrSHA256(hwid.c_str(), 64, textsha256);
-	if (processed_hwid.substr(0,20) != dep.substr(0, 20))
+	transform(processed_hwid.begin(), processed_hwid.end(), processed_hwid.begin(), ::tolower);
+	transform(dep.begin(), dep.end(), dep.begin(), ::tolower);
+	if (processed_hwid.substr(0, 20) != dep.substr(0, 20))
 	{
 		return FALSE;
 	}
