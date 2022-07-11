@@ -25,7 +25,8 @@ private:
 	std::vector<HMOD> enabledMods;
 
 	BooleanValue* rainbow = new BooleanValue("Rainbow", true);
-	FloatValue* alOffsetY = new FloatValue("ArrayList Y Offset", 15, 0, 20);
+	FloatValue* listX = new FloatValue("ArrayList X", 20, 0, 3000);
+	FloatValue* listY = new FloatValue("ArrayList Y", 300, 0, 3000);
 	ModeValue* mode = new ModeValue("Mode", "Flux");
 
 	HUD();

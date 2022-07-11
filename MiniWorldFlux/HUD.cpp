@@ -4,7 +4,8 @@
 HUD::HUD() : AbstractModule("HUD", Category::Visual) {
 
 	this->addValue(this->rainbow);
-	this->addValue(this->alOffsetY);
+	this->addValue(this->listX);
+	this->addValue(this->listY);
 	this->addValue(this->mode);
 
 	EventManager::getInstance().reg(Event::EventRenderOverlay, MakeHandler(this, &HUD::onRenderOverlay));
@@ -35,8 +36,8 @@ void HUD::onRenderOverlay() {
 	std::sort(this->enabledMods.begin(), this->enabledMods.end(), EnabledListSorter());
 
 	Block enabledListBlock;
-	enabledListBlock.x = 20;
-	enabledListBlock.y = 300 + this->alOffsetY->getValue();
+	enabledListBlock.x = this->listX->getValueLong();
+	enabledListBlock.y = this->listY->getValueLong();
 	enabledListBlock.width = 0;
 	enabledListBlock.height = 0;
 

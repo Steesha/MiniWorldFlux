@@ -39,16 +39,15 @@ void IDProtection::onRenderOverlay() {
 	ImGui::End();
 	*/
 	
-	constexpr float maskOffsetX = 330;
 	constexpr float maskOffsetY = 17;
 
 	Vec2 view = Game::getGameViewSize();
 	Block idMaskBlock;
-	idMaskBlock.x = view.x - maskOffsetX;
+	idMaskBlock.x = 0;
 	idMaskBlock.y = view.y - maskOffsetY;
 	idMaskBlock.width = view.x;
 	idMaskBlock.height = maskOffsetY;
-	ImGui::GetForegroundDrawList()->AddRectFilled(ImVec2(idMaskBlock.x, idMaskBlock.y), ImVec2(idMaskBlock.x + idMaskBlock.width, idMaskBlock.y + idMaskBlock.height), FluxColor::Gray);
+	ImGui::GetForegroundDrawList()->AddRectFilled(ImVec2(0, idMaskBlock.y), ImVec2(idMaskBlock.width, idMaskBlock.y + idMaskBlock.height), FluxColor::Gray);
 	if (ClickGui::getInstance()->showUIBB) Renderer::drawBlockBoundingBox(&idMaskBlock);
 	
 }

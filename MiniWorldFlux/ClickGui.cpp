@@ -67,7 +67,7 @@ void ClickGui::renderMainPanel() {
 		this->dragging = false;
 	}
 
-	if (this->dragging || ImGui::IsMouseDragging(ImGuiMouseButton_Left)) {
+	if (this->dragging && ImGui::IsMouseDragging(ImGuiMouseButton_Left)) {
 		this->clickguiX = Client::rendererIO->MousePos.x - this->dragOffsetX;
 		this->clickguiY = Client::rendererIO->MousePos.y - this->dragOffsetY;
 	}
