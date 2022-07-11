@@ -33,6 +33,9 @@ void IDProtection::onRenderOverlay() {
 			LOG(L"IDProtection.cpp", L"Attack call called.", DEBUG);
 		}
 	}
+	if (ImGui::Button("Jump")) {
+		Game::thePlayer->getObject()->setJumping(true);
+	}
 	ImGui::End();
 	*/
 	

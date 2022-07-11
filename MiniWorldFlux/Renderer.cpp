@@ -19,6 +19,7 @@ namespace Renderer {
 
 	void initImGui(HWND hwnd, IDirect3DDevice9* device) {
 		VM_LION_WHITE_START
+
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
@@ -31,17 +32,19 @@ namespace Renderer {
 		// 主题
 		ImGui::StyleColorsLight();
 
+		// 平台&渲染引擎初始化
+		ImGui_ImplWin32_Init(hwnd);
+		ImGui_ImplDX9_Init(device);
+
 		// 字体
 		Client::fluxFont = io.Fonts->AddFontFromMemoryTTF((void*)FluxFont_data, FluxFont_size, 40);
 		Client::fluxIcon = io.Fonts->AddFontFromMemoryTTF((void*)FluxIconFont_data, FluxIconFont_size, 40);
 		char* buffer = new char[1024];
 		SHGetSpecialFolderPathA(nullptr, buffer, CSIDL_FONTS, false);
 		strcat(buffer, "\\msyh.ttc");
-		Client::chinese = io.Fonts->AddFontFromFileTTF(buffer, 30, nullptr, io.Fonts->GetGlyphRangesChineseFull());
+		Client::chinese = io.Fonts->AddFontFromFileTTF(buffer, 18, nullptr, io.Fonts->GetGlyphRangesChineseFull());
 		delete[] buffer;
 
-		ImGui_ImplWin32_Init(hwnd);
-		ImGui_ImplDX9_Init(device);
 		VM_LION_WHITE_END
 	}
 
@@ -54,7 +57,7 @@ namespace Renderer {
 			NotificationManager::getInstance().notify("Fatal Error in D3D!", NotiLevel::ERR, 3);
 			return false;
 		}
-
+		
 		D3DPRESENT_PARAMETERS info;
 		memset(&info, 0, sizeof(info));
 		info.Windowed = true;

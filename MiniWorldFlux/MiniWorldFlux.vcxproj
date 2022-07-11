@@ -111,6 +111,7 @@
     <ClCompile Include="FloatValue.cpp" />
     <ClCompile Include="Fly.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
     <ClCompile Include="SDK.cpp" />
     <ClCompile Include="HighJump.cpp" />
     <ClCompile Include="HUD.cpp" />

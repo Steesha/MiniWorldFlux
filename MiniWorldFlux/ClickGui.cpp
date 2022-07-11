@@ -7,8 +7,11 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	EventManager::getInstance().reg(Events::EventOpenClickGui, MakeHandler(this, &ClickGui::enable));
 	EventManager::getInstance().reg(Events::EventCloseClickGui, MakeHandler(this, &ClickGui::disable));
 
-	this->changelogItems.push_back("[Flux for MW Alpha Ver.]");
-	this->changelogItems.push_back("由于需介绍的款项太多，请到Telegram频道查看详细使用说明");
+	this->changelogItems.push_back("[Aplha v0.1.0]");
+	this->changelogItems.push_back("由于刚发布的原因，需介绍的款项太多，请到Telegram频道查看详细使用说明");
+	this->changelogItems.push_back("");
+	this->changelogItems.push_back("[Alpha v0.1.1]");
+	this->changelogItems.push_back("[Fix] 感谢Tubitu大佬提供的修复大部分人ui乱码的解决方案");
 
 }
 
