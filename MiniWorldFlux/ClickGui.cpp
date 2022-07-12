@@ -24,6 +24,8 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	this->changelogItems.push_back("[Alpha v0.1.2]");
 	this->changelogItems.push_back("[Fix] 修复FakeMessenger不能重置回自己发言的状态的Bug");
 	this->changelogItems.push_back("[Fix] 修复了窗口大小对IDProtection的影响");
+	this->changelogItems.push_back("[Fix] 修复了自己创建房间时或者进入别人房间时会崩溃的Bug");
+	this->changelogItems.push_back("[Fix] 修复了ESP Module总会漏掉一个人的Bug");
 
 }
 

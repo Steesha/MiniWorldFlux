@@ -342,7 +342,7 @@ namespace SDK {
 		virtual void Function271();
 		virtual void Function272();
 		virtual void attackEntity(uintptr_t target);
-		virtual void Function274();
+		virtual void doActualRangeAttack(uintptr_t target);
 		virtual void Function275();
 		virtual void Function276();
 		virtual void Function277();
@@ -507,13 +507,17 @@ namespace SDK {
 		float yaw; //0x000C
 		float pitch; //0x0010
 		char pad_0014[52]; //0x0014
-		int posX; //0x0048
-		int posY; //0x004C
-		int posZ; //0x0050
-		char pad_0054[72]; //0x0054
-		int onGround; //0x009C
+		int32_t posX; //0x0048
+		int32_t posY; //0x004C
+		int32_t posZ; //0x0050
+		char pad_0054[28]; //0x0054
+		float motionX; //0x0070
+		float motionY; //0x0074
+		float motionZ; //0x0078
+		char pad_007C[32]; //0x007C
+		int32_t onGround; //0x009C
 		char pad_00A0[80]; //0x00A0
-		int phase; //0x00F0
+		int32_t phase; //0x00F0
 	}; //Size: 0x00F4
 
 	class PlayerTeamComponent

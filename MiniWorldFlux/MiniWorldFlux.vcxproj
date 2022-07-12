@@ -169,6 +169,7 @@
     <ClCompile Include="TimerUtil.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Value.cpp" />
+    <ClCompile Include="Velocity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractModule.h" />
@@ -235,6 +236,7 @@
     <ClInclude Include="TimerUtil.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Value.h" />
+    <ClInclude Include="Velocity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -32,6 +32,7 @@
 #include "MagicBullet.h"
 #include "FakeMessenger.h"
 #include "FastBullet.h"
+#include "Velocity.h"
 
 #define MakeDisposableThread(_Executor, _Param) CloseHandle(CreateThread(nullptr, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(_Executor), _Param, 0, nullptr))
 

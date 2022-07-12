@@ -243,6 +243,9 @@
     <ClCompile Include="imgui_demo.cpp">
       <Filter>Include\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Velocity.cpp">
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -436,6 +439,9 @@
     </ClInclude>
     <ClInclude Include="AES.h">
       <Filter>Client\Verification</Filter>
+    </ClInclude>
+    <ClInclude Include="Velocity.h">
+      <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

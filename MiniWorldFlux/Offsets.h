@@ -24,6 +24,9 @@ constexpr unsigned int Of_FakeMessenger_System = 18;
 constexpr unsigned int Of_FakeMessenger_System_Retn = 19;
 constexpr unsigned int Of_FakeMessenger_Player = 20;
 constexpr unsigned int Of_FakeMessenger_Player_Retn = 21;
+constexpr unsigned int Of_Velocity = 22;
+constexpr unsigned int Of_Velocity_Retn = 23;
+constexpr unsigned int Of_Velocity_MemoryCode = 24;
 
 namespace Offsets {
 	
@@ -43,6 +46,9 @@ namespace Offsets {
 		unsigned long FakeMessenger_System_Retn = 0xD7FA49 ^ g_XORKEY;
 		unsigned long FakeMessenger_Player = 0x80C2A6 ^ g_XORKEY;
 		unsigned long FakeMessenger_Player_Retn = 0x80C2AD ^ g_XORKEY;
+		unsigned long Velocity = 0x92A24F ^ g_XORKEY;
+		unsigned long Velocity_Retn = 0x92A255 ^ g_XORKEY;
+		unsigned long Velocity_MemoryCode = 0x118A6AE ^ g_XORKEY;
 
 		// World
 		unsigned long World = 0x1EBD72C ^ g_XORKEY;
@@ -89,6 +95,9 @@ namespace Offsets {
 		if (cate == Of_FakeMessenger_System_Retn) result = FakeMessenger_System_Retn;
 		if (cate == Of_FakeMessenger_Player) result = FakeMessenger_Player;
 		if (cate == Of_FakeMessenger_Player_Retn) result = FakeMessenger_Player_Retn;
+		if (cate == Of_Velocity) result = Velocity;
+		if (cate == Of_Velocity_Retn) result = Velocity_Retn;
+		if (cate == Of_Velocity_MemoryCode) result = Velocity_MemoryCode;
 
 		return result;
 		VM_DOLPHIN_RED_END

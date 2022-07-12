@@ -22,20 +22,6 @@ void IDProtection::onDisabled() {
 void IDProtection::onRenderOverlay() {
 	ToggleCheck;
 	IngameCheck;
-
-	static int targetPtr = 0;
-	ImGui::Begin("Attack Entity");
-	ImGui::InputInt("Target Address", &targetPtr);
-	if (ImGui::Button("Call")) {
-		if (targetPtr != 0) {
-			Game::thePlayer->getObject()->attackEntity(targetPtr);
-			LOG(L"IDProtection.cpp", L"Attack call called.", DEBUG);
-		}
-	}
-	if (ImGui::Button("Jump")) {
-		Game::thePlayer->getObject()->setJumping(true);
-	}
-	ImGui::End();
 	
 	constexpr float maskOffsetY = 17;
 	constexpr float yPercent = 0.025f;
