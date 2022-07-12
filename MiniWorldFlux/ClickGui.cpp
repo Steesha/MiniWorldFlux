@@ -12,6 +12,10 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	this->changelogItems.push_back("");
 	this->changelogItems.push_back("[Alpha v0.1.1]");
 	this->changelogItems.push_back("[Fix] 感谢Tubitu大佬提供的修复大部分人ui乱码的解决方案");
+	this->changelogItems.push_back("[Fix] 修复了ClickGui拖动不流畅的问题");
+	this->changelogItems.push_back("[Fix] 修复了ClickGui处于打开状态时部分按键仍会响应到游戏内的问题");
+	this->changelogItems.push_back("[Fix] FakeMessager更名为FakeMessenger");
+	this->changelogItems.push_back("[+] HUD Module增加了自定义ArrayList位置的选项");
 
 }
 
