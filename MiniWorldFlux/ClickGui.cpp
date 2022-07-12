@@ -27,6 +27,10 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	this->changelogItems.push_back("[Fix] 修复了自己创建房间时或者进入别人房间时会崩溃的Bug");
 	this->changelogItems.push_back("[Fix] 修复了ESP Module总会漏掉一个人的Bug");
 
+	this->changelogItems.push_back("");
+
+	this->changelogItems.push_back("[Alpha v0.1.3]");
+	this->changelogItems.push_back("[Feat] 增加Velocity Module，Memory模式是完全无击退，Force则仍会向后弹一段很小的距离");
 }
 
 ClickGui* ClickGui::getInstance() {
