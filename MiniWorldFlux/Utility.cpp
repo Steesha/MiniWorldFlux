@@ -30,11 +30,16 @@ namespace Utility {
         return Utility::compareStringIgnoreCase(_String1.c_str(), _String2.c_str());
     }
 
-    bool isReadablePtr(void* pointer) {
-        return (IsBadReadPtr(pointer, sizeof(pointer)) == 0);
+    bool isReadablePtr(void* pointer, uint32_t size) {
+        if (pointer == nullptr) return false;
+        if (size == 0)
+            return (IsBadReadPtr(pointer, sizeof(pointer)) == 0);
+        else
+            return (IsBadReadPtr(pointer, size) == 0);
     }
 
     bool isWriteablePtr(void* pointer) {
+        if (pointer == nullptr) return false;
         return (IsBadWritePtr(pointer, sizeof(pointer)) == 0);
     }
 

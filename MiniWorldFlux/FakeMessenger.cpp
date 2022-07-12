@@ -82,6 +82,7 @@ void FakeMessenger::onDisabled() {
 }
 
 void FakeMessenger::onRenderOverlay() {
+	ToggleCheck;
 	IngameCheck;
 
 	if (this->mode->isCurrentMode("System")) {

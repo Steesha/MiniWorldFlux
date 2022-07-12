@@ -7,26 +7,29 @@ namespace SDK {
 	static Address hWorld = reinterpret_cast<Address>(GetModuleHandleA("libiworld_micro.dll"));
 
 	World* getWorld() {
+		IngameCheck nullptr;
+
 		Address* ppWorld = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_World) ^ Client::_XorKey));
 		if (IsBadReadPtr(ppWorld, sizeof(ppWorld)) == 0) {
 			
 			World* pWorld = reinterpret_cast<World*>(*ppWorld);
-			if (IsBadReadPtr(pWorld, sizeof(pWorld)) == 0)
+			if (IsBadReadPtr(pWorld, sizeof(World)) == 0)
 				return pWorld;
 			else
 				return nullptr;
-
 		}
 		
 		return nullptr;
 	}
 
 	UIRenderer* getUIRenderer() {
+		IngameCheck nullptr;
+
 		Address* pUIRenderer = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_UIRenderer) ^ Client::_XorKey));
 		if (IsBadReadPtr(pUIRenderer, sizeof(pUIRenderer)) == 0) {
 			
 			UIRenderer* renderer = reinterpret_cast<UIRenderer*>(*pUIRenderer);
-			if (IsBadReadPtr(renderer, sizeof(renderer)) == 0)
+			if (IsBadReadPtr(renderer, sizeof(UIRenderer)) == 0)
 				return renderer;
 			else
 				return nullptr;
@@ -37,11 +40,13 @@ namespace SDK {
 	}
 
 	RoomManager* getRoomManager() {
+		IngameCheck nullptr;
+
 		Address* pRoomManager = reinterpret_cast<Address*>(hWorld + (Offsets::getOffset(Of_RoomManager) ^ Client::_XorKey));
 		if (IsBadReadPtr(pRoomManager, sizeof(pRoomManager)) == 0) {
 			
 			RoomManager* roomManager = reinterpret_cast<RoomManager*>(*pRoomManager);
-			if (IsBadReadPtr(roomManager, sizeof(roomManager)) == 0)
+			if (IsBadReadPtr(roomManager, sizeof(RoomManager)) == 0)
 				return roomManager;
 			else
 				return nullptr;

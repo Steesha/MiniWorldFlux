@@ -1,15 +1,21 @@
 #include "pch.h"
 #include "Client.h"
 
+#define _FLUX_DEBUG_SKIP_WINAPI
 #ifdef _DEBUG
 LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 
+#ifndef _FLUX_DEBUG_SKIP_WINAPI
+	DWORD errAddr = reinterpret_cast<DWORD>(ExceptionInfo->ExceptionRecord->ExceptionAddress);
+	if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) {
+#else
 	constexpr unsigned int fn1Length = 0xAF;
 	DWORD pFn1 = reinterpret_cast<DWORD>(IsBadReadPtr);
 	DWORD errAddr = reinterpret_cast<DWORD>(ExceptionInfo->ExceptionRecord->ExceptionAddress);
 	if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION
 		&& errAddr < pFn1
-		&& errAddr > (pFn1 + fn1Length)) {
+		&& errAddr >(pFn1 + fn1Length)) {
+#endif
 
 		printf("-----------Nullptr------------\n");
 		printf("Nullptr in: %p\n", ExceptionInfo->ExceptionRecord->ExceptionAddress);
@@ -25,11 +31,11 @@ LONG NTAPI NullptrHandler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 
 		printf("-----------Stack------------\n");
 		DWORD esp = ExceptionInfo->ContextRecord->Esp;
-		while (esp <= ExceptionInfo->ContextRecord->Ebp)
-		{
-			//print ESP
-			printf("%X | %X\n", esp, *(DWORD*)esp);
-			esp += 4;
+		DWORD ebp = ExceptionInfo->ContextRecord->Ebp;
+		int inc = 100;
+		while (inc-- > 0) {
+			printf("[EBP+%X] %X\n", inc * 4, *(DWORD*)(ebp));
+			ebp += 4;
 		}
 		printf("-----------End------------\n");
 

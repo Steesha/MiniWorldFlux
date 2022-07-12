@@ -9,13 +9,21 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 
 	this->changelogItems.push_back("[Aplha v0.1.0]");
 	this->changelogItems.push_back("由于刚发布的原因，需介绍的款项太多，请到Telegram频道查看详细使用说明");
+
 	this->changelogItems.push_back("");
+
 	this->changelogItems.push_back("[Alpha v0.1.1]");
 	this->changelogItems.push_back("[Fix] 感谢Tubitu大佬提供的修复大部分人ui乱码的解决方案");
 	this->changelogItems.push_back("[Fix] 修复了ClickGui拖动不流畅的问题");
 	this->changelogItems.push_back("[Fix] 修复了ClickGui处于打开状态时部分按键仍会响应到游戏内的问题");
 	this->changelogItems.push_back("[Fix] FakeMessager更名为FakeMessenger");
 	this->changelogItems.push_back("[+] HUD Module增加了自定义ArrayList位置的选项");
+
+	this->changelogItems.push_back("");
+
+	this->changelogItems.push_back("[Alpha v0.1.2]");
+	this->changelogItems.push_back("[Fix] 修复FakeMessenger不能重置回自己发言的状态的Bug");
+	this->changelogItems.push_back("[Fix] 修复了窗口大小对IDProtection的影响");
 
 }
 

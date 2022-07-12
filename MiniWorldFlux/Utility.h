@@ -16,7 +16,7 @@ namespace Utility {
 
 	bool compareStringIgnoreCase(std::string _String1, std::string _String2);
 
-	bool isReadablePtr(void* pointer);
+	bool isReadablePtr(void* pointer, uint32_t size = 0);
 
 	bool isWriteablePtr(void* pointer);
 

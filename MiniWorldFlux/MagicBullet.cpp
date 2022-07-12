@@ -92,5 +92,6 @@ void MagicBullet::onDisabled() {
 
 bool MagicBullet::adminCheck() {
 	IngameCheck false;
+	if (!Utility::isReadablePtr(Game::theRoomManager)) return false;
 	return Game::theRoomManager->permission == SDK::PERMISSION_ROOMADMIN;
 }
