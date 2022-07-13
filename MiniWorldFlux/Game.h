@@ -77,6 +77,9 @@ public:
 
 	int getUID();
 
+	float getModelScaling();
+	void setModelScaling(float scale);
+
 	SDK::Weapon* getWeapon();
 
 	SDK::ClientPlayer* getObject();

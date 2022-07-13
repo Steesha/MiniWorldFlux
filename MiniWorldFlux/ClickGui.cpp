@@ -31,6 +31,7 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 
 	this->changelogItems.push_back("[Alpha v0.1.3]");
 	this->changelogItems.push_back("[Feat] 增加Velocity Module，Memory模式是完全无击退，Force则仍会向后弹一段很小的距离");
+	this->changelogItems.push_back("[Feat] 增加FakeHeight Module，允许您随意调整人物摄像机的高度而本身不受影响，可自行调整高度");
 }
 
 ClickGui* ClickGui::getInstance() {

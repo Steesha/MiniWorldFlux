@@ -61,7 +61,9 @@ namespace SDK {
 		char pad_053C[156]; //0x053C
 		class PlayerHpProgressComponent* playerHpProgressComponent; //0x05D8
 		class PlayerTeamComponent* playerTeamComponent; //0x05DC
-		char pad_05E0[432]; //0x05E0
+		char pad_05E0[8]; //0x05E0
+		float modelScale; //0x05E8
+		char pad_05EC[420]; //0x05EC
 		class Weapon* weapon; //0x0790
 		char pad_0794[664]; //0x0794
 		class GameCamera* gameCamera; //0x0A2C

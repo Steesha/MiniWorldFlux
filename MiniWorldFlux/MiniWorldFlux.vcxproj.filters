@@ -246,6 +246,9 @@
     <ClCompile Include="Velocity.cpp">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
+    <ClCompile Include="FakeHeight.cpp">
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -441,6 +444,9 @@
       <Filter>Client\Verification</Filter>
     </ClInclude>
     <ClInclude Include="Velocity.h">
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="FakeHeight.h">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>

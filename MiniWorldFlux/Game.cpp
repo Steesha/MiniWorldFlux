@@ -240,6 +240,16 @@ SDK::Weapon* LocalPlayer::getWeapon() {
 	return this->obj->weapon;
 }
 
+float LocalPlayer::getModelScaling() {
+	IngameCheck -1;
+	return this->obj->modelScale;
+}
+
+void LocalPlayer::setModelScaling(float scale) {
+	IngameCheck;
+	this->obj->modelScale = scale;
+}
+
 #pragma endregion
 
 namespace Game {
