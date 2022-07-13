@@ -108,7 +108,7 @@
     <ClCompile Include="FakeMessenger.cpp" />
     <ClCompile Include="FakePosition.cpp" />
     <ClCompile Include="FastBullet.cpp" />
-    <ClCompile Include="FasterSpeed.cpp" />
+    <ClCompile Include="Speed.cpp" />
     <ClCompile Include="FloatValue.cpp" />
     <ClCompile Include="Fly.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -192,7 +192,7 @@
     <ClInclude Include="FakeMessenger.h" />
     <ClInclude Include="FakePosition.h" />
     <ClInclude Include="FastBullet.h" />
-    <ClInclude Include="FasterSpeed.h" />
+    <ClInclude Include="Speed.h" />
     <ClInclude Include="FloatValue.h" />
     <ClInclude Include="FluxFont.h" />
     <ClInclude Include="FluxIconFont.h" />

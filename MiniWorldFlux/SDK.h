@@ -29,6 +29,9 @@ namespace SDK {
 	constexpr int PERMISSION_ROOMMEMBER = 2;
 	constexpr int PERMISSION_ROOMADMIN = 3;
 
+	constexpr float GRAVITY_ONGROUND = -7.84f;
+	constexpr float MOTION_MAX_FORWARD_SPEED = 15;
+
 	class World
 	{
 	public:
@@ -505,14 +508,14 @@ namespace SDK {
 	class PlayerLocoMotion
 	{
 	public:
-		char pad_0000[12]; //0x0000
-		float yaw; //0x000C
-		float pitch; //0x0010
-		char pad_0014[52]; //0x0014
-		int32_t posX; //0x0048
-		int32_t posY; //0x004C
-		int32_t posZ; //0x0050
-		char pad_0054[28]; //0x0054
+		char pad_0004[8]; //0x0004
+		float shootYaw; //0x000C
+		float shootPitch; //0x0010
+		char pad_0014[40]; //0x0014
+		int32_t posX; //0x003C
+		int32_t posY; //0x0040
+		int32_t posZ; //0x0044
+		char pad_0048[40]; //0x0048
 		float motionX; //0x0070
 		float motionY; //0x0074
 		float motionZ; //0x0078
@@ -520,6 +523,16 @@ namespace SDK {
 		int32_t onGround; //0x009C
 		char pad_00A0[80]; //0x00A0
 		int32_t phase; //0x00F0
+
+		virtual void Function0();
+		virtual void Function1();
+		virtual void Function2();
+		virtual void Function3();
+		virtual void Function4();
+		virtual void Function5();
+		virtual void Function6();
+		virtual int setPosition(int x, int y, int z);
+
 	}; //Size: 0x00F4
 
 	class PlayerTeamComponent

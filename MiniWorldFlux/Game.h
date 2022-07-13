@@ -113,6 +113,7 @@ namespace Game {
 	bool isPlaying();
 	Vec2 getGameViewSize();
 	bool singlePlayerChecker();
+	bool hasGameInput();
 
 }
 

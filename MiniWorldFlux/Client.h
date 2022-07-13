@@ -11,7 +11,7 @@
 #include "ClickGui.h"
 #include "IDProtection.h"
 #include "HighJump.h"
-#include "FasterSpeed.h"
+#include "Speed.h"
 #include "ESP.h"
 #include "HUD.h"
 #include "AirJump.h"

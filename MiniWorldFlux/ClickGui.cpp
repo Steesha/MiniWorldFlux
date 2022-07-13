@@ -49,6 +49,22 @@ void ClickGui::onDisabled() {
 }
 
 void ClickGui::onRenderOverlay() {
+
+#ifdef _DEBUG
+	static int xPos = 0;
+	static int yPos = 0;
+	static int zPos = 0;
+
+	ImGui::Begin("Calls");
+	ImGui::InputInt("X", &xPos);
+	ImGui::InputInt("Y", &yPos);
+	ImGui::InputInt("Z", &zPos);
+	if (ImGui::Button("Call")) {
+		int res = Game::thePlayer->getObject()->playerLocoMotion->setPosition(xPos, yPos, zPos);
+		LOGGER << Logger::format(L"SetPosition Result: %d", L"Clickgui.cpp", LogRank::DEBUG, res);
+	}
+	ImGui::End();
+#endif
 	
 	this->renderInfoPanel();
 	if (this->changelog)

@@ -355,4 +355,8 @@ namespace Game {
 		return false;
 	}
 
+	bool hasGameInput() {
+		return ImGui::IsKeyDown(ImGuiKey_W) || ImGui::IsKeyDown(ImGuiKey_S) || ImGui::IsKeyDown(ImGuiKey_A) || ImGui::IsKeyDown(ImGuiKey_D);
+	}
+
 }

@@ -46,7 +46,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<Disabler>(Disabler::getInstance());
 		ModuleManager::getInstance().addModule<IDProtection>(IDProtection::getInstance());
 		ModuleManager::getInstance().addModule<HighJump>(HighJump::getInstance());
-		ModuleManager::getInstance().addModule<FasterSpeed>(FasterSpeed::getInstance());
+		ModuleManager::getInstance().addModule<Speed>(Speed::getInstance());
 		ModuleManager::getInstance().addModule<ESP>(ESP::getInstance());
 		ModuleManager::getInstance().addModule<HUD>(HUD::getInstance());
 		ModuleManager::getInstance().addModule<AirJump>(AirJump::getInstance());

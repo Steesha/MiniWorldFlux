@@ -162,17 +162,19 @@ void BoxESP::onRenderOverlay() {
 			sightStartPos.z = p->actorBody->entity->posZ;
 
 			bool canDraw = true;
-			bp1 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 45);
-			bp2 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 135);
-			bp3 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 225);
-			bp4 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 315);
-			tp1 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 45);
-			tp2 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 135);
-			tp3 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 225);
-			tp4 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (p->playerLocoMotion->yaw)) + 315);
+			float yawRot = p->playerLocoMotion->shootYaw;
+			float pitchRot = p->playerLocoMotion->shootPitch;
+			bp1 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (yawRot)) + 45);
+			bp2 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (yawRot)) + 135);
+			bp3 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (yawRot)) + 225);
+			bp4 = this->rotatePointYaw(ePos, this->radius->getValue(), (0 - (yawRot)) + 315);
+			tp1 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (yawRot)) + 45);
+			tp2 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (yawRot)) + 135);
+			tp3 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (yawRot)) + 225);
+			tp4 = this->rotatePointYaw(eHeadPos, this->radius->getValue(), (0 - (yawRot)) + 315);
 
-			Vec3 sightYaw = this->rotatePointYaw(sightStartPos, this->sightLength, 0 - (p->playerLocoMotion->yaw) - 90);
-			Vec3 sightPitch = this->rotatePointPitch(sightStartPos, this->sightLength, 0 - (p->playerLocoMotion->pitch));
+			Vec3 sightYaw = this->rotatePointYaw(sightStartPos, this->sightLength, 0 - (yawRot) - 90);
+			Vec3 sightPitch = this->rotatePointPitch(sightStartPos, this->sightLength, 0 - (pitchRot));
 			sightEndPos.x = sightYaw.x;
 			sightEndPos.y = sightPitch.y;
 			sightEndPos.z = sightYaw.z;
