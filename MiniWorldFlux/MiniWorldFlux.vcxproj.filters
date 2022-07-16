@@ -249,6 +249,9 @@
     <ClCompile Include="FakeHeight.cpp">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
+    <ClCompile Include="NoCD.cpp">
+      <Filter>Client\Module\Modules\Combat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -448,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="FakeHeight.h">
       <Filter>Client\Module\Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NoCD.h">
+      <Filter>Client\Module\Modules\Combat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
