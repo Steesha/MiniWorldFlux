@@ -69,6 +69,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<Velocity>(Velocity::getInstance());
 		ModuleManager::getInstance().addModule<FakeHeight>(FakeHeight::getInstance());
 		ModuleManager::getInstance().addModule<NoCD>(NoCD::getInstance());
+		ModuleManager::getInstance().addModule<FastSkill>(FastSkill::getInstance());
 
 		VM_LION_WHITE_END
 	}
