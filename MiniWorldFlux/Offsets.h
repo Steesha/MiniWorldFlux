@@ -29,6 +29,9 @@ constexpr unsigned int Of_Velocity_Retn = 23;
 constexpr unsigned int Of_Velocity_MemoryCode = 24;
 constexpr unsigned int Of_NoCD = 25;
 constexpr unsigned int Of_FastSkill = 26;
+constexpr unsigned int Of_Flash = 27;
+constexpr unsigned int Of_Flash_Retn = 28;
+
 
 namespace Offsets {
 	
@@ -54,6 +57,8 @@ namespace Offsets {
 
 		unsigned long NoCD = 0x183BBDE ^ g_XORKEY;
 		unsigned long FastSkill = 0x1131630 ^ g_XORKEY;
+		unsigned long Flash = 0x93DCE2 ^ g_XORKEY;
+		unsigned long Flash_Retn = 0x93DCE8 ^ g_XORKEY;
 
 		// World
 		unsigned long World = 0x1EBD72C ^ g_XORKEY;
@@ -105,6 +110,8 @@ namespace Offsets {
 		if (cate == Of_Velocity_MemoryCode) result = Velocity_MemoryCode;
 		if (cate == Of_NoCD) result = NoCD;
 		if (cate == Of_FastSkill) result = FastSkill;
+		if (cate == Of_Flash) result = Flash;
+		if (cate == Of_Flash_Retn) result = Flash_Retn;
 
 		return result;
 		VM_DOLPHIN_RED_END

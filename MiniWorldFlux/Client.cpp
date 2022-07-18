@@ -70,7 +70,8 @@ namespace Client {
 		ModuleManager::getInstance().addModule<FakeHeight>(FakeHeight::getInstance());
 		ModuleManager::getInstance().addModule<NoCD>(NoCD::getInstance());
 		ModuleManager::getInstance().addModule<FastSkill>(FastSkill::getInstance());
-
+		ModuleManager::getInstance().addModule<Flash>(Flash::getInstance());
+		
 		VM_LION_WHITE_END
 	}
 

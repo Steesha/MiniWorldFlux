@@ -109,6 +109,7 @@
     <ClCompile Include="FakePosition.cpp" />
     <ClCompile Include="FastBullet.cpp" />
     <ClCompile Include="FastSkill.cpp" />
+    <ClCompile Include="Flash.cpp" />
     <ClCompile Include="NoCD.cpp" />
     <ClCompile Include="Speed.cpp" />
     <ClCompile Include="FloatValue.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="FakePosition.h" />
     <ClInclude Include="FastBullet.h" />
     <ClInclude Include="FastSkill.h" />
+    <ClInclude Include="Flash.h" />
     <ClInclude Include="NoCD.h" />
     <ClInclude Include="Speed.h" />
     <ClInclude Include="FloatValue.h" />
