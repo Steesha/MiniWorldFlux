@@ -1,21 +1,19 @@
 #include "pch.h"
 #include "FastSkill.h"
 
-FastSkill::FastSkill() : AbstractModule("FastSkill", Category::Combat)
-{
+FastSkill::FastSkill() : AbstractModule("FastSkill", Category::Player) {
 	fastSkillChecker.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey), unsigned char), 8);
 }
 
-FastSkill* FastSkill::getInstance()
-{
+FastSkill* FastSkill::getInstance() {
 	static FastSkill* inst = new FastSkill();
 	return inst;
 }
 
-void FastSkill::onEnabled()
-{
+void FastSkill::onEnabled() {
 	IngameCheck;
 
+	VM_TIGER_WHITE_START
 	fastSkillChecker.destroy();
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 0, 0x0F);
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 1, 0x57);
@@ -25,12 +23,17 @@ void FastSkill::onEnabled()
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 5, 0x90);
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 6, 0x90);
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 7, 0x90);
+	fastSkillChecker.restore();
+	VM_TIGER_WHITE_END
+
 }
 
 void FastSkill::onDisabled()
 {
 	IngameCheck;
 	
+	VM_TIGER_WHITE_START
+	fastSkillChecker.destroy();
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 0, 0xF3);
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 1, 0x0F);
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 2, 0x59);
@@ -40,4 +43,6 @@ void FastSkill::onDisabled()
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 6, 0xBC);
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FastSkill) ^ Client::_XorKey) + 7, 0x79);
 	fastSkillChecker.restore();
+	VM_TIGER_WHITE_END
+
 }

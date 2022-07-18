@@ -249,11 +249,11 @@
     <ClCompile Include="FakeHeight.cpp">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
-    <ClCompile Include="NoCD.cpp">
-      <Filter>Client\Module\Modules\Combat</Filter>
-    </ClCompile>
     <ClCompile Include="FastSkill.cpp">
-      <Filter>Client\Module\Modules\Combat</Filter>
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NoCD.cpp">
+      <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -455,11 +455,11 @@
     <ClInclude Include="FakeHeight.h">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
-    <ClInclude Include="NoCD.h">
-      <Filter>Client\Module\Modules\Combat</Filter>
-    </ClInclude>
     <ClInclude Include="FastSkill.h">
-      <Filter>Client\Module\Modules\Combat</Filter>
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NoCD.h">
+      <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
