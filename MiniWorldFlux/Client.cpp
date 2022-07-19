@@ -71,7 +71,8 @@ namespace Client {
 		ModuleManager::getInstance().addModule<NoCD>(NoCD::getInstance());
 		ModuleManager::getInstance().addModule<FastSkill>(FastSkill::getInstance());
 		ModuleManager::getInstance().addModule<Flash>(Flash::getInstance());
-		
+		ModuleManager::getInstance().addModule<FreeMove>(FreeMove::getInstance());
+
 		VM_LION_WHITE_END
 	}
 

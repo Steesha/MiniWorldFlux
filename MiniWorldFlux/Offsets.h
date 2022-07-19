@@ -31,7 +31,7 @@ constexpr unsigned int Of_NoCD = 25;
 constexpr unsigned int Of_FastSkill = 26;
 constexpr unsigned int Of_Flash = 27;
 constexpr unsigned int Of_Flash_Retn = 28;
-
+constexpr unsigned int Of_FreeMove = 29;
 
 namespace Offsets {
 	
@@ -59,6 +59,7 @@ namespace Offsets {
 		unsigned long FastSkill = 0x1131630 ^ g_XORKEY;
 		unsigned long Flash = 0x93DCE2 ^ g_XORKEY;
 		unsigned long Flash_Retn = 0x93DCE8 ^ g_XORKEY;
+		unsigned long FreeMove = 0xCE758F ^ g_XORKEY;
 
 		// World
 		unsigned long World = 0x1EBD72C ^ g_XORKEY;
@@ -112,6 +113,7 @@ namespace Offsets {
 		if (cate == Of_FastSkill) result = FastSkill;
 		if (cate == Of_Flash) result = Flash;
 		if (cate == Of_Flash_Retn) result = Flash_Retn;
+		if (cate == Of_FreeMove) result = FreeMove;
 
 		return result;
 		VM_DOLPHIN_RED_END

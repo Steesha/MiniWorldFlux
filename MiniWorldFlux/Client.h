@@ -37,6 +37,7 @@
 #include "NoCD.h"
 #include "FastSkill.h"
 #include "Flash.h"
+#include "FreeMove.h"
 
 #define MakeDisposableThread(_Executor, _Param) CloseHandle(CreateThread(nullptr, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(_Executor), _Param, 0, nullptr))
 

@@ -258,6 +258,9 @@
     <ClCompile Include="Flash.cpp">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClCompile>
+    <ClCompile Include="FreeMove.cpp">
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -465,6 +468,9 @@
       <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
     <ClInclude Include="Flash.h">
+      <Filter>Client\Module\Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeMove.h">
       <Filter>Client\Module\Modules\Player</Filter>
     </ClInclude>
   </ItemGroup>
