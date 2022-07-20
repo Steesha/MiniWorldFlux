@@ -36,7 +36,6 @@ constexpr unsigned int Of_FreeMove = 29;
 namespace Offsets {
 	
 	static unsigned long getOffset(int cate) {
-		VM_DOLPHIN_RED_START
 
 		// Module
 		unsigned long FakePosition = 0x110AF9C ^ g_XORKEY;
@@ -116,6 +115,5 @@ namespace Offsets {
 		if (cate == Of_FreeMove) result = FreeMove;
 
 		return result;
-		VM_DOLPHIN_RED_END
 	}
 };

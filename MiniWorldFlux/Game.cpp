@@ -298,13 +298,9 @@ namespace Game {
 		SinglePlayerCheck;
 
 		// 同步房间内玩家信息
-		VM_TIGER_WHITE_START
 		Address* pPlayerInfoBase = ToPointer(Client::hWorld + (Offsets::getOffset(Of_PlayerInfoBase) ^ Client::_XorKey), Address);
-		VM_TIGER_WHITE_END
 		if (Utility::isReadablePtr(pPlayerInfoBase)) {
-			VM_TIGER_WHITE_START
 			unsigned long* pMpGameSurvive = ToPointer((*pPlayerInfoBase) + (Offsets::getOffset(Of_MpGameSurvive) ^ Client::_XorKey), Address);
-			VM_TIGER_WHITE_END
 			if (Utility::isReadablePtr(pMpGameSurvive)) {
 				
 				SDK::MpGameSurvive* mpGameSurvive = ToPointer(*pMpGameSurvive, SDK::MpGameSurvive);

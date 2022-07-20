@@ -2,10 +2,8 @@
 #include "FakeHeight.h"
 
 FakeHeight::FakeHeight() : AbstractModule("FakeHeight", Category::Player) {
-	VM_TIGER_WHITE_START
 	this->addValue(this->height);
 	EventManager::getInstance().reg(Events::EventRenderOverlay, MakeHandler(this, &FakeHeight::onRenderOverlay));
-	VM_TIGER_WHITE_END
 }
 
 FakeHeight* FakeHeight::getInstance() {
