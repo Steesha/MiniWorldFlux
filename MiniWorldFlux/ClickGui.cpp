@@ -32,6 +32,12 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	this->changelogItems.push_back("[Alpha v0.1.3]");
 	this->changelogItems.push_back("[Feat] 增加Velocity Module，Memory模式是完全无击退，Force则仍会向后弹一段很小的距离");
 	this->changelogItems.push_back("[Feat] 增加FakeHeight Module，允许您随意调整人物摄像机的高度而本身不受影响，可自行调整高度");
+	this->changelogItems.push_back("[Modify] FasterSpeed更名为Speed，后续考虑加入BHop");
+	this->changelogItems.push_back("[Feat] 增加NoCD Module, 技能无冷却");
+	this->changelogItems.push_back("[Feat] 增加FastSkill Module, 无需蓄力即可使用技能");
+	this->changelogItems.push_back("[Feat] 增加Flash Module , 右键可向前闪现");
+	this->changelogItems.push_back("[Feat] 增加FreeMove Module, 游戏未开始也可以自由移动");
+	this->changelogItems.push_back("[Modify] 优化了底层渲染逻辑，略微提升帧数");
 }
 
 ClickGui* ClickGui::getInstance() {
@@ -54,14 +60,20 @@ void ClickGui::onRenderOverlay() {
 	static int xPos = 0;
 	static int yPos = 0;
 	static int zPos = 0;
+	static int targetPtr = 0;
 
 	ImGui::Begin("Calls");
 	ImGui::InputInt("X", &xPos);
 	ImGui::InputInt("Y", &yPos);
 	ImGui::InputInt("Z", &zPos);
-	if (ImGui::Button("Call")) {
+	ImGui::InputInt("Target", &targetPtr);
+	if (ImGui::Button("Pos")) {
 		int res = Game::thePlayer->getObject()->playerLocoMotion->setPosition(xPos, yPos, zPos);
 		LOGGER << Logger::format(L"SetPosition Result: %d", L"Clickgui.cpp", LogRank::DEBUG, res);
+	}
+	if (ImGui::Button("Attack")) {
+		Game::thePlayer->getObject()->attackEntity(targetPtr);
+		LOGGER << Logger::format(L"Attack Entity called.", L"Clickgui.cpp", LogRank::DEBUG);
 	}
 	ImGui::End();
 #endif
