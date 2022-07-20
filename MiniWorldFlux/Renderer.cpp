@@ -164,6 +164,14 @@ namespace Renderer {
 			x1 <= (superBlock->x + superBlock->width) &&
 			y1 <= (superBlock->y + superBlock->height);
 
+	}
+
+	bool isPointInAnotherBlock(Vec2 point, Block* superBlock) {
+
+		return point.x >= superBlock->x &&
+			point.y >= superBlock->y &&
+			point.x <= (superBlock->x + superBlock->width) &&
+			point.y <= (superBlock->y + superBlock->height);
 
 	}
 

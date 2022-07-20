@@ -38,6 +38,7 @@ private:
 	std::vector<std::string> changelogItems;
 
 	float modulePanelScrollY = 0;
+	float changelogPanelScrollY = 0;
 	Category curCategory = Category::Combat;
 	int curModule = 0;
 

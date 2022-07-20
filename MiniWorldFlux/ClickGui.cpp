@@ -37,7 +37,7 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	this->changelogItems.push_back("[Feat] 增加FastSkill Module, 无需蓄力即可使用技能");
 	this->changelogItems.push_back("[Feat] 增加Flash Module , 右键可向前闪现");
 	this->changelogItems.push_back("[Feat] 增加FreeMove Module, 游戏未开始也可以自由移动");
-	this->changelogItems.push_back("[Modify] 优化了底层渲染逻辑，略微提升帧数");
+
 }
 
 ClickGui* ClickGui::getInstance() {
@@ -258,15 +258,8 @@ void ClickGui::renderMainPanel() {
 	modulePanelBlock.height = panelBlock.height - categoryPanelBlock.height;
 
 	float wheel = Client::rendererIO->MouseWheel;
-	if (wheel != 0) {
-
-		if (Renderer::isBlockHovered(&modulePanelBlock)) {
-
-			modulePanelScrollY += wheel * 25;
-
-		}
-
-	}
+	if (wheel != 0 && Renderer::isBlockHovered(&modulePanelBlock))
+		modulePanelScrollY += wheel * 25;
 	
 	std::vector<HMOD> curCategoryModules;
 	ModuleManager::getInstance().getModule(this->curCategory, &curCategoryModules);
@@ -633,6 +626,10 @@ void ClickGui::renderChangeLog() {
 	dl->AddRectFilled(ImVec2(panelBlock.x, panelBlock.y), ImVec2(panelBlock.x + panelBlock.width, panelBlock.y + panelBlock.height), FluxColor::MainPanelBackground, 5);
 	if (this->showUIBB) Renderer::drawBlockBoundingBox(&panelBlock);
 
+	float wheel = Client::rendererIO->MouseWheel;
+	if (wheel != 0 && Renderer::isBlockHovered(&panelBlock))
+		changelogPanelScrollY += wheel * 25;
+
 	// Title
 	dl->AddText(Client::fluxIcon, 35, ImVec2(panelBlock.x + 20, panelBlock.y + 20), FluxColor::White, FluxIcon::Logo);
 	dl->AddText(Client::fluxFont, 35, ImVec2(panelBlock.x + 70, panelBlock.y + 20), FluxColor::White, "Changelog");
@@ -649,8 +646,19 @@ void ClickGui::renderChangeLog() {
 	if (this->showUIBB) Renderer::drawBlockBoundingBox(&panelBlock);
 	float curY = 5;
 	for (std::string& item : this->changelogItems) {
-		dl->AddText(Client::chinese, 20, ImVec2(contentBlock.x + 40, contentBlock.y + curY), FluxColor::White, Utility::toUtf8(const_cast<char*>(item.c_str())));
+
+		struct Block itemBlock;
+		itemBlock.x = contentBlock.x;
+		itemBlock.y = contentBlock.y + curY + changelogPanelScrollY;
+		itemBlock.width = contentBlock.width;
+		itemBlock.height = 20;
+		if (this->showUIBB) Renderer::drawBlockBoundingBox(&itemBlock);
+
+		if (Renderer::isBlockInAnotherBlock(&itemBlock, &contentBlock))
+			dl->AddText(Client::chinese, 20, ImVec2(itemBlock.x + 40, itemBlock.y), FluxColor::White, Utility::toUtf8(const_cast<char*>(item.c_str())));
+
 		curY += 30;
+
 	}
 
 	// Close Button

@@ -45,6 +45,8 @@ namespace Renderer {
 
 	bool isBlockInAnotherBlock(Block* subBlock, Block* superBlock);
 
+	bool isPointInAnotherBlock(Vec2 point, Block* superBlock);
+
 	bool isBlockDragging(Block* block, float threshold = -1.0f);
 
 	bool isBlockRightClicked(Block* block);
