@@ -11,17 +11,21 @@ FreeMove* FreeMove::getInstance() {
 }
 
 void FreeMove::onEnabled() {
+	VM_TIGER_WHITE_START
 
 	codeProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FreeMove) ^ Client::_XorKey), 0xEB);
 	codeProtect.restore();
 
+	VM_TIGER_WHITE_END
 }
 
 void FreeMove::onDisabled() {
+	VM_TIGER_WHITE_START
 
 	codeProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FreeMove) ^ Client::_XorKey), 0x74);
 	codeProtect.restore();
 
+	VM_TIGER_WHITE_END
 }

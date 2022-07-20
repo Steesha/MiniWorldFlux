@@ -48,16 +48,21 @@ Flash* Flash::getInstance() {
 }
 
 void Flash::onEnabled() {
+	VM_TIGER_WHITE_START
 
 	this->codeProtect.destroy();
 	this->codeForwards.forward();
 	this->codeProtect.restore();
+
+	VM_TIGER_WHITE_END
 }
 
 void Flash::onDisabled() {
+	VM_TIGER_WHITE_START
 
 	this->codeProtect.destroy();
 	this->codeForwards.reset();
 	this->codeProtect.restore();
 
+	VM_TIGER_WHITE_END
 }
