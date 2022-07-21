@@ -37,7 +37,7 @@ FORWARDS_FN_START(detourBeHurt) {
 
 Velocity::Velocity() : AbstractModule("Velocity", Category::Player) {
 
-	this->mode->addMode("Force");
+	// this->mode->addMode("Memory");
 	this->addValue(this->mode);
 
 	this->codeProtect.init(ToPointer(Client::hWorld + (Offsets::getOffset(Of_Velocity) ^ g_XORKEY), Address), 6);

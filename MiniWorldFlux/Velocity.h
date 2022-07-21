@@ -24,7 +24,7 @@ public:
 
 private:
 
-	ModeValue* mode = new ModeValue("Mode", "Memory");
+	ModeValue* mode = new ModeValue("Mode", "Force");
 	bool memoryModeEnabled = false;
 	bool forceModeEnabled = false;
 
