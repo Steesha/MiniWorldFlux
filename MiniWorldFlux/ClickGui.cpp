@@ -38,6 +38,8 @@ ClickGui::ClickGui() : AbstractModule("ClickGui", Category::Visual) {
 	this->changelogItems.push_back("[Feat] 增加Flash Module , 右键可向前闪现");
 	this->changelogItems.push_back("[Feat] 增加FreeMove Module, 游戏未开始也可以自由移动");
 
+	this->changelogItems.push_back("");
+
 	this->changelogItems.push_back("[Alpha v0.1.3 Fixed 1]");
 	this->changelogItems.push_back("[Fix] 修复了版本更新导致的各功能失效");
 	this->changelogItems.push_back("[-] 由于新版本的代码更动，暂时删除Velocity Module的Memory模式");
