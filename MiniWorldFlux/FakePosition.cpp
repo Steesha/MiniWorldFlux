@@ -57,7 +57,7 @@ void FakePosition::endFakePosition() {
 	VM_TIGER_WHITE_START
 	this->addrProtect.destroy();
 	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey), 0x75);
-	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey) + 1, 0x0C);
+	Memory::write<unsigned char>(Client::hWorld + (Offsets::getOffset(Of_FakePosition) ^ Client::_XorKey) + 1, 0x12);
 	this->addrProtect.restore();
 	VM_TIGER_WHITE_END
 }

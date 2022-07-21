@@ -38,21 +38,21 @@ namespace Offsets {
 	static unsigned long getOffset(int cate) {
 
 		// Module
-		unsigned long FakePosition = 0x110AF9C ^ g_XORKEY;
-		unsigned long Reach = 0x1056DB3 ^ g_XORKEY;
-		unsigned long NoFall = 0x8ED7B7 ^ g_XORKEY;
-		unsigned long Phase = 0x8ED24A ^ g_XORKEY;
-		unsigned long NoSpread = 0x10B9B24 ^ g_XORKEY;
-		unsigned long NoRecoil = 0x10B9B63 ^ g_XORKEY;
-		unsigned long MagicBullet = 0xC285D7 ^ g_XORKEY;
-		unsigned long MagicBulletRetn = 0xC285DD ^ g_XORKEY;
-		unsigned long FakeMessenger_System = 0xD7FA3F ^ g_XORKEY;
-		unsigned long FakeMessenger_System_Retn = 0xD7FA49 ^ g_XORKEY;
-		unsigned long FakeMessenger_Player = 0x80C2A6 ^ g_XORKEY;
-		unsigned long FakeMessenger_Player_Retn = 0x80C2AD ^ g_XORKEY;
-		unsigned long Velocity = 0x92A24F ^ g_XORKEY;
-		unsigned long Velocity_Retn = 0x92A255 ^ g_XORKEY;
-		unsigned long Velocity_MemoryCode = 0x118A6AE ^ g_XORKEY;
+		unsigned long FakePosition = 0x110B07C ^ g_XORKEY;
+		unsigned long Reach = 0x1056DB3 ^ g_XORKEY; // FIXME
+		unsigned long NoFall = 0x8ED807 ^ g_XORKEY;
+		unsigned long Phase = 0x8ED29A ^ g_XORKEY;
+		unsigned long NoSpread = 0x10B9C14 ^ g_XORKEY;
+		unsigned long NoRecoil = 0x10B9C53 ^ g_XORKEY;
+		unsigned long MagicBullet = 0xC28647 ^ g_XORKEY;
+		unsigned long MagicBulletRetn = 0xC2864D ^ g_XORKEY;
+		unsigned long FakeMessenger_System = 0xD7FACF ^ g_XORKEY;
+		unsigned long FakeMessenger_System_Retn = 0xD7FAD9 ^ g_XORKEY;
+		unsigned long FakeMessenger_Player = 0x80C0F6 ^ g_XORKEY;
+		unsigned long FakeMessenger_Player_Retn = 0x80C0FD ^ g_XORKEY;
+		unsigned long Velocity = 0x92A2AF ^ g_XORKEY;
+		unsigned long Velocity_Retn = 0x92A2B5 ^ g_XORKEY;
+		unsigned long Velocity_MemoryCode = 0x118A6AE ^ g_XORKEY; // FIXME
 
 		unsigned long NoCD = 0x183BBDE ^ g_XORKEY;
 		unsigned long FastSkill = 0x1131630 ^ g_XORKEY;
@@ -61,7 +61,7 @@ namespace Offsets {
 		unsigned long FreeMove = 0xCE758F ^ g_XORKEY;
 
 		// World
-		unsigned long World = 0x1EBD72C ^ g_XORKEY;
+		unsigned long World = 0x1EBD71C ^ g_XORKEY;
 
 		// Matrix
 		unsigned long UIRenderer = 0x1E5E268 ^ g_XORKEY;
@@ -73,11 +73,11 @@ namespace Offsets {
 		// Misc
 		unsigned long FPSBase = 0x1E5E288 ^ g_XORKEY;
 		unsigned long FPS_1 = 0x80 ^ g_XORKEY;
-		unsigned long Ping = 0x23859CC ^ g_XORKEY;
-		unsigned long IsPlaying = 0x23CF230 ^ g_XORKEY;
+		unsigned long Ping = 0x23859BC ^ g_XORKEY;
+		unsigned long IsPlaying = 0x23CF220 ^ g_XORKEY;
 
 		// Player Info
-		unsigned long PlayerInfoBase = 0x238348C ^ g_XORKEY;
+		unsigned long PlayerInfoBase = 0x238347C ^ g_XORKEY;
 		unsigned long MpGameSurvive = 0x40 ^ g_XORKEY;
 
 		unsigned long result = 0;
