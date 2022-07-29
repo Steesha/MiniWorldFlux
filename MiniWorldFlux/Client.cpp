@@ -68,7 +68,7 @@ namespace Client {
 		ModuleManager::getInstance().addModule<FastBullet>(FastBullet::getInstance());
 		// ModuleManager::getInstance().addModule<Velocity>(Velocity::getInstance());
 		ModuleManager::getInstance().addModule<FakeHeight>(FakeHeight::getInstance());
-		ModuleManager::getInstance().addModule<NoCD>(NoCD::getInstance());
+		// ModuleManager::getInstance().addModule<NoCD>(NoCD::getInstance());
 		ModuleManager::getInstance().addModule<FastSkill>(FastSkill::getInstance());
 		ModuleManager::getInstance().addModule<Flash>(Flash::getInstance());
 		ModuleManager::getInstance().addModule<FreeMove>(FreeMove::getInstance());

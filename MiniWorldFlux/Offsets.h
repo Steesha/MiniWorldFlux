@@ -54,11 +54,11 @@ namespace Offsets {
 		unsigned long Velocity_Retn = 0x92A2B5 ^ g_XORKEY; // FIXME
 		unsigned long Velocity_MemoryCode = 0x118A6AE ^ g_XORKEY; // FIXME
 
-		unsigned long NoCD = 0x183BC0E ^ g_XORKEY;
-		unsigned long FastSkill = 0x1131730 ^ g_XORKEY;
-		unsigned long Flash = 0x93DD42 ^ g_XORKEY;
-		unsigned long Flash_Retn = 0x93DD48 ^ g_XORKEY;
-		unsigned long FreeMove = 0xCE75DF ^ g_XORKEY;
+		unsigned long NoCD = 0x18CE65E ^ g_XORKEY;  // FIXME
+		unsigned long FastSkill = 0x11C286C ^ g_XORKEY;
+		unsigned long Flash = 0x955822 ^ g_XORKEY;
+		unsigned long Flash_Retn = 0x955828 ^ g_XORKEY;
+		unsigned long FreeMove = 0xD5C142 ^ g_XORKEY;
 
 		// World
 		unsigned long World = 0x1F7524C ^ g_XORKEY;
