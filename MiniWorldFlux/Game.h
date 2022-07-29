@@ -65,9 +65,6 @@ public:
 	bool setYaw(float yaw);
 	bool setPitch(float pitch);
 
-	int getPhaseState();
-	bool setPhaseState(int state);
-
 	int getCrossPointTo();
 	bool setCrossPointTo(int pointTo);
 

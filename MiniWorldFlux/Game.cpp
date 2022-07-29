@@ -191,18 +191,6 @@ bool LocalPlayer::setPitch(float pitch) {
 	return true;
 }
 
-int LocalPlayer::getPhaseState() {
-	IngameCheck 256;
-	return this->obj->playerLocoMotion->phase;
-}
-
-bool LocalPlayer::setPhaseState(int state) {
-	IngameCheck false;
-
-	this->obj->playerLocoMotion->phase = state;
-	return true;
-}
-
 int LocalPlayer::getCrossPointTo() {
 	IngameCheck 0;
 	return this->obj->crossPointTo;

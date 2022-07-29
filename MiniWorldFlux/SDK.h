@@ -51,27 +51,28 @@ namespace SDK {
 	class ClientPlayer
 	{
 	public:
-		char pad_0004[1164]; //0x0004
-		class ActorBody* actorBody; //0x0490
-		char pad_0494[96]; //0x0494
-		int32_t flyState; //0x04F4
-		char pad_04F8[20]; //0x04F8
-		class PlayerLocoMotion* playerLocoMotion; //0x050C
-		char pad_0510[4]; //0x0510
-		class PlayerAttribuLua* playerAttribuLua; //0x0514
-		char pad_0518[32]; //0x0518
-		int32_t uid; //0x0538
-		char pad_053C[156]; //0x053C
-		class PlayerHpProgressComponent* playerHpProgressComponent; //0x05D8
-		class PlayerTeamComponent* playerTeamComponent; //0x05DC
-		char pad_05E0[8]; //0x05E0
-		float modelScale; //0x05E8
-		char pad_05EC[420]; //0x05EC
-		class Weapon* weapon; //0x0790
-		char pad_0794[664]; //0x0794
-		class GameCamera* gameCamera; //0x0A2C
-		char pad_0A30[100]; //0x0A30
-		int32_t crossPointTo; //0x0A94
+		char pad_0004[1172]; //0x0004
+		class ActorBody* actorBody; //0x0498
+		char pad_049C[96]; //0x049C
+		int32_t flyState; //0x04FC
+		char pad_0500[20]; //0x0500
+		class PlayerLocoMotion* playerLocoMotion; //0x0514
+		char pad_0518[4]; //0x0518
+		class PlayerAttribuLua* playerAttribuLua; //0x051C
+		char pad_0520[32]; //0x0520
+		int32_t uid; //0x0540
+		char pad_0544[156]; //0x0544
+		class PlayerHpProgressComponent* playerHpProgressComponent; //0x05E0
+		char pad_05E4[4]; //0x05E4
+		class PlayerTeamComponent* playerTeamComponent; //0x05E8
+		char pad_05EC[8]; //0x05EC
+		float modelScale; //0x05F4
+		char pad_05F8[532]; //0x05F8
+		class Weapon* weapon; //0x080C
+		char pad_0810[564]; //0x0810
+		class GameCamera* gameCamera; //0x0A44
+		char pad_0A48[100]; //0x0A48
+		int32_t crossPointTo; //0x0AAC
 
 		virtual void Function0();
 		virtual void Function1();
@@ -446,19 +447,19 @@ namespace SDK {
 		float currentHealth; //0x01CC
 		char pad_01D0[4]; //0x01D0
 		float maxHealth; //0x01D4
-		char pad_01D8[36]; //0x01D8
-		float walkingSpeed; //0x01FC
-		float runningSpeed; //0x0200
-		float sneakingSpeed; //0x0204
-		float swimmingSpeed; //0x0208
-		float jumpHeight; //0x020C
-		char pad_0210[24]; //0x0210
-		float oxygen; //0x0228
-		char pad_022C[108]; //0x022C
-		float currentHunger; //0x0298
-		char pad_029C[8]; //0x029C
-		float maxHunger; //0x02A4
-	}; //Size: 0x02A8
+		char pad_01D8[44]; //0x01D8
+		float walkingSpeed; //0x0204
+		float runningSpeed; //0x0208
+		float sneakingSpeed; //0x020C
+		float swimmingSpeed; //0x0210
+		float jumpHeight; //0x0214
+		char pad_0218[56]; //0x0218
+		float oxygen; //0x0250
+		char pad_0254[116]; //0x0254
+		float currentHunger; //0x02C8
+		char pad_02CC[8]; //0x02CC
+		float maxHunger; //0x02D4
+	}; //Size: 0x02D8
 
 	class GameCamera
 	{
@@ -519,10 +520,8 @@ namespace SDK {
 		float motionX; //0x0070
 		float motionY; //0x0074
 		float motionZ; //0x0078
-		char pad_007C[32]; //0x007C
-		int32_t onGround; //0x009C
-		char pad_00A0[80]; //0x00A0
-		int32_t phase; //0x00F0
+		char pad_007C[44]; //0x007C
+		int32_t onGround; //0x00A8
 
 		virtual void Function0();
 		virtual void Function1();
